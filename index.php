@@ -26,10 +26,11 @@
                             <img src="img/post_image/'.$post_thumbnail.'" alt="Thumbnail Picture">
                             <span class="post_title">'.$post_title.'</span>
                             <div class="excerpt">
-                                '.substr($post_excerpt,0,150).'                            
+                                '.substr($post_excerpt,0,150).'     
+                                <a style="color: white;background: dodgerblue;text-decoration:none;padding: 1px 4px 1px 6px;border-radius: 5px;" href="post.php?post='.$post_id.'" title="Click to Read Full Post"> Read More...</a>                       
                             </div>
                             
-                            <a href="post.php?post='.$post_id.'" data-link-type="readmore">Read More...</a>
+                            
                         </div>';
                 }
             ?>

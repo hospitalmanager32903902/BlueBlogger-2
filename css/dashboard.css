@@ -11,9 +11,9 @@
 }
 body{
     height: auto;
-    overflow-x: auto;
     background: #b1d1f21a;
     margin:0px;
+    overflow: hidden;
 }
 
 #header{
@@ -128,8 +128,8 @@ body{
     box-shadow: inset 0px 0px 8px 0px #4b5489;
 }
 
-#content{
-    width: 1182px;
+#all-post-content{
+    width: 1168px;
     min-height:600px;
     box-shadow: 1px 4px 5px #aaa;
     position: relative;
@@ -138,7 +138,7 @@ body{
     overflow-x: scroll;
 }
 #allposts{
-    widows: 100%;
+    width: 100%;
     height: 100%;
 }
 #allpostsheader{
@@ -146,6 +146,7 @@ body{
     height:45px;
     background: #eee;
     border: 1px solid #00000036;
+    /* border-left: 0px; */
     margin: 0px;
     box-shadow: 0px 0px 5px #aaa;
 }
@@ -168,7 +169,10 @@ body{
     
 }
 #posttitle{
-    width:350px;
+    width: 352px;
+}
+#posttumbpic{
+    width: 104px;
 }
 .tools{
     width:100px;
@@ -184,4 +188,74 @@ body{
 }
 #unpublish{
     width:120px;
+}
+.post{
+    width: 100%;
+    height: 87px;
+    margin-top:5px;
+    box-shadow: 0px 0px 5px #bbb;
+    overflow: hidden;
+    transition: .6s ease-out;
+}
+
+.dashboard-post-element{
+    padding: 7px 8px 17px 27px;
+    height: 100%;
+    display: block;
+    float: left;
+    text-align: center;
+    /* box-sizing: border-box!important; */
+    overflow: hidden;
+    border-right: 1px dotted #046cff21;
+    word-break: break-word;
+}
+#dashboard-post-number{
+    text-align: start;
+    border-left: 1px;
+    width: 51px;
+    height: 100%;
+    text-align: start;
+    border-left: 0px solid transparent;
+    padding: 33px 20px;
+}
+#dashboard-post-title{
+    width: 352px;
+}
+#dashboard-post-tumbnail{
+    border-radius: 10px;
+    padding: 0px;
+    width: 104px;
+}
+#dashboard-post-visit{
+    width: 120px;
+    padding: 32px 0px;
+}
+#dashboard-post-comments{
+    width: 120px;
+    padding: 33px 0px;
+    text-align: center;
+}
+#dashboard-post-delete{
+    padding: 15px 15px;
+    margin-top: 10px;
+    width: 100px;
+}
+#dashboard-post-edit{
+    padding: 15px 15px;
+    margin-top: 10px;
+    width: 100px;
+}
+#dashboard-post-draft{
+    width: 100px;
+}
+#dashboard-post-unpublish{
+    width: 120px;
+}
+svg{
+   cursor:pointer;
+   opacity:.6;
+   transform:scaleX(-1)
+}
+svg:hover{
+    opacity:1;
 }
