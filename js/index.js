@@ -9,7 +9,18 @@ window.addEventListener("scroll",()=>{
     }
 });
 
-
+window.onload = ()=>{
+    var blog = document.querySelector("body").innerText;
+    blog = blog.split("").map((char)=>{
+        if ( char.charCodeAt() == '�'.charCodeAt() ){                    
+            //console.log(char);
+            return "'";
+        } else {
+            return char;
+        }
+    });
+    //document.querySelector("body").innerText = blog.join("");
+}
 // window.addEventListener("load",()=>{
 //     var body = document.querySelector("body");
 //     body.style.opacity ="1";

@@ -8,6 +8,7 @@
     $postcontent = $r["post_content"];
     $postid = $r["post_id"];
 ?>
+<?php include("header.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,17 +19,22 @@
     <title><?php echo $posttitle; ?></title>
     <style type="text/css">
     body{
-        background:#000000cc;
+        background:white;
     }
     #content
     {
         width: 55%;
         border-radius:5px;
         background:white;
+        border:1px solid #bbb;
         margin: 30px auto;
         line-height: 30px;
         padding:20px;
         box-sizing:border-box;
+        transition:.3s linear;
+    }
+    .content-custom{
+        transform: scale(1.01) translateY(50px)!important;
     }
     </style>
 </head>
@@ -40,19 +46,6 @@
             <?php echo $postcontent; ?>
         </div>
     </div>
-    <script type="text/javascript">
-        window.onload = ()=>{
-            var blog = document.querySelector("#blog").innerText;
-            blog = blog.split("").map((char)=>{
-                if ( char.charCodeAt() == '�'.charCodeAt() ){                    
-                    //console.log(char);
-                    return "'";
-                } else {
-                    return char;
-                }
-            });
-            document.querySelector("#blog").innerText = blog.join("");
-        }
-    </script>
+    <script type="text/javascript" src="js/post.js"></script>
 </body>
 </html>

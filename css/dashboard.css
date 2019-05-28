@@ -1,6 +1,6 @@
 @font-face{
-    font-family:icons;
-    src: url(font/fontawesome8deb.woff);
+    font-family:w3incons;
+    src: url(../font/fontawesome8deb.woff);
 }
 
 *{
@@ -13,7 +13,7 @@ body{
     height: auto;
     background: #b1d1f21a;
     margin:0px;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 #header{
@@ -40,7 +40,7 @@ body{
 #navbar > a{
     width: 150px;
     height: 100%;
-    display: block;
+    display: inline-block;
     background: #242424;
     color: white;
     text-decoration: none;
@@ -55,6 +55,21 @@ body{
 #navbar>a:hover{
     background: white;
     color: black!important;
+}
+
+/* Home nav icon */
+#homelink{
+    color: white;
+    font-family: w3incons;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+}
+#homelink:hover{
+    color: dodgerblue;
+}
+#homelink:after{
+    content: '\e800';
 }
 
 
@@ -88,7 +103,7 @@ body{
     height: 61px;
     line-height: 40px;
     color: white;
-    background: #2a2a2a;
+    background: dodgerblue;
     border-top: 20px solid white;
     border-bottom: 1.5px solid #434343;
     text-align: center;
@@ -113,6 +128,9 @@ body{
     position: relative;
     top: 40px;
 }
+#sidenav div:active {
+    color:dodgerblue;
+}
 
 #comments{
 }
@@ -122,12 +140,14 @@ body{
 #createnewpost:hover,#posts:hover, #comments:hover, #drafts:hover{
     background:#1c1c1c;
 }
-
+#createnewpost:hover{
+    background:#1d83e7;
+}
 .selected{    
     background: dodgerblue!important;
     box-shadow: inset 0px 0px 8px 0px #4b5489;
 }
-
+/* --------------------------------- style for post tab ------------------------------------- */
 #all-post-content{
     width: 1168px;
     min-height:600px;
@@ -211,7 +231,7 @@ body{
 }
 #dashboard-post-number{
     text-align: start;
-    border-left: 1px;
+    border-left: 5px solid black!important;
     width: 51px;
     height: 100%;
     text-align: start;
@@ -239,23 +259,50 @@ body{
     padding: 15px 15px;
     margin-top: 10px;
     width: 100px;
+    opacity:.6;
+    cursor:pointer;
+}
+#dashboard-post-delete:hover{ 
+    opacity: 1;
 }
 #dashboard-post-edit{
     padding: 15px 15px;
     margin-top: 10px;
     width: 100px;
+    opacity:.6;
+    cursor:pointer;
 }
-#dashboard-post-draft{
+#dashboard-post-edit:hover{
+    opacity: 1;
+}
+#dashboard-post-draft{    
     width: 100px;
+    font-family: w3incons;
+    font-size: 24px;
+    line-height: 82px;
+    opacity: .6;
+    cursor: pointer;
+    padding: 0;
+}
+#dashboard-post-draft:hover{
+    opacity:1;
+}
+#dashboard-post-draft:after{
+    content: '\e804';
 }
 #dashboard-post-unpublish{
     width: 120px;
+    padding: 0px;
+    text-align: center;
+    line-height: 87px;
+    cursor: pointer;
 }
-svg{
-   cursor:pointer;
-   opacity:.6;
-   transform:scaleX(-1)
+
+#dashboard-post-unpublish{
+    opacity: .6;
 }
-svg:hover{
-    opacity:1;
+#dashboard-post-unpublish:hover{
+    opacity: 1;
 }
+
+/* --------------------------------- / post tab ----------------------- */

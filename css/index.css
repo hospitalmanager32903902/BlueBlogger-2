@@ -1,3 +1,10 @@
+/* importing w3schools fonts */
+
+@font-face{
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
+}
+
 *{
     box-sizing:border-box;
     color:black;
@@ -33,7 +40,7 @@ body{
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    background: url('../img/headerPoster.jpg');
+    background: #3ba1cb;
     background-size: cover;
 }
 
@@ -46,19 +53,23 @@ body{
     box-shadow: 0px 5px 11px 0px #aaa;
 }
 #navbar > a{
+    transition: .09s ease-out;
     width: 150px;
     height: 100%;
     display: inline-block;
     background: #242424;
     color: white;
     text-decoration: none;
-    line-height: 45px;
+    line-height: 48px;
     position: relative;
     left: 0px;
+    top: 0px;
+    box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 17px;
     text-align: center;
     border-right: 2.5px solid white;
+    margin: 0px;
 }
 #navbar>a:hover{
     background: white;
@@ -69,7 +80,7 @@ body{
     top: 0px;
 }
 div#rightNav{
-    background: yellow;
+    background: purple;
     display: inline-block;
     position: absolute;
     right: 0px;
@@ -93,8 +104,8 @@ path{
     fill: white;
 }
 span#profile{
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     display: block;
     float: left;
     position: relative;
@@ -102,11 +113,25 @@ span#profile{
     /* background: red; */
     border-radius: 50%;
     margin-left:10px;
-    top: -3px;
+    top: -5px;
     cursor: pointer;
     box-shadow: 0px 0px 5px #000000;
     background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
     background-size: cover;
+}
+#homelink{
+    color: white;
+    font-family: w3incons;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+#homelink:hover{
+    color: dodgerblue;
+}
+#homelink:after{
+    content: '\e800';
 }
 
 
@@ -115,10 +140,10 @@ span#profile{
     box-sizing: border-box;
     width: 970px;
     min-height: 600px;
-    max-height: 1000px;
+    max-height: 1500px;
     overflow: hidden;
     /* height: auto; */
-    background: #b22077;
+    /* background: #b22077; */
     /* box-shadow: 0px 0px 3px #bababa; */
     margin-left: auto;
     margin-right: auto;
@@ -127,7 +152,7 @@ span#profile{
 #postContainer{
     box-sizing: border-box;
     height: auto;
-    width: 670px;
+    width: 674px;
     float: left;
     overflow: hidden;
     background: red;
@@ -206,10 +231,76 @@ a[data-link-type="readmore"]:hover{
     background: pink;
     /* min-width: 250px; */
     /* max-width: 30%; */
-    width: 300px;
+    width: 296px;
     min-height: 500px;
     float: left;
     box-sizing: border-box;
     overflow: hidden;
     padding: 10px;
+}
+
+
+/* -----------------------style for user page--------------------------------- */
+.user-detail-element{
+    width: 100%;
+    min-height: 40px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    margin-top: 10px;
+    padding-left: 10px;
+    box-shadow: 1px 1px 4px lightgrey;
+    line-height: 40px;
+}
+
+#edit-detail{
+    width: 25px;
+    height: 25px;
+    display: block;
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 10px;
+    cursor:pointer;
+    display:none;
+}
+
+#edit-detail path{
+    fill:#000000b0;
+}
+#edit-detail path:hover{
+    fill:black;
+    box-shadow:0px 0px 5px #aaa;
+}
+input#input_user_detail {
+    width: 60%;
+    margin-left: 3px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1.3px solid #1e90ffbd;
+    outline: none;
+    font-size: 17px;
+    padding-left: 10px;
+    transition:.2s linear;
+}
+input#input_user_detail:focus{
+    box-shadow: 0px 0px 3px dodgerblue;
+}
+
+
+span#input_user_detail_save {
+    display: inline-block;
+    width: 80px;
+    height: 33px;
+    line-height: 34px;
+    background: dodgerblue;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    /* border: 1.4px solid white; */
+    cursor: pointer;
+}
+
+span#input_user_detail_save:hover {
+    background: #4CAF50;
 }

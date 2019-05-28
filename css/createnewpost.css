@@ -1,32 +1,47 @@
+/* importing w3schools fonts */
+
 @font-face{
-    font-family:icons;
-    src: url(font/fontawesome8deb.woff);
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
 }
 
 *{
     box-sizing:border-box;
     color:black;
     font-family:verdana;
-    transition:  .1s linear;
+    transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 body{
     height: auto;
     overflow-x: hidden;
+    margin: 0;
     background: #b1d1f21a;
-    margin:0px;
+    position: relative;
+    /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
+    /* transform: skew(45deg); */
+    /* left: -105%; */
 }
 
 #header{
     height: auto;
-    width: 102%;
+    width: 100%;
     padding: 0px;
     box-sizing: border-box;
     position: relative;
-    left: -7px;
-    top: 0px;
+    /* left: -7px; */
+    /* top: -8px; */
     margin: 0px;
     margin-bottom: 10px;
-    z-index: 100;
+}
+
+#headerPoster{
+    width: 100%;
+    height: 0;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: #3ba1cb;
+    background-size: cover;
 }
 
 #navbar{
@@ -35,27 +50,100 @@ body{
     height: 45px;
     background: #343a40;
     overflow: hidden;
+    box-shadow: 0px 5px 11px 0px #aaa;
+    position: relative;
 }
 #navbar > a{
+    transition: .09s ease-out;
     width: 150px;
     height: 100%;
-    display: block;
+    display: inline-block;
     background: #242424;
     color: white;
     text-decoration: none;
-    line-height: 45px;
+    line-height: 48px;
     position: relative;
     left: 0px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    top: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 17px;
     text-align: center;
     border-right: 2.5px solid white;
+    margin: 0px;
 }
 #navbar>a:hover{
     background: white;
-    color: black!important;
+    color: #2c2b2c;
+}
+.sticky{
+    position: fixed;
+    top: 0px;
+}
+div#rightNav{
+    background: purple;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    width: 200px;
+}
+span#notification{
+    background: green;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-right: 10px; */
+    left: 0px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+path{
+    fill: white;
+}
+span#profile{
+    width: 45px;
+    height: 45px;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-top: 11px; */
+    /* background: red; */
+    border-radius: 50%;
+    margin-left:10px;
+    top: 0px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #000000;
+    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-size: cover;
+}
+#homelink{
+    color: white;
+    font-family: w3incons;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+#homelink:hover{
+    color: dodgerblue;
+}
+#homelink:after{
+    content: '\e800';
 }
 
 
-
 /* ------------------------------------------------------------------ */
+#container{
+    width: 1000px;
+    min-height: 800px;
+    background: #eee;
+    border: 1px solid #aaa;
+    margin: 30px auto;
+    border-radius: 5px;
+    box-sizing:border-box;
+    padding:20px 10px;
+}
