@@ -27,11 +27,8 @@ function renderAllPost( data,count ){
                 <span id="dashboard-post-edit" class="dashboard-post-element" onclick="window.location='editpost.php?postid=${data.post_id}'">
                     <svg viewBox="0 0 24 24" id="ic_edit_24px" width="50%" height="50%"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
                 </span>
-                <span id="dashboard-post-draft" class="dashboard-post-element"  onclick="draft(this)">
-
-                </span>
-                <span id="dashboard-post-unpublish" class="dashboard-post-element" onclick="pub(this)">
-                    UN<i>p</i>UBLISH     
+                <span data-post-status="${data.post_status}" id="dashboard-post-unpublish" class="dashboard-post-element" onclick="pubunpub(this)">
+                    ${data.post_status=="public"? "UNPUBLISH" : "PUBLISH" }     
                 </span>
             </div>`;
     var allpostlist = N("#allpostlist");
@@ -42,8 +39,9 @@ function renderAllPost( data,count ){
 //  it does it in synchronusly method 
 function getPostData(){    
     var ajaxReqquest = new XMLHttpRequest();
-    ajaxReqquest.open("GET","getallpostlist.php",false);
-    ajaxReqquest.send();    
+    ajaxReqquest.open("POST","dashboard.php",false);
+    ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxReqquest.send(`operation=getdashboardpostlist`);    
     return ajaxReqquest.responseText;
 }
 
@@ -83,10 +81,11 @@ function alertPrompt(node){
 // function is triggered which prompts the user for confirmation if he confirms then this deletePost()
 // function triggered with post id as argument. then deletePost() deletes the post with the id of postid
 function deletePost(postid){
+    // modal fade in linearly
     alertPromptModal.style.opacity = 0;
-    alertPromptModal.style.transitionTimingFunction="linear";  
-    setTimeout(() => {      
-        N("#modalContent").style.transform="scale(.5)";  
+    alertPromptModal.style.transitionTimingFunction="linear"; 
+    // after fading in completely for 300 milisecond remove modal 
+    setTimeout(() => {       
         alertPromptModal.remove();
     }, 300);
     if(postid){
@@ -118,13 +117,34 @@ function deletePostFromDatabase(postid) {
     ajaxReqquest.open("POST","dashboardOperationBackEnd.php",false);    
     ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     ajaxReqquest.send(`operation=delete&postid=${postid}`);    
-    if( ajaxReqquest.responseText == "post deleted"){
-        alert("Post Deleted");
+    if( ajaxReqquest.responseText == "Post Deleted"){
+        console.log("Post Deleted");
+    } else {
+        console.log(ajaxReqquest.responseText);
+    }
+}
+// -----------------------------/deletePost()------------------------------------- //
+
+// ----------------------------- pubunpub()------------------------------------- //
+
+function pubunpub(node_pub_unpub) {
+    var post = node_pub_unpub.parentElement;
+    var postid = post.getAttributeNode("data-postid").value;
+    var ajaxReqquest = new XMLHttpRequest();
+    ajaxReqquest.open("POST","dashboardOperationBackEnd.php",false);    
+    ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxReqquest.send(`operation=${node_pub_unpub.getAttributeNode('data-post-status').value}&postid=${postid}`);    
+    console.log(ajaxReqquest.responseText);
+    if( ajaxReqquest.responseText == "public" || ajaxReqquest.responseText == "private" ){
+        node_pub_unpub.getAttributeNode('data-post-status').value = ajaxReqquest.responseText;
+        node_pub_unpub.innerHTML = ajaxReqquest.responseText == "public" ? "<span style='transition-duration:1s;color:green'>UNPUBLISH</span>" : "<span style='transition-duration:1s;color:red'>PUBLISH</span>";
     } else {
         alert(ajaxReqquest.responseText);
     }
 }
-// -----------------------------/deletePost()-------------------------------------
+
+// ----------------------------- /pubunpub()------------------------------------- //
+
 
 window.addEventListener("load",()=>{
     main();

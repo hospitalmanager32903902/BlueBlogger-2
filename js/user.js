@@ -1,5 +1,15 @@
 
 
+var navbar = document.querySelector("#navbar");
+var navbarOffsetTop = navbar.offsetTop;
+window.addEventListener("scroll",()=>{
+    if(window.pageYOffset >= navbarOffsetTop){
+        navbar.classList.add("sticky");
+    } else {        
+        navbar.classList.remove("sticky");
+    }
+});
+
 // window.addEventListener("load",()=>{
 //     var body = document.querySelector("body");
 //     body.style.opacity ="1";
@@ -21,7 +31,6 @@ function edit_user_detail_field(node) {
     node.style.display = "none";
     node.parentElement.onmouseover = null;
     node.parentElement.onmouseout = null;
-    var parent = node.parentElement;
     var existing = node.parentElement.querySelector(".value").innerText;
     var inputter = 
                     `<input type="text" id="input_user_detail" value="${existing}">
@@ -34,6 +43,7 @@ function edit_user_detail_field(node) {
 function update_user_detail_field(node) {
     document.querySelector("#edit-detail").style.display = "none";
     var parent = node.parentElement;
+    var fieldname = parent.parentElement.getAttributeNode("data-field-name").value;
     parent.parentElement.addEventListener("mouseover",()=>{
         showedit(parent.parentElement);
     });
@@ -41,4 +51,14 @@ function update_user_detail_field(node) {
         hideedit(parent.parentElement);
     });
     parent.innerHTML = node.previousElementSibling.value;
+    var newvalue = parent.innerHTML;
+    update_user_detail_field_in_database(fieldname,newvalue);
+}
+
+function update_user_detail_field_in_database(fieldname,newvalue) {
+    
+    var ajaxReqquest = new XMLHttpRequest();
+    ajaxReqquest.open("POST","user_backend_opearations.php",false);    
+    ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxReqquest.send(`operation=updatefield&newvalue=${newvalue}&fieldname=${fieldname}`);
 }

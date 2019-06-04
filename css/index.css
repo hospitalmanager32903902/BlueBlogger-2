@@ -1,17 +1,18 @@
 /* importing w3schools fonts */
-
-@font-face{
+@font-face {
     font-family: w3incons;
     src: url('../font/fontawesome8deb.woff');
 }
 
-*{
-    box-sizing:border-box;
-    color:black;
-    font-family:verdana;
+* {
+    box-sizing: border-box;
+    /* color: black; */
+    font-family: verdana;
     transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
-body{
+
+body {
+    perspective: 1000px;
     height: auto;
     overflow-x: hidden;
     margin: 0;
@@ -22,7 +23,591 @@ body{
     /* left: -105%; */
 }
 
-#header{
+#header {
+    height: 135px;
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    /* position: unset; */
+    /* left: -7px; */
+    /* top: -8px; */
+    margin: 0px;
+    /* margin-bottom: 10px; */
+}
+
+#headerPoster {
+    width: 100%;
+    height: 140px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    background-size: cover;
+}
+
+#navbar {
+    z-index: 1000;
+    width: 100%;
+    height: 45px;
+    background: #343a40;
+    overflow: hidden;
+    box-shadow: 0px 5px 11px 0px #aaa;
+}
+
+#navbar > a:first-child {
+    transition: .09s ease-out;
+    width: 150px;
+    height: 45px;
+    display: block;
+    float: left;
+    line-height: 45px;
+    background: #242424;
+    color: white;
+    text-decoration: none;
+    /* line-height: 40px; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    border-right: 2.5px solid white;
+    margin: 0px;
+}
+
+#navbar>a:first-child:hover {
+    background: white;
+    color: #2c2b2c;
+}
+
+.sticky {
+    position: sticky;
+    top: 0px;
+}
+
+div#rightNav {
+    perspective: 300px;
+    background: purple;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    width: 200px;
+}
+
+span#notification {
+    background: green;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-right: 10px; */
+    left: 0px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+#notificationpad{
+    width: 160px;
+    min-height:200px;
+    text-align: center;
+    height: auto;
+    background: #242424;
+    color: white;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 999999;
+    /* top: 0px; */
+    right: 200px;
+    display: none;
+}
+
+path {
+    fill: white;
+}
+
+span#profile {
+    width: 55px;
+    height: 55px;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-top: 11px; */
+    /* background: red; */
+    border-radius: 50%;
+    margin-left: 10px;
+    top: -5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #000000;
+    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-size: cover;
+    transform: translateY(10deg);
+    transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1);
+}
+span#profile:hover {
+    transform: scale(1.1) rotateZ(-10deg) skew(-5deg);
+}
+#homelink {
+    color: white;
+    font-family: w3incons;
+    font-size: 26px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+
+#homelink:hover {
+    color: dodgerblue;
+}
+
+#homelink:after {
+    content: '\e800';
+}
+
+/* ------------------------------Main Body---------------------------------- */
+#container {
+    box-sizing: border-box;
+    width: 970px;
+    min-height: 600px;
+    max-height: 1500px;
+    overflow: hidden;
+    /* height: auto; */
+    background: #b22077;
+    /* box-shadow: 0px 0px 3px #bababa; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+#homepage-createnewpost{
+    width: 674px;
+    height: 42px;
+    line-height: 40px;
+    text-align: center;
+    color: black;
+    background: white;
+    display: inline-block;
+    text-decoration: none;
+}
+#homepage-createnewpost span:first-child{
+    width: 25px;
+    height: 25px;
+    line-height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid #6e6e6e;
+    background: #000000;
+    color: white;
+    font-family: verdana;
+    font-size: large;
+    font-weight: bold;
+}
+#homepage-createnewpost span:first-child:hover{    
+    border: 2px solid white;
+}
+
+#postContainer {
+    box-sizing: border-box;
+    height: auto;
+    width: 674px;
+    float: left;
+    overflow: hidden;
+    background: orange;
+}
+
+.post>img:first-child {
+    box-sizing: border-box;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    display: block;
+    float: left;
+    border-radius: 3px;
+}
+
+.post_title {
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 500px;
+    height: 25px;
+    display: inline-block;
+    margin-left: 12px;
+    position: relative;
+    float: left;
+    top: 0px;
+    font-size: large;
+    text-overflow: ellipsis;
+    background:red;
+    color: black;
+}
+.post_title:hover{
+    text-shadow:1px 1px 3px #c0bfbf;
+    text-decoration:underline;
+}
+
+.post {
+    box-sizing: border-box;
+    width: 650px;
+    height: 130px;
+    padding: 5px 10px 15px 5px;
+    overflow: hidden;
+    margin: 20px auto;
+    background: #edf0f5;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid #1c111947;
+}
+.post:first-child{
+    margin-top:0px;
+}
+
+.excerpt {
+    box-sizing: border-box;
+    padding: 4px 0px;
+    min-width: 14%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 15px;
+    box-sizing: border-box;
+    width: 500px;
+    height: 71px;
+    overflow: hidden;
+    display: block;
+    float: none;
+    color: #4f4f4f9e;
+    background: blueviolet;
+    margin-left: 122px;
+}
+#post-bottom{
+    width: 500px;
+    height: 25px;
+    position: relative;
+    background: #0fb8ad;
+    font-size: 12px;
+    /* top: -44px; */
+    /* color: #000000c4; */
+    /* text-shadow: 1px -1px 3px #8f8f8f; */
+    left: 12px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 25px;
+    overflow:auto;
+    box-sizing: content-box;
+    border-top: 1px solid lightgray;
+}
+.post-author{
+    display:inline-block;
+    margin-right:10px;
+    margin-left: 5px;
+    color: #000000c4;
+    text-shadow: 1px 1px 1px #8f8f8f;
+}
+.post-author a{
+    text-decoration:none;
+    color:#2d2d4f;
+}
+.post-published{
+    display:inline-block;
+    margin-right:10px;
+    color: #000000c4;
+    text-shadow: 1px -1px 3px #8f8f8f;
+}
+.post-comments{
+    color: #000000c4;
+    text-shadow: 1px -1px 3px #8f8f8f;
+}
+/* ------------------------- More link Styling -------------------------------- */
+a[data-link-type="readmore"] {
+    font-family: verdana;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    display: inline-block;
+    padding: 8px 4px;
+    border-radius: 3px;
+    width: 100px;
+    /* margin: -11px 0px 0px 0px; */
+    position: relative;
+    bottom: 0px;
+    /* right: -6px; */
+    /* float: left; */
+}
+
+a[data-link-type="readmore"]:hover {
+    color: #007bff;
+    background: white;
+}
+
+/* -----------------------sidebar--------------------------------- */
+#sidebar {
+    background: pink;
+    /* min-width: 250px; */
+    /* max-width: 30%; */
+    width: 296px;
+    min-height: 500px;
+    float: right;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    /* top: -42px; */
+}
+
+/* -----------------------style for user page--------------------------------- */
+#userdetail{
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    width: 550px;
+    background: white;
+    border: 1px solid #72541d54;
+    padding: 20px;
+    margin: 10px;
+    margin-left: 35%;
+    box-shadow: inset 0px 0px 100px 100px white;
+}
+
+.user-detail-element {
+    width: 100%;
+    min-height: 40px;
+    background: #f6f6f6;
+    color: black;
+    border-radius: 5px;
+    border: 1.2px solid #7a7a7a;
+    margin-top: 18px;
+    /* padding-left: 10px; */
+    /* box-shadow: 1px 1px 4px lightgrey; */
+    line-height: 40px;
+    text-shadow: 1px 1px 1px #aaa;
+    overflow: hidden;
+}
+
+.user-detail-element strong {
+    display: inline-block;
+    color: black;
+    text-shadow: none;
+    height:40px;
+    min-width: 190px;
+    background: #2cb5e8;
+    color: white;
+    padding-left: 10px;
+}
+
+#edit-detail {
+    width: 25px;
+    height: 25px;
+    display: block;
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#edit-detail path {
+    fill: black;
+}
+
+#edit-detail path:hover {
+    fill: lightcoral;
+    box-shadow: 0px 0px 5px #aaa;
+}
+
+input#input_user_detail {
+    width: 60%;
+    margin-left: 3px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1.3px solid #1e90ffbd;
+    outline: none;
+    font-size: 17px;
+    padding-left: 10px;
+    transition: .2s linear;
+    color: dodgerblue;
+}
+
+input#input_user_detail:focus {
+    box-shadow: 0px 0px 3px dodgerblue;
+    color: dodgerblue;
+}
+
+span#input_user_detail_save {
+    display: inline-block;
+    width: 80px;
+    height: 33px;
+    line-height: 34px;
+    background: dodgerblue;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    /* border: 1.4px solid white; */
+    cursor: pointer;
+}
+
+span#input_user_detail_save:hover {
+    background: #4CAF50;
+}
+
+/* ------------------------Sidebar User pane ------------------------------ */
+#userpane {
+    width: 100%;
+    height: 200px;
+    background: #ecf0f2;
+    padding-top:10px;
+    border: 1px solid #aaa;
+    border-bottom: 3px solid #bbb;
+    border-radius: 2px;
+    transition:1s linear;
+}
+
+#userpane-username {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+    outline: 0;
+}
+
+#userpane-password {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+    outline: 0;
+}
+
+#userpane-loginbutton {
+    width: 88%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    margin: 10px 0px 0px 18px;
+    display: inline-block;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #aaa;
+}
+#userpane-loginbutton:hover {
+    box-shadow:2px 2px 10px #55555569;
+    color:green;
+    text-shadow: none;
+}
+#userpane label{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 0px 0px 1px #282828;
+    display: block;
+}
+
+#userpane-userdetail{
+    background: coral;
+    overflow: hidden;
+    height: 80px;
+    cursor: pointer;
+}
+
+#userpane-userdetail img{
+    width:80px;
+    height:80px;
+    margin-left:10px;
+    margin-right: 10px;
+    float:left;
+}
+#userpane-userdetail-name{
+    display:block;
+    width: 173px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 17px;
+    text-align: center;
+    font-weight:bolder;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+#userpane-userdetail-age{
+    margin-top: 5px;
+    margin-left: 40px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-gender{
+    margin-left: 10px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-profession{
+    margin: 7px 0px 10px 90px;
+    text-shadow: 0px 0px 1px #1e90ff8a;
+    color: #343a40;
+    text-align: center;
+}
+
+
+.shake{
+    animation: fieldempty .1s ease-in 0s 3;
+    position: relative;
+    border:1.5px solid red!important;
+}
+
+@keyframes fieldempty{
+    0%{
+        transform: rotateZ(3deg);
+    }
+    40%{
+        transform: rotateZ(-3deg);
+    }
+    80%{
+        transform: rotateZ(3deg);
+    }
+    100%{
+        transform: rotateZ(-3deg);
+    }
+}
+
+
+/* -----------------------------------Media breakpoint------------------------------------------- */
+@media only screen and (max-width:980px){
+    /* importing w3schools fonts */
+@font-face {
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
+}
+
+* {
+    box-sizing: border-box;
+    /* color: black; */
+    font-family: verdana;
+    transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+body {
+    height: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background: #b1d1f21a;
+    position: relative;
+    /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
+    /* transform: skew(45deg); */
+    /* left: -105%; */
+}
+
+#header {
     height: 180px;
     width: 100%;
     padding: 0px;
@@ -34,17 +619,17 @@ body{
     margin-bottom: 10px;
 }
 
-#headerPoster{
+#headerPoster {
     width: 100%;
     height: 140px;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    background: #3ba1cb;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     background-size: cover;
 }
 
-#navbar{
+#navbar {
     z-index: 1000;
     width: 100%;
     height: 45px;
@@ -52,7 +637,8 @@ body{
     overflow: hidden;
     box-shadow: 0px 5px 11px 0px #aaa;
 }
-#navbar > a{
+
+#navbar > a:first-child {
     transition: .09s ease-out;
     width: 150px;
     height: 100%;
@@ -71,15 +657,18 @@ body{
     border-right: 2.5px solid white;
     margin: 0px;
 }
-#navbar>a:hover{
+
+#navbar > a:first-child:hover {
     background: white;
     color: #2c2b2c;
 }
-.sticky{
+
+.sticky {
     position: fixed;
     top: 0px;
 }
-div#rightNav{
+
+div#rightNav {
     background: purple;
     display: inline-block;
     position: absolute;
@@ -87,7 +676,8 @@ div#rightNav{
     height: 45px;
     width: 200px;
 }
-span#notification{
+
+span#notification {
     background: green;
     box-sizing: border-box;
     display: block;
@@ -100,10 +690,23 @@ span#notification{
     height: 28px;
     cursor: pointer;
 }
-path{
+#notificationpad{
+    width: 130px;
+    min-height:200px;
+    height: auto;
+    background: #242424;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 10000;
+    /* top: 100px; */
+    display: block;
+}
+
+path {
     fill: white;
 }
-span#profile{
+
+span#profile {
     width: 55px;
     height: 55px;
     display: block;
@@ -112,14 +715,15 @@ span#profile{
     /* margin-top: 11px; */
     /* background: red; */
     border-radius: 50%;
-    margin-left:10px;
+    margin-left: 10px;
     top: -5px;
     cursor: pointer;
     box-shadow: 0px 0px 5px #000000;
     background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
     background-size: cover;
 }
-#homelink{
+
+#homelink {
     color: white;
     font-family: w3incons;
     font-size: 24px;
@@ -127,37 +731,41 @@ span#profile{
     text-decoration: none;
     line-height: 45px;
 }
-#homelink:hover{
+
+#homelink:hover {
     color: dodgerblue;
 }
-#homelink:after{
+
+#homelink:after {
     content: '\e800';
 }
 
-
 /* ------------------------------Main Body---------------------------------- */
-#container{
+#container {
     box-sizing: border-box;
-    width: 970px;
+    width: 740px;
     min-height: 600px;
     max-height: 1500px;
     overflow: hidden;
     /* height: auto; */
-    /* background: #b22077; */
+    background: #b22077;
     /* box-shadow: 0px 0px 3px #bababa; */
     margin-left: auto;
     margin-right: auto;
-    border-radius:5px;
+    margin-top: 30px;
+    border-radius: 5px;
 }
-#postContainer{
+
+#postContainer {
     box-sizing: border-box;
     height: auto;
-    width: 674px;
+    width: 512px;
     float: left;
     overflow: hidden;
     background: red;
 }
-.post>img:first-child{
+
+.post>img:first-child {
     box-sizing: border-box;
     width: 100px;
     height: 110px;
@@ -165,10 +773,11 @@ span#profile{
     float: left;
     border-radius: 3px;
 }
-.post_title{
+
+.post_title {
     box-sizing: border-box;
     overflow: hidden;
-    width: 500px;
+    width: 370px;
     max-height: 19px;
     display: inline-block;
     margin-left: 20px;
@@ -177,35 +786,52 @@ span#profile{
     top: 0px;
     font-size: 16px;
 }
-.post{
+
+.post {
     box-sizing: border-box;
-    width: 670px;
+    width: 509px;
     height: 123px;
     padding: 5px 10px 15px 5px;
     overflow: hidden;
-    margin: 20px 0px;
+    margin: 20px auto;
     background: #f7f8fa;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid #1c111947;
 }
-.excerpt{
+
+.excerpt {
     box-sizing: border-box;
-    padding: 10px 28px;
-    min-width: 60%;
+    padding: 4px 8px;
+    min-width: 25%;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 15px;
     box-sizing: border-box;
-    width: 550px;
-    height: 99px;
+    width: 387px;
+    height: 65px;
     overflow: hidden;
     display: block;
     float: none;
     color: #4f4f4fe0;
 }
+#post-bottom{
+    width: 385px;
+    height: 20px;
+    position: relative;
+    background: #0fb8ad;
+    display: block;
+    top: 1px;
+    left: 20px;
+    overflow: hidden;
+    line-height: 20px;
+}
+.post-author{
+    display: inline-block;
+}
+
 /* ------------------------- More link Styling -------------------------------- */
-a[data-link-type="readmore"]{
-    font-family:verdana;
+a[data-link-type="readmore"] {
+    font-family: verdana;
     font-size: 14px;
     text-decoration: none;
     color: white;
@@ -220,40 +846,48 @@ a[data-link-type="readmore"]{
     /* right: -6px; */
     /* float: left; */
 }
-a[data-link-type="readmore"]:hover{
+
+a[data-link-type="readmore"]:hover {
     color: #007bff;
     background: white;
 }
 
 /* -----------------------sidebar--------------------------------- */
-
-#sidebar{
+#sidebar {
     background: pink;
     /* min-width: 250px; */
     /* max-width: 30%; */
-    width: 296px;
+    width: 228px;
     min-height: 500px;
-    float: left;
+    float: right;
     box-sizing: border-box;
     overflow: hidden;
     padding: 10px;
+    top: -42px;
+    position: relative;
 }
-
 
 /* -----------------------style for user page--------------------------------- */
-.user-detail-element{
+.user-detail-element {
     width: 100%;
     min-height: 40px;
-    background: #f4f4f4;
-    border-radius: 10px;
-    border: 1px solid #d1d1d1;
-    margin-top: 10px;
+    background: #f6f6f6;
+    color: black;
+    border-radius: 5px;
+    border: 1.2px solid #7a7a7a;
+    margin-top: 18px;
     padding-left: 10px;
-    box-shadow: 1px 1px 4px lightgrey;
+    /* box-shadow: 1px 1px 4px lightgrey; */
     line-height: 40px;
+    text-shadow: 1px 1px 1px #aaa;
 }
 
-#edit-detail{
+.user-detail-element strong {
+    color: black;
+    text-shadow: none;
+}
+
+#edit-detail {
     width: 25px;
     height: 25px;
     display: block;
@@ -261,17 +895,19 @@ a[data-link-type="readmore"]:hover{
     position: relative;
     top: 5px;
     right: 10px;
-    cursor:pointer;
-    display:none;
+    cursor: pointer;
+    display: none;
 }
 
-#edit-detail path{
-    fill:#000000b0;
+#edit-detail path {
+    fill: black;
 }
-#edit-detail path:hover{
-    fill:black;
-    box-shadow:0px 0px 5px #aaa;
+
+#edit-detail path:hover {
+    fill: lightcoral;
+    box-shadow: 0px 0px 5px #aaa;
 }
+
 input#input_user_detail {
     width: 60%;
     margin-left: 3px;
@@ -281,12 +917,14 @@ input#input_user_detail {
     outline: none;
     font-size: 17px;
     padding-left: 10px;
-    transition:.2s linear;
-}
-input#input_user_detail:focus{
-    box-shadow: 0px 0px 3px dodgerblue;
+    transition: .2s linear;
+    color: dodgerblue;
 }
 
+input#input_user_detail:focus {
+    box-shadow: 0px 0px 3px dodgerblue;
+    color: dodgerblue;
+}
 
 span#input_user_detail_save {
     display: inline-block;
@@ -303,4 +941,102 @@ span#input_user_detail_save {
 
 span#input_user_detail_save:hover {
     background: #4CAF50;
+}
+
+/* ------------------------Sidebar User pane ------------------------------ */
+#userpane {
+    width: 100%;
+    height: 200px;
+    background: #ecf0f2;
+    padding-top:10px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+}
+
+#userpane-username {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+}
+
+#userpane-password {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+}
+
+#userpane-loginbutton {
+    width: 88%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    margin: 10px 0px 0px 18px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#userpane label{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 0px 0px 1px #282828;
+    display: block;
+}
+
+#userpane-userdetail{
+    overflow: hidden;
+    height: 80px;
+    cursor: pointer;
+}
+#userpane-userdetail img{
+    width: 63px;
+    height: 63px;
+    margin-left:10px;
+    margin-right: 3px;
+    float:left;
+}
+#userpane-userdetail-name{
+    display:block;
+    width: 127px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    text-align: center;
+    font-weight:bolder;
+    margin-left: 66px;
+    margin-top: 2px;
+    z-index: 1000;
+}
+#userpane-userdetail-age{
+    margin-top: 0px;
+    margin-left: 27px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-gender{
+    margin-left: 10px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-profession{
+    margin: 2px 0px 10px 0px;
+    font-size: 13px;
+    text-shadow: 0px 0px 1px #1e90ff8a;
+    color: #343a40;
+    text-align: center;
+}
+    
 }

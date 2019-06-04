@@ -1,10 +1,71 @@
 
-var navbar = document.querySelector("#navbar");
-var navbarOffsetTop = navbar.offsetTop;
+var writingtool = document.querySelector("#writingtool");
+var writingtoolOffsetTop = writingtool.offsetTop;
 window.addEventListener("scroll",()=>{
-    if(window.pageYOffset >= navbarOffsetTop){
-        navbar.classList.add("sticky");
+    if(window.pageYOffset >= writingtoolOffsetTop){
+        writingtool.classList.add("sticky");
     } else {        
-        navbar.classList.remove("sticky");
+        writingtool.classList.remove("sticky");
     }
 });
+
+
+
+function publish(){
+
+    // set animation
+
+    var post_thumb = document.querySelector("#postthumbnail").files[0];
+    var post_title = document.querySelector("#post_title").value;
+    var post_excerpt = document.querySelector("#post_excerpt").value;
+    var post_body = document.querySelector("#writing_pad_textversion").value.trim().split("").map((elem)=>{
+        return elem.charCodeAt() == 39 || elem.charCodeAt() == 34 ? "0" : elem;
+    }).join("");
+    console.log(post_body);
+    if ( !(post_thumb && post_title && post_excerpt && post_body) ) {
+        alert(`Enter all the fields`);
+        return;
+    }
+    console.log(post_body);
+    var formData = new FormData();
+
+    formData.append(
+        "operation",
+        "createnewpost"
+    );
+    formData.append(
+        "post_thumnail",
+        post_thumb
+    );
+    formData.append(
+        "post_title",
+        post_title
+    );
+    formData.append(
+        "post_excerpt",
+        post_excerpt
+    );
+    formData.append(
+        "post_body",
+        post_body
+    );
+    
+    var ajaxReqquest = new XMLHttpRequest();
+    ajaxReqquest.open("POST","createnewpost.php",false);    
+    ajaxReqquest.send(formData);
+    if ( ajaxReqquest.responseText == "Successsful" ) {
+        // notify for post creation success
+        alert("Successsful");
+        window.location = "dashboard.php";
+    } else {        
+        // notify for post creation faliure
+    }
+}
+
+function makeBold() {
+    var pad = document.querySelector("#writing_pad_textversion");
+    var selected = pad.innerHTML.substring(pad.selectionStart,pad.selectionEnd);
+    pad.innerHTML = `${pad.innerHTML.substr(0,pad.selectionStart-1)} <b>${selected}</b> ${pad.innerHTML.substr(pad.selectionEnd+1,pad.innerHTML.length)}`;
+
+    console.log(selected);
+}

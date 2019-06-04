@@ -1,4 +1,29 @@
 <?php
+    if (isset($_POST["operation"]) && $_POST["operation"] == "getdashboardpostlist" ) {
+        // import database connector 
+        include("connect_to_db.php");
+        
+        if( session_status() == 1 )
+            session_start();
+
+        $username = $_SESSION["username"];
+        $sql = "SELECT `post_status`, `post_thumbnail`,`post_id`,`post_visit_count`,`post_comment_count`,`post_title`,`post_number` FROM `posts` WHERE `post_author_username`='$username' "; // SQL code for fetching data from the database
+
+        $posts = $conn->query( $sql ); // fetched the data
+        $post = array();
+        $all = array();
+        while ( $row = $posts->fetch_assoc() ) {
+            foreach( $row as $key => $value ){
+            $post[$key] = $value;
+            }
+            array_push($all,$post);
+        }
+        echo json_encode($all);
+        exit(0);
+    }
+?>
+
+<?php
     // Check if user logged in if yes
     // continue otherwise redirect to login page
     session_start();
@@ -28,7 +53,6 @@
                     <span id="postcomments" class="allpostsheader-element">Comments</span>
                     <span id="delete" class="allpostsheader-element tools">DELETE</span>
                     <span id="edit" class="allpostsheader-element tools">EDIT</span>
-                    <span id="draft" class="allpostsheader-element tools">DRAFT</span>
                     <span id="unpublish" class="allpostsheader-element tools">UN <strong>/</strong> PUBLISH</span>
                 </div>
                 <div id="allpostlist">
