@@ -18,8 +18,7 @@
     <div id="container">
         <div>   
             <div id="content" data-post-id="<?php echo $post["post_id"]; ?>" >
-        
-            
+                    
                             <img src="img/post_image/<?php echo $post["post_thumbnail"]; ?>" alt="Thumnail Image" width="100px" height="100px" />
                             <h1>
                                 <?php echo $post["post_title"]; ?>
@@ -43,7 +42,7 @@
                                 <button onclick="postpage_sidelogin(this.parentElement)" id="userpane-loginbutton">Login</button>';
                         } else {
                             echo 
-                                '<div data-username="'.$_SESSION["username"].'" id="userpane-userdetail" onclick=window.location="user.php">
+                                '<div data-username="'.$_SESSION["username"].'" id="userpane-userdetail" onclick=window.location="profile.php">
                                     <img src="'.$user["user_profile_picture_link"].'" width="100px" height="100px" >
                                     <span id="userpane-userdetail-name">'.$user["user_fullname"].'</span>
                                     <div id="userpane-userdetail-age">'.$user["user_age"].'</div>
@@ -66,12 +65,12 @@
                 <?php   
                 while( $comment = $comments->fetch_assoc() ){   
                     // fetching author avatar
-                    $author_avatar = $conn->query( "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'" )->fetch_assoc()["user_profile_picture_link"];         
+                    $commentor_avatar = $conn->query( "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'" )->fetch_assoc()["user_profile_picture_link"];         
                     // echo "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'";
                     echo 
                     '<div class="comment">
                         <div class="commentor">
-                            <img src="'.$author_avatar.'" alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
+                            <img src="'.$commentor_avatar.'" alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
                             <label for="commentorAvatar">'.$comment["comment_commentor_fullname"].'</label>
                         </div>                       
                         <div class="commentcontent"> 
@@ -87,5 +86,6 @@
         </div>
     </div>
     <script type="text/javascript" src="js/post.js"></script>
+    <script type="text/javascript" src="js/bblibrary.js"></script>
 </body>
 </html>

@@ -76,7 +76,7 @@
                             <button onclick="homepage_sidelogin(this.parentElement)" id="userpane-loginbutton">Login</button>';
                     } else {
                         echo 
-                            '<div id="userpane-userdetail" onclick=window.location="user.php">
+                            '<div id="userpane-userdetail" onclick=window.location="profile.php">
                                 <img src="'.$user["user_profile_picture_link"].'" width="100px" height="100px" >
                                 <span id="userpane-userdetail-name">'.$user["user_fullname"].'</span>
                                 <div id="userpane-userdetail-age">'.$user["user_age"].'</div>
@@ -90,5 +90,6 @@
     </div>
     <!-- /Container for the Post -->
     <script src="js/index.js"></script>
+    <script src="js/bblibrary.js"></script>
 </body>
 </html>

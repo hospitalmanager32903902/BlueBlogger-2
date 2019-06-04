@@ -253,14 +253,16 @@ input#firstname,input#lastname{
 }
 label[for="age"],label[for="gender"]{
     display:inline-block;
+    font-size:16px;
+    
     
 }
 label[for="gender"]{
-    margin-left: 55px!important;
+    margin-left: 45px!important;
 }
-label[for="gender"]{
+label[for="age"]{
     display:inline-block;
-    margin-left:65px;
+    margin-left:22px;
     
 }
 #age, #gender{

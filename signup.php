@@ -14,14 +14,19 @@
         $user_fromcity = $_POST["fromcity"];
         $user_phone = $_POST["phone"];
         $user_password = $_POST["password"];
+        $user_profile_picture_link = $_FILES["avatarimage"]["name"];
         
         $user_id = $conn->query("SELECT COUNT(user_id) FROM users user_id")->fetch_assoc()["COUNT(user_id)"];
         
         // sql for entering new user into the batadase
-        $sql = "INSERT INTO `users`(`user_id`, `user_username`, `user_password`, `user_email`, `user_phone`, `user_fullname`, `user_age`, `user_gender`, `user_bloodgroup`, `user_education`, `user_current_city`, `user_from`, `user_post_count`, `user_comment_count`) VALUES ($user_id,'$user_username','$user_password','$user_email',$user_phone,'$user_fullname',$user_age,'$user_gender','$user_bloodgroup','$user_education','$user_currentcity','$user_fromcity',0,0)";
+        $sql = "INSERT INTO `users`(`user_id`, `user_username`, `user_password`, `user_email`, `user_phone`, `user_fullname`, `user_age`, `user_gender`, `user_bloodgroup`, `user_education`, `user_current_city`, `user_from`, `user_post_count`, `user_comment_count`,`user_profile_picture_link`) VALUES ($user_id,'$user_username','$user_password','$user_email',$user_phone,'$user_fullname',$user_age,'$user_gender','$user_bloodgroup','$user_education','$user_currentcity','$user_fromcity',0,0,'$user_profile_picture_link')";
+        echo $sql;
         $r = $conn->query( $sql );
         // if registration done then set the session variable and redirect to dashboard.php
         if($r){
+
+            move_uploaded_file($_FILES["avatarimage"]["tmp_name"],$_FILES["avatarimage"]["name"]);
+
             if ( session_status() == 1 ) {
                 session_start();
                 $_SESSION["username"] = $user_username;
@@ -39,7 +44,7 @@
         <div id="container">
             <div id="signupbox">
                 <h2>Signup form</h2>
-                <form action="signup.php" method="post">
+                <form action="signup.php" method="post"  enctype="multipart/form-data">
                     <label for="firstname">Enter Your name</label>
                     <input type="text" name="firstname" id="firstname" placeholder="First Name" >
                     <input type="text" name="lastname" id="lastname" placeholder="Last Name" >
@@ -76,7 +81,7 @@
                     <input type="password" name="repassword" id="repassword" placeholder="Password" onkeyup="repasswordcheck(this)">
                     <label for="passwordalert" id="unmatchalert"></label>
                     <label for="image">Choose a profile picture</label>
-                    <input type="file" name="image" id="image">
+                    <input type="file" name="avatarimage" id="image">
                     <input type="submit" value="Register" id="register">
                 </form>
                 <input type="button" value="Register"  onclick="register()" >

@@ -11,7 +11,7 @@
         $user = $conn->query( $sql ); // fetched the data
         $user = $user->fetch_assoc();
         $user_avatar_link = $user["user_profile_picture_link"];
-        $user_avatar_link = explode("/",$user_avatar_link)[2];
+        // $user_avatar_link = "img/profilepic/".explode("/",$user_avatar_link)[2];
     }
 
 ?>
@@ -21,7 +21,7 @@
     // grab page name 
     $pageName = explode("/",$_SERVER["PHP_SELF"]);
     $rightSideNav ="";
-    if( $pageName[count($pageName)-1] == "user.php" ){
+    if( $pageName[count($pageName)-1] == "profile.php" ){
         $rightSideNav = '<div id="rightNav"> 
                             <span id="notification">
                             <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
@@ -52,7 +52,7 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <a href="user.php">
+                                <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')" id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -70,7 +70,7 @@
                                     </g>
                                 </svg>
                                 </span>
-                                <a href="user.php">
+                                <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -88,7 +88,7 @@
                                     </g>
                                 </svg>
                                 </span>
-                                <a href="user.php">
+                                <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -104,7 +104,7 @@
                                     </g>
                                 </svg>
                                 </span>
-                                <a href="user.php">
+                                <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"   id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -120,7 +120,7 @@
                                     </g>
                                 </svg>
                                 </span>
-                                <a href="user.php">
+                                <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -134,6 +134,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/common.css" />
     <?php         
         $pageName = explode("/",$_SERVER["PHP_SELF"]);
         if( $pageName[count($pageName)-1] == "dashboard.php" ) {     
@@ -148,6 +149,8 @@
             echo '<link rel="stylesheet" href="css/login.css" />';
         } else if( $pageName[count($pageName)-1] == "post.php" ){
             echo '<link rel="stylesheet" href="css/post.css" />';
+        } else if( $pageName[count($pageName)-1] == "profile.php" ){
+            echo '<link rel="stylesheet" href="css/profile.css" />';
         } else {
             echo '<link rel="stylesheet" href="css/index.css" />';
         }
@@ -168,10 +171,10 @@
                 }  else if( $pageName[count($pageName)-1] == "login.php") {                  
                         echo "<a href='index.php'>Home</a>";
 
-                }  else if( $pageName[count($pageName)-1] == "user.php" ) {                  
+                }  else if( $pageName[count($pageName)-1] == "profile.php" ) {                  
                         echo "<a href='dashboard.php'>Dashboard</a>";
                 }  else if( $pageName[count($pageName)-1] == "dashboard.php" ) {                  
-                        echo "<a href='user.php'>Profile</a>";
+                        echo "<a href='profile.php'>Profile</a>";
                 }  else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "post.php" ) {                  
                     echo "<a href='dashboard.php'>Dashboard</a>";
                 }  else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "post.php" ) {                  

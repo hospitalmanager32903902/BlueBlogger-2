@@ -38,8 +38,7 @@
             </div>
         </div>
 
-<script type="text/javascript" src="js/user.js">
-   
-</script>
+    <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/bblibrary.js"></script>
 </body>
 </html>

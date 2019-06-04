@@ -358,227 +358,135 @@ a[data-link-type="readmore"]:hover {
     /* top: -42px; */
 }
 
-/* -----------------------style for user page--------------------------------- */
-#userdetail{
-    margin-bottom: 50px;
-    padding-bottom: 10px;
-    width: 550px;
-    background: white;
-    border: 1px solid #72541d54;
-    padding: 20px;
-    margin: 10px;
-    margin-left: 35%;
-    box-shadow: inset 0px 0px 100px 100px white;
-}
-
-.user-detail-element {
-    width: 100%;
-    min-height: 40px;
-    background: #f6f6f6;
-    color: black;
-    border-radius: 5px;
-    border: 1.2px solid #7a7a7a;
-    margin-top: 18px;
-    /* padding-left: 10px; */
-    /* box-shadow: 1px 1px 4px lightgrey; */
-    line-height: 40px;
-    text-shadow: 1px 1px 1px #aaa;
-    overflow: hidden;
-}
-
-.user-detail-element strong {
-    display: inline-block;
-    color: black;
-    text-shadow: none;
-    height:40px;
-    min-width: 190px;
-    background: #2cb5e8;
-    color: white;
-    padding-left: 10px;
-}
-
-#edit-detail {
-    width: 25px;
-    height: 25px;
-    display: block;
-    float: right;
-    position: relative;
-    top: 5px;
-    right: 10px;
-    cursor: pointer;
-    display: none;
-}
-
-#edit-detail path {
-    fill: black;
-}
-
-#edit-detail path:hover {
-    fill: lightcoral;
-    box-shadow: 0px 0px 5px #aaa;
-}
-
-input#input_user_detail {
-    width: 60%;
-    margin-left: 3px;
-    height: 34px;
-    border-radius: 5px;
-    border: 1.3px solid #1e90ffbd;
-    outline: none;
-    font-size: 17px;
-    padding-left: 10px;
-    transition: .2s linear;
-    color: dodgerblue;
-}
-
-input#input_user_detail:focus {
-    box-shadow: 0px 0px 3px dodgerblue;
-    color: dodgerblue;
-}
-
-span#input_user_detail_save {
-    display: inline-block;
-    width: 80px;
-    height: 33px;
-    line-height: 34px;
-    background: dodgerblue;
-    text-align: center;
-    color: white;
-    border-radius: 5px;
-    /* border: 1.4px solid white; */
-    cursor: pointer;
-}
-
-span#input_user_detail_save:hover {
-    background: #4CAF50;
-}
 
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
-    width: 100%;
-    height: 200px;
-    background: #ecf0f2;
-    padding-top:10px;
-    border: 1px solid #aaa;
-    border-bottom: 3px solid #bbb;
-    border-radius: 2px;
-    transition:1s linear;
-}
-
-#userpane-username {
-    width: 90%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1.5px solid #000d;
-    font-size: 20px;
-    margin: 5px auto;
-    display: block;
-    padding-left: 10px;
-    outline: 0;
-}
-
-#userpane-password {
-    width: 90%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1.5px solid #000d;
-    font-size: 20px;
-    margin: 5px auto;
-    display: block;
-    padding-left: 10px;
-    outline: 0;
-}
-
-#userpane-loginbutton {
-    width: 88%;
-    height: 35px;
-    border-radius: 5px;
-    font-size: 20px;
-    border: none;
-    margin: 10px 0px 0px 18px;
-    display: inline-block;
-    cursor: pointer;
-    text-shadow: 1px 1px 1px #aaa;
-}
-#userpane-loginbutton:hover {
-    box-shadow:2px 2px 10px #55555569;
-    color:green;
-    text-shadow: none;
-}
-#userpane label{
-    margin-left: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 13px;
-    text-shadow: 0px 0px 1px #282828;
-    display: block;
-}
-
-#userpane-userdetail{
-    background: coral;
-    overflow: hidden;
-    height: 80px;
-    cursor: pointer;
-}
-
-#userpane-userdetail img{
-    width:80px;
-    height:80px;
-    margin-left:10px;
-    margin-right: 10px;
-    float:left;
-}
-#userpane-userdetail-name{
-    display:block;
-    width: 173px;
-    height: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 17px;
-    text-align: center;
-    font-weight:bolder;
-    margin-left: 90px;
-    margin-top: 2px;
-}
-#userpane-userdetail-age{
-    margin-top: 5px;
-    margin-left: 40px;
-    display:inline-block;
-    color: #3d3d3d;
-}
-#userpane-userdetail-gender{
-    margin-left: 10px;
-    display:inline-block;
-    color: #3d3d3d;
-}
-#userpane-userdetail-profession{
-    margin: 7px 0px 10px 90px;
-    text-shadow: 0px 0px 1px #1e90ff8a;
-    color: #343a40;
-    text-align: center;
-}
-
-
-.shake{
-    animation: fieldempty .1s ease-in 0s 3;
-    position: relative;
-    border:1.5px solid red!important;
-}
-
-@keyframes fieldempty{
-    0%{
-        transform: rotateZ(3deg);
+        width: 100%;
+        height: 200px;
+        background: #ecf0f2;
+        padding-top:10px;
+        border: 1px solid #aaa;
+        border-bottom: 3px solid #bbb;
+        border-radius: 2px;
+        transition:1s linear;
     }
-    40%{
-        transform: rotateZ(-3deg);
+    
+    #userpane-username {
+        width: 90%;
+        height: 35px;
+        border-radius: 5px;
+        border: 1.5px solid #000d;
+        font-size: 20px;
+        margin: 5px auto;
+        display: block;
+        padding-left: 10px;
+        outline: 0;
     }
-    80%{
-        transform: rotateZ(3deg);
+    
+    #userpane-password {
+        width: 90%;
+        height: 35px;
+        border-radius: 5px;
+        border: 1.5px solid #000d;
+        font-size: 20px;
+        margin: 5px auto;
+        display: block;
+        padding-left: 10px;
+        outline: 0;
     }
-    100%{
-        transform: rotateZ(-3deg);
+    
+    #userpane-loginbutton {
+        width: 88%;
+        height: 35px;
+        border-radius: 5px;
+        font-size: 20px;
+        border: none;
+        margin: 10px 0px 0px 18px;
+        display: inline-block;
+        cursor: pointer;
+        text-shadow: 1px 1px 1px #aaa;
     }
-}
+    #userpane-loginbutton:hover {
+        box-shadow:2px 2px 10px #55555569;
+        color:green;
+        text-shadow: none;
+    }
+    #userpane label{
+        margin-left: 20px;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 13px;
+        text-shadow: 0px 0px 1px #282828;
+        display: block;
+    }
+    
+    #userpane-userdetail{
+        background: coral;
+        overflow: hidden;
+        height: 80px;
+        cursor: pointer;
+    }
+    
+    #userpane-userdetail img{
+        width:80px;
+        height:80px;
+        margin-left:10px;
+        margin-right: 10px;
+        float:left;
+        transform: scaleX(-1);
+    }
+    #userpane-userdetail-name{
+        display:block;
+        width: 173px;
+        height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 17px;
+        text-align: center;
+        font-weight:bolder;
+        margin-left: 90px;
+        margin-top: 2px;
+    }
+    #userpane-userdetail-age{
+        margin-top: 5px;
+        margin-left: 40px;
+        display:inline-block;
+        color: #3d3d3d;
+    }
+    #userpane-userdetail-gender{
+        margin-left: 10px;
+        display:inline-block;
+        color: #3d3d3d;
+    }
+    #userpane-userdetail-profession{
+        margin: 7px 0px 10px 90px;
+        text-shadow: 0px 0px 1px #1e90ff8a;
+        color: #343a40;
+        text-align: center;
+    }
+    
+    
+    .shake{
+        animation: fieldempty .1s ease-in 0s 3;
+        position: relative;
+        border:1.5px solid red!important;
+    }
+    
+    @keyframes fieldempty{
+        0%{
+            transform: rotateZ(3deg);
+        }
+        40%{
+            transform: rotateZ(-3deg);
+        }
+        80%{
+            transform: rotateZ(3deg);
+        }
+        100%{
+            transform: rotateZ(-3deg);
+        }
+    }
+    
 
 
 /* -----------------------------------Media breakpoint------------------------------------------- */

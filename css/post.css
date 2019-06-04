@@ -49,7 +49,7 @@ body {
     width: 100%;
     height: 45px;
     background: #343a40;
-    /* overflow: hidden; */
+    overflow: hidden;
     box-shadow: 0px 5px 11px 0px #aaa;
     display: block;
 }
@@ -81,7 +81,7 @@ body {
 }
 
 .sticky {
-    position: fixed;
+    position: sticky;
     top: 0;
 }
 
@@ -439,6 +439,7 @@ label[for="commentorAvatar"]{
     min-height: 50px;
     width: 100%;
     position: relative;
+    margin-top: 25px;
     /* bottom: -67px; */
 }
 #comments{
@@ -446,7 +447,7 @@ label[for="commentorAvatar"]{
     min-height: 100px;
     height: auto;
     background: #e9e9f6;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 50px;
 }
 .comment{
@@ -476,7 +477,7 @@ label[for="commentorAvatar"]{
 }
 .commentcontent{
     display: block;
-    min-height: 100px;
+    min-height: 20px;
     height: auto;
     max-height: 320px;
     padding: 10px;
@@ -488,7 +489,7 @@ label[for="commentorAvatar"]{
     border: 1.5px solid #aaa;
     /* box-shadow: 0px 0px 10px #aaa; */
 }
-.commentcontent:before{
+.commentcontent:after{
     content: '';
     border-top: 15px solid #aaa;
     border-left: 15px solid transparent;
@@ -498,7 +499,7 @@ label[for="commentorAvatar"]{
     z-index: 1000;
     width: 0px;
     height: 0px;
-    top: 6px;
+    top: -22px;
     left: -41px;
     transform: rotate(90deg);
     display: block;
@@ -628,3 +629,17 @@ h1{
     display:inline-block;
 }
 
+/* ---------------------- new comment animation --------------------- */
+
+.newcommentanimation{
+    animation: newcommentanimation 3s linear 0s 1;
+}
+
+@keyframes newcommentanimation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1
+    }
+}

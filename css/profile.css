@@ -1,0 +1,138 @@
+
+/* -----------------------style for user page--------------------------------- */
+
+#leftside{
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    width: 450px;
+    min-height: 480px;
+    height: auto;
+    background: white;
+    border: 1px solid #72541d54;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: inset 0px 0px 100px 100px white;
+    display: block;
+    float: left;
+}
+
+#userdetail{
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    width: 450px;
+    background: white;
+    border: 1px solid #72541d54;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: inset 0px 0px 100px 100px white;
+    display: block;
+    float: left;
+}
+
+.user-detail-element {
+    width: 100%;
+    min-height: 30px;
+    background: #f6f6f6;
+    color: black;
+    border-radius: 5px;
+    border: 1.2px solid #7a7a7a;
+    margin-top: 18px;
+    /* padding-left: 10px; */
+    /* box-shadow: 1px 1px 4px lightgrey; */
+    line-height: 40px;
+    text-shadow: 1px 1px 1px #aaa;
+    overflow: hidden;
+}
+.user-detail-element:nth-child(even) strong {
+    background: #2cb5e8;
+    color: white;
+}
+.user-detail-element:nth-child(odd) strong {
+    background: #f6f6f6;
+    color: black;
+}
+
+.user-detail-element strong {
+    display: inline-block;
+    color: black;
+    text-shadow: none;
+    height:40px;
+    min-width: 190px;
+    padding-left: 10px;
+}
+
+.user-detail-element:nth-child(odd)  {
+    background: #2cb5e8;
+    color:white;
+}
+
+#edit-detail {
+    width: 25px;
+    height: 25px;
+    display: block;
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#edit-detail path {
+fill: black;
+}
+
+#edit-detail path:hover {
+fill: lightcoral;
+box-shadow: 0px 0px 5px #aaa;
+}
+
+input#input_user_detail {
+width: 60%;
+margin-left: 3px;
+height: 34px;
+border-radius: 5px;
+border: 1.3px solid #1e90ffbd;
+outline: none;
+font-size: 17px;
+padding-left: 10px;
+transition: .2s linear;
+color: dodgerblue;
+}
+
+input#input_user_detail:focus {
+box-shadow: 0px 0px 3px dodgerblue;
+color: dodgerblue;
+}
+
+span#input_user_detail_save {
+display: inline-block;
+width: 80px;
+height: 33px;
+line-height: 34px;
+background: dodgerblue;
+text-align: center;
+color: white;
+border-radius: 5px;
+/* border: 1.4px solid white; */
+cursor: pointer;
+}
+
+span#input_user_detail_save:hover {
+background: #4CAF50;
+}
+
+#container {
+    box-sizing: border-box;
+    width: 950px;
+    min-height: 600px;
+    max-height: 1500px;
+    overflow: hidden;
+    /* height: auto; */
+    background: #b22077;
+    /* box-shadow: 0px 0px 3px #bababa; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 5px;
+}

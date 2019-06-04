@@ -27,7 +27,7 @@
      if( session_status() == 1 )
         session_start();
     if( isset($_SESSION["username"]) ){
-        header("Location:user.php");
+        header("Location:profile.php");
     }
     
 ?>
