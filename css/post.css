@@ -1,0 +1,630 @@
+/* importing w3schools fonts */
+@font-face {
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
+}
+
+* {
+    box-sizing: border-box;
+    /* color: black; */
+    font-family: verdana;
+    transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+body {
+    height: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background: #b1d1f21a;
+    position: relative;
+    /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
+    /* transform: skew(45deg); */
+    /* left: -105%; */
+}
+
+#header {
+    height: 135px;
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    /* position: relative; */
+    /* left: -7px; */
+    /* top: -8px; */
+    margin: 0px;
+    /* margin-bottom: 10px; */
+}
+
+#headerPoster {
+    width: 100%;
+    height: 140px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    background-size: cover;
+}
+
+#navbar {
+    z-index: 10000;
+    width: 100%;
+    height: 45px;
+    background: #343a40;
+    /* overflow: hidden; */
+    box-shadow: 0px 5px 11px 0px #aaa;
+    display: block;
+}
+
+#navbar > a:first-child {
+    transition: .09s ease-out;
+    width: 150px;
+    height: 45px;
+    display: block;
+    float: left;
+    background: #242424;
+    color: white;
+    text-decoration: none;
+    line-height: 45px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    border-right: 2.5px solid white;
+    margin-right: 10px;
+}
+
+#navbar > a:first-child:hover {
+    background: white;
+    color: #2c2b2c;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+}
+
+
+.shake{
+    animation: fieldempty .1s ease-in 0s 3;
+    position: relative;
+    border:1.5px solid red!important;
+}
+@keyframes fieldempty{
+    0%{
+        transform: rotateZ(3deg);
+    }
+    40%{
+        transform: rotateZ(-3deg);
+    }
+    80%{
+        transform: rotateZ(3deg);
+    }
+    100%{
+        transform: rotateZ(-3deg);
+    }
+}
+
+div#rightNav {
+    background: purple;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    width: 200px;
+}
+
+span#notification {
+    background: green;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-right: 10px; */
+    left: 0px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+path {
+    fill: white;
+}
+
+span#profile {
+    width: 55px;
+    height: 55px;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-top: 11px; */
+    background: red;
+    border-radius: 50%;
+    margin-left: 10px;
+    top: -5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #000000;
+    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-size: cover;
+}
+
+#homelink {
+    color: white;
+    font-family: w3incons;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+
+#homelink:hover {
+    color: dodgerblue;
+}
+
+#homelink:after {
+    content: '\e800';
+}
+
+/* ------------------------------Main Body---------------------------------- */
+#container {
+    box-sizing: border-box;
+    padding-bottom: 50px;
+    position: relative;
+    width: 970px;
+    min-height: 600px;
+    height: auto;
+    background: #b22077;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+
+#postContainer {
+    box-sizing: border-box;
+    height: auto;
+    width: 674px;
+    float: left;
+    overflow: hidden;
+    background: red;
+}
+
+.post>img:first-child {
+    box-sizing: border-box;
+    width: 100px;
+    height: 110px;
+    display: block;
+    float: left;
+    border-radius: 3px;
+}
+
+.post_title {
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 500px;
+    max-height: 19px;
+    display: inline-block;
+    margin-left: 20px;
+    position: relative;
+    float: left;
+    top: 0px;
+    font-size: 16px;
+}
+
+.post {
+    box-sizing: border-box;
+    width: 650px;
+    height: 123px;
+    padding: 5px 10px 15px 5px;
+    overflow: hidden;
+    margin: 20px auto;
+    background: #f7f8fa;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid #1c111947;
+}
+
+.excerpt {
+    box-sizing: border-box;
+    padding: 4px 28px;
+    min-width: 25%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 15px;
+    box-sizing: border-box;
+    width: 532px;
+    height: 53px;
+    overflow: hidden;
+    display: block;
+    float: none;
+    color: #4f4f4fe0;
+}
+#post-bottom{
+    width: 524px;
+    height: 40px;
+    position: relative;
+    background: #0fb8ad;
+    /* top: -44px; */
+    left: 110px;
+}
+
+/* ------------------------- More link Styling -------------------------------- */
+a[data-link-type="readmore"] {
+    font-family: verdana;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    display: inline-block;
+    padding: 8px 4px;
+    border-radius: 3px;
+    width: 100px;
+    /* margin: -11px 0px 0px 0px; */
+    position: relative;
+    bottom: 0px;
+    /* right: -6px; */
+    /* float: left; */
+}
+
+a[data-link-type="readmore"]:hover {
+    color: #007bff;
+    background: white;
+}
+
+/* -----------------------sidebar--------------------------------- */
+#sidebar {
+    display: block;
+    background: pink;
+    /* min-width: 250px; */
+    /* max-width: 30%; */
+    margin-left: 0px;
+    width: 261px;
+    min-height: 500px;
+    float: left;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* padding: 10px; */
+    z-index: 0;
+    position: relative;
+    /* top: -130px; */
+}
+
+/* -----------------------style for user page--------------------------------- */
+.user-detail-element {
+    width: 100%;
+    min-height: 40px;
+    background: #f6f6f6;
+    color: black;
+    border-radius: 5px;
+    border: 1.2px solid #7a7a7a;
+    margin-top: 18px;
+    padding-left: 10px;
+    /* box-shadow: 1px 1px 4px lightgrey; */
+    line-height: 40px;
+    text-shadow: 1px 1px 1px #aaa;
+}
+
+.user-detail-element strong {
+    color: black;
+    text-shadow: none;
+}
+
+#edit-detail {
+    width: 25px;
+    height: 25px;
+    display: block;
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#edit-detail path {
+    fill: black;
+}
+
+#edit-detail path:hover {
+    fill: lightcoral;
+    box-shadow: 0px 0px 5px #aaa;
+}
+
+input#input_user_detail {
+    width: 60%;
+    margin-left: 3px;
+    height: 34px;
+    border-radius: 5px;
+    border: 1.3px solid #1e90ffbd;
+    outline: none;
+    font-size: 17px;
+    padding-left: 10px;
+    transition: .2s linear;
+    color: dodgerblue;
+}
+
+input#input_user_detail:focus {
+    box-shadow: 0px 0px 3px dodgerblue;
+    color: dodgerblue;
+}
+
+span#input_user_detail_save {
+    display: inline-block;
+    width: 80px;
+    height: 33px;
+    line-height: 34px;
+    background: dodgerblue;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    /* border: 1.4px solid white; */
+    cursor: pointer;
+}
+
+span#input_user_detail_save:hover {
+    background: #4CAF50;
+}
+/* ------------------------Comment box style--------------------------- */
+
+#commentbox{
+    width: 700px;
+    min-height: 200px;
+    height: auto;
+    padding-left: 7px;
+    padding-bottom: 50px;
+    border-radius: 5px 5px 0px 0px;
+    background: #38b266;
+    border:1px solid #bbb;
+    /* border-bottom: none; */
+    margin: 0px 0px 50px 0px;
+    /* padding: 10px; */
+    box-sizing: border-box;
+    transition:.3s linear;
+    position: relative;
+    top: 20px;
+    display: block;
+    float: left;
+}
+
+#commentbox label{
+    text-align: start;
+    margin: 10px auto;
+    color: #434242;
+    font-size: 22px;
+    display: block;
+}
+label[for="commentorAvatar"]{
+    text-align:center!important;
+    display: block!important;
+    width: 100%;
+    height: 15px;
+    font-size: 11.5px !important;
+    font-family: verdana;
+    font-weight: bold;
+    margin-top: 3px!important;
+    overflow: hidden;
+}
+#newcomment{
+    outline: none;
+    border: 1.2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: none;
+}
+#newcomment:focus{
+    border: 1.2px solid rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+#commentbox button {
+    width: 250px;
+    height: 50px;
+    background: coral;
+    color: whitesmoke;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: verdana;
+    font-size: 17px;
+}
+#commentbox button:hover {
+    background:#c24f24;
+}
+#blogbottompane{
+    background: #1c10101f;
+    min-height: 50px;
+    width: 100%;
+    position: relative;
+    /* bottom: -67px; */
+}
+#comments{
+    width: 688px;
+    min-height: 100px;
+    height: auto;
+    background: #e9e9f6;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.comment{
+    width: 100%;
+    min-height: 100px;
+    height: auto;
+    /* background: lightgray; */
+    margin-top: 19px;
+}
+.commentor{
+    /* margin: 5px auto; */
+    width: 100px;
+    height: 100px;
+    display: block;
+    float: left;
+    background: red;
+    /* margin-top: 15px; */
+}
+.commentor img{
+    border:3px solid white;
+    display:block;
+    margin: 0px auto;
+    outline:1px solid lightgray;
+}
+#comments label{
+    font-size: 15px;
+}
+.commentcontent{
+    display: block;
+    min-height: 100px;
+    height: auto;
+    max-height: 320px;
+    padding: 10px;
+    background: #f6f6f6;
+    width: 566px;
+    float: left;
+    border-radius: 5px;
+    margin-left: 18px;
+    border: 1.5px solid #aaa;
+    /* box-shadow: 0px 0px 10px #aaa; */
+}
+.commentcontent:before{
+    content: '';
+    border-top: 15px solid #aaa;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid transparent;
+    position: relative;
+    z-index: 1000;
+    width: 0px;
+    height: 0px;
+    top: 6px;
+    left: -41px;
+    transform: rotate(90deg);
+    display: block;
+}
+/* ------------------------Sidebar User pane ------------------------------ */
+#userpane {
+    width: 100%;
+    height: 200px;
+    background: #ecf0f2;
+    padding-top:10px;
+    border: 1px solid #aaa;
+    border-bottom: 3px solid #bbb;
+    border-radius: 2px;
+    transition:1s linear;
+}
+
+#userpane-username {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+    outline: 0;
+}
+
+#userpane-password {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid #000d;
+    font-size: 20px;
+    margin: 5px auto;
+    display: block;
+    padding-left: 10px;
+    outline: 0;
+}
+
+#userpane-loginbutton {
+    width: 88%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    margin: 10px 0px 0px 18px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#userpane label{
+    margin-left: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 0px 0px 1px #282828;
+    display: block;
+}
+
+#userpane-userdetail{background: coral;overflow: hidden;height: 80px;cursor: pointer;}
+#userpane-userdetail img{
+    width:80px;
+    height:80px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float:left;
+}
+#userpane-userdetail-name{
+    display:block;
+    width: 147px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    text-align: center;
+    font-weight:bolder;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+#userpane-userdetail-age{
+    margin-top: 5px;
+    margin-left: 40px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-gender{
+    margin-left: 10px;
+    display:inline-block;
+    color: #3d3d3d;
+}
+#userpane-userdetail-profession{
+    margin: 7px 0px 10px 90px;
+    text-shadow: 0px 0px 1px #1e90ff8a;
+    color: #343a40;
+    text-align: center;
+}
+
+
+#content
+{
+    width: 700px;
+    display: block;
+    height: auto;
+    min-height: 350px;
+    border-radius:5px;
+    background:white;
+    border:1px solid #bbb;
+    margin: 0px;
+    line-height: 30px;
+    padding: 10px;
+    box-sizing:border-box;
+    float: left;
+    transition:.3s linear;
+}
+.content-custom{
+    /* transform: scale(1.01) translateY(50px)!important; */
+}
+#content img{
+    display: inline-block;
+    border: 3px solid white;
+    outline: 1px solid lightgray;
+}
+h1{
+    margin-left: 10px;
+    font-size: 28px;
+    display:inline-block;
+}
+
