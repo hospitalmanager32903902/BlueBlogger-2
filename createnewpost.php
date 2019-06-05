@@ -85,13 +85,14 @@
                     <span id="justifyText" class="writing-tool"></span>
                     <span id="fontsize" class="writing-tool">16px</span>
                 </div>
-                <textarea contentEditable="true" id="writing_pad_textversion">
+                <div contentEditable="true" id="writing_pad_textversion">
                     
-                </textarea>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="js/createnewpost.js"></script>
+    <script src="js/bblibrary.js"></script>
 </body>
 </html>

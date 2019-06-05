@@ -82,7 +82,7 @@ body {
 }
 
 .sticky {
-    position: sticky;
+    position: sticky!important;
     top: 0px;
 }
 

@@ -8,3 +8,12 @@ window.addEventListener("scroll",()=>{
         navbar.classList.remove("sticky");
     }
 });
+
+
+
+// --------------- Functions to make our life a little easier ----------------------
+
+
+function N(indentifier) {
+    return document.querySelector(indentifier);
+}

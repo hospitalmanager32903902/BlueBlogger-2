@@ -195,7 +195,7 @@ input[type="submit"]:hover{
 
 .doesnotmatch{
     border:1.5px solid red;
-    animation: passDontMatch .3s ease-in 0s 1;
+    animation: passDontMatch .1s ease-in 0s 1;
     position: relative;
 }
 

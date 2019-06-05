@@ -65,7 +65,7 @@ function publish(){
 function makeBold() {
     var pad = document.querySelector("#writing_pad_textversion");
     var selected = pad.innerHTML.substring(pad.selectionStart,pad.selectionEnd);
-    pad.innerHTML = `${pad.innerHTML.substr(0,pad.selectionStart-1)} <b>${selected}</b> ${pad.innerHTML.substr(pad.selectionEnd+1,pad.innerHTML.length)}`;
+    pad.innerHTML = `<b>${selected}</b>`;
 
     console.log(selected);
 }

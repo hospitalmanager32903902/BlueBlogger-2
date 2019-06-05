@@ -55,8 +55,7 @@
                                     <span class="post-author">Post Author :   <a href="user.php?username='.$post_author_username.'">'.$author_name.'</a> </span>|   
                                     <span class="post-published">Published : '.$post_publish_date.'  </span>|   
                                     <span class="post-comments">Comments : '.$post_comment_count.'</span> 
-                                </div>
-                                
+                                </div>                                
                             </div>';
                 }
             ?>

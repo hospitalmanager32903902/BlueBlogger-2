@@ -35,21 +35,59 @@ function renderAllPost( data,count ){
     allpostlist.innerHTML += post;
 }
 
+function renderAllComments( data,count) {
+    var comment = 
+    `<div class="comment" data-commentid="${data.comment_id}">
+            <span id="dashboard-comment-number" class="dashboard-comment-element">${count}</span>       
+            <a href="user.php?username=${data.comment_post_author_username}">
+                <span id="dashboard-comment-commentor" class="dashboard-comment-element">${data.comment_commentor_fullname}</span>
+            </a>
+            <span id="dashboard-post-visit" class="dashboard-post-element">${data.post_visit_count}</span>
+            <span id="dashboard-post-comments" class="dashboard-post-element">${data.post_comment_count}</span>
+            
+            <!-- delete post ---->
+            <span id="dashboard-comment-delete" class="dashboard-comment-element"  onclick="alertPrompt(this.parentElement)">
+                <svg viewBox="0 0 24 24" id="ic_delete_24px" width="50%" height="50%"><path   d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+            </span>
+
+            <span id="dashboard-comment-text" class="dashboard-comment-element" onclick="text(this)">
+                     
+            </span>
+        </div>`;
+        N("#allcommentlist").innerHTML += comment;
+}
+
 //  fetches the posts from the database and retuens it
 //  it does it in synchronusly method 
-function getPostData(){    
-    var ajaxReqquest = new XMLHttpRequest();
-    ajaxReqquest.open("POST","dashboard.php",false);
-    ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajaxReqquest.send(`operation=getdashboardpostlist`);    
+function getData(type){    
+    if ( type == "getposts" ) {        
+        var ajaxReqquest = new XMLHttpRequest();
+        ajaxReqquest.open("POST","dashboard.php",false);
+        ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxReqquest.send(`operation=getdashboardpostlist`);   
+    } else if ( type == "getcomments" ) {
+        var ajaxReqquest = new XMLHttpRequest();
+        ajaxReqquest.open("POST","dashboard.php",false);
+        ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxReqquest.send(`operation=getdashboardcommentlist`);
+    }     
     return ajaxReqquest.responseText;
 }
 
 // this the main function where the program starts
 function main(){
-    JSON.parse( getPostData() ).forEach(( data,count ) => {
+
+    // rendering all the post 
+    JSON.parse( getData("getposts") ).forEach(( data,count ) => {
         renderAllPost( data,count + 1 );
     });
+    
+    // rendering all the Comments
+    JSON.parse( getData("getcomments") ).forEach(( data,count ) => {
+        renderAllComments( data,count + 1 );
+    });
+
+
 }
 
 // This function throws an prompt alert when any
@@ -150,9 +188,18 @@ window.addEventListener("load",()=>{
     main();
 });
 
-// --------------- Functions to make our life a little easier ----------------------
 
-
-function N(indentifier) {
-    return document.querySelector(indentifier);
+function showComments(node) {
+    highlightSelected(node);
+    N("#all-post-content").style.display="none";
+    N("#all-comment-content").style.display="inline-block";
+    // render comments 
 }
+function showPosts(node) {
+    highlightSelected(node);
+    N("#all-post-content").style.display="inline-block";
+    N("#all-comment-content").style.display="none";
+}
+
+
+

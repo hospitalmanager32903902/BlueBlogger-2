@@ -57,8 +57,9 @@
     color: black;
     text-shadow: none;
     height:40px;
-    min-width: 190px;
+    min-width: 100px;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .user-detail-element:nth-child(odd)  {

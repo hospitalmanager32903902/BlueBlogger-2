@@ -1,6 +1,5 @@
 
 
-
 window.onload = ()=>{
     var blog = document.querySelector("body").innerText;
     blog = blog.split("").map((char)=>{

@@ -1,8 +1,18 @@
+<?php 
+
+    if ( session_status() == 1 ) {
+        session_start();
+    }
+    if (  isset($_SESSION["username"]) ) {
+        header("Location:dashboard.php");
+    }
+    
+?>
+
 <?php
     if ( isset($_POST["firstname"]) &&  isset($_POST["lastname"]) &&  isset($_POST["username"]) &&  isset($_POST["email"]) &&  isset($_POST["age"]) &&  isset($_POST["gender"]) &&  isset($_POST["bloodgroup"]) &&  isset($_POST["education"]) &&  isset($_POST["currentcity"]) &&   isset($_POST["fromcity"]) &&  isset($_POST["password"])) {
         // include mysql connection file
         include("connect_to_db.php");
-
         $user_fullname = $_POST["firstname"] ." ".$_POST["lastname"];
         $user_username = $_POST["username"];
         $user_email = $_POST["email"];
@@ -143,5 +153,6 @@
         }
 
     </script>
+    <script src="js/bblibrary.js"></script>
 </body>
 </html>

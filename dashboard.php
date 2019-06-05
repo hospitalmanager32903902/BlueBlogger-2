@@ -6,9 +6,10 @@
         if( session_status() == 1 )
             session_start();
 
+        // fetching all the post of the user and
+        // putting them all in all() array 
         $username = $_SESSION["username"];
         $sql = "SELECT `post_status`, `post_thumbnail`,`post_id`,`post_visit_count`,`post_comment_count`,`post_title`,`post_number` FROM `posts` WHERE `post_author_username`='$username' "; // SQL code for fetching data from the database
-
         $posts = $conn->query( $sql ); // fetched the data
         $post = array();
         $all = array();
@@ -17,6 +18,28 @@
             $post[$key] = $value;
             }
             array_push($all,$post);
+        }
+        echo json_encode($all);
+        exit(0);
+    }
+    if (isset($_POST["operation"]) && $_POST["operation"] == "getdashboardcommentlist" ) {
+        // import database connector 
+        include("connect_to_db.php");        
+        if( session_status() == 1 )
+            session_start();
+
+        // fetching all the post of the user and
+        // putting them all in all() array 
+        $username = $_SESSION["username"];
+        $sql = "SELECT * FROM `comments` WHERE `comment_post_author_username`='$username' "; // SQL code for fetching data from the database
+        $comments = $conn->query( $sql ); // fetched the data
+        $comment = array();
+        $all = array();
+        while ( $row = $comments->fetch_assoc() ) {
+            foreach( $row as $key => $value ){
+            $comment[$key] = $value;
+            }
+            array_push($all,$comment);
         }
         echo json_encode($all);
         exit(0);
@@ -38,11 +61,11 @@
     <div id="container">
         <nav id="sidenav">
                 <a href="createnewpost.php" id="createnewpost" >Create New Post</a>
-                <div id="posts" onclick="highlightSelected(this)">Posts</div>
-                <div id="comments" onclick="highlightSelected(this)">Comments</div>
+                <div id="posts" onclick="showPosts(this)">Posts</div>
+                <div id="comments" onclick="showComments(this)">Comments</div>
                 <div id="drafts" onclick="highlightSelected(this)">Drafts</div>
         </nav>
-
+        <!-- tab for the post list -->
         <div id="all-post-content">
             <div id="allposts">
                 <div id="allpostsheader">
@@ -60,9 +83,29 @@
                 </div>
             </div>
         </div>
+        <!-- /tab for the post list -->
+
+        <!-- tab for the comments list -->
+        <div id="all-comment-content">
+            <div id="allcomments">
+                <div id="allcommentsheader">
+                    <span id="commentnumberhash" class="allcommentsheader-element">#</span>
+                    <span id="commentcommentor" class="allcommentsheader-element">Commentor Name</span>
+                    <span id="commentcomment" class="allcommentsheader-element">Comment</span>
+                    <span id="commentdate" class="allcommentsheader-element">Comment Given On</span>
+                    <span id="deletecomment" class="allcommentsheader-element commenttools">DELETE</span>
+                    <span id="massagecommentor" class="allcommentsheader-element commenttools">Text Commentor</span>                    
+                </div>
+                <div id="allcommentslist">
+                    
+                </div>
+            </div>
+        </div>
+        <!-- tab for the comments list -->
 
     </div>
 
+    <script src="js/bblibrary.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>
