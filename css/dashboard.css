@@ -40,7 +40,7 @@ body{
 }
 
 #navbar{
-    z-index: 1000;
+    z-index: 99;
     width: 100%;
     height: 45px;
     background: #343a40;
@@ -386,7 +386,7 @@ path {
 
 #all-comment-content{
     min-width: 800px;
-    width: auto;
+    width: 1679px;
     display: none;
     /* min-height:600px; */
     max-height: 546px;
@@ -394,6 +394,7 @@ path {
     position: relative;
     margin-top: 100px;
     margin-left: 235px;
+    margin-right: 50px;
     overflow-y: auto;
     margin-bottom: 100px;
 }
@@ -406,6 +407,7 @@ path {
     width: auto;
     height:45px;
     background: #cccbcd;
+    position: relative;
     border: 1px solid #00000036;
     /* border-left: 0px; */
     margin: 0px;
@@ -415,7 +417,7 @@ path {
     display: block;
     float: left;
     text-align: center;
-    width:120px;
+    width: 500px;
     height: 100%;
     line-height: 45px;
     border-right: 1px dotted gray;
@@ -432,12 +434,11 @@ path {
 #commentcommentor{
     width: 180px;
 }
-#comment{
-    width: 104px;
-}
+
 #commentdate{
     width: 180px;
     font-size:15px;
+    float: left;
 }
 
 #massagecommentor{
@@ -446,9 +447,8 @@ path {
     width: 150px;
     border-left:1.5px solid white;
     text-align:center;
-/*     padding-left:10px; */
-/*     font-size:12px; */
-
+    padding-left:10px;
+    /* font-size:12px; */
 }
 .commenttools{
     width:100px;
@@ -460,6 +460,79 @@ path {
     cursor: default;
 }
 
+.comment{
+    width: 100%;
+    /* min-height: 10px; */
+    display: block;
+    position: relative;
+    background: #5f89dd;
+    margin: 0px;
+    margin-top: 10px;
+    /* padding: 11px 0px 0px 0px; */
+    /* border-top: 1.5px solid #7a7a7a; */
+    box-shadow: 0px 0px 2px #aaa;
+    overflow: hidden;
+}
+.dashboard-comment-element{
+    width:100px;
+    /* height: auto; */
+    display: block;
+    text-align: center;
+    float: left;
+}
+#dashboard-comment-commentor{
+    width:180px;
+    min-height: 38px;
+    line-height: 38px;
+    color: white;
+    text-shadow: 0px 0px 4px #aaa;
+}
+#dashboard-comment-number{
+    width:50px;
+    min-height: 38px;
+    line-height: 38px;
+    background: blanchedalmond;
+}
+#dashboard-comment-content{
+    width:500px;
+    min-height: 45px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 13px;
+    padding: 15px;
+    text-align: justify;
+    line-height: 20px;
+    padding-top: 10px;
+    background: aliceblue;
+    text-indent: 50px;
+}
+
+#dashboard-comment-post{
+    width:500px;
+    line-height:45px;
+    color:white;
+    font-size: 13px;
+}
+
+#dashboard-comment-date{
+    width: 180px;
+    height: 38px;
+    line-height: 45px;
+    color: white;
+}
+#dashboard-comment-delete{
+    width:100px;
+    padding-top: 7px;
+    /* margin-top: -4px; */
+    cursor:pointer;
+}
+#dashboard-comment-delete:active path{
+    fill:white;
+}
+#dashboard-comment-text{
+    width:150px;
+}
+/* style code for post list */
 .post{
     width: 100%;
     height: 70px;
@@ -563,4 +636,31 @@ path {
 }
 #dashboard-post-unpublish:hover{
     opacity: 1;
+}
+
+/*  comment removal animtion */
+
+.removeAnimation{
+    animation-duration: .5s;
+    animation-name: removeAnimation;
+    animation-iteration-count: 1;
+ 
+}
+
+@keyframes removeAnimation {
+    0%{
+        height: 45px;
+        opacity: 1;
+        margin-top: 10px;
+    }
+    100%{
+        height: 0px;
+        opacity: 0;
+        margin-top: 0px;
+    }
+}
+.removeAnimationPart_2{
+    animation-duration: .7s;
+    animation-name: removeAnimationPart_2;
+    animation-iteration-count: 1;
 }

@@ -48,4 +48,33 @@
         }
     }
 
+    // checking if operation and commentid exist and the operation "deletecomment"
+    if( isset($_SESSION["username"]) && isset($_POST["operation"]) && isset($_POST["commentid"]) && $_POST["operation"] == "deletecomment" ){
+        $commentid = $_POST["commentid"];
+        $user = $_SESSION["username"];
+        $sql = "DELETE FROM `comments` WHERE `comment_id`=$commentid AND `comment_post_author_username`='$user'";
+        // echo $sql;
+        $r = $conn->query( $sql );
+        if($r){
+            echo "Comment Deleted";
+            // decrement Comment count by 1 
+            $commnet_number = (int)($conn->query("SELECT `user_comment_count` FROM `users` WHERE `user_username`='".$user."'")->fetch_assoc()["user_comment_count"]);
+            $commnet_number == 0 ? $commnet_number : $commnet_number--; // decrease it by 1
+            $r = $conn->query("UPDATE `users` SET `user_comment_count`=$commnet_number WHERE `user_username`='".$user."'");
+
+            // decrement Comment count by 1 
+            $commnet_number = (int)($conn->query("SELECT `post_comment_count` FROM `posts` WHERE `post_id`='".$post_id."'")->fetch_assoc()["user_comment_count"]);
+            $commnet_number == 0 ? $commnet_number : $commnet_number--; // decrease it by 1
+            $r = $conn->query("UPDATE `users` SET `user_comment_count`=$commnet_number WHERE `user_username`='".$user."'");
+
+            if ( $r ) {
+                echo "User Comment Count Decremented";
+            } else {
+                echo "User Comment Count Not Decremented";
+            }
+        } else {
+            echo "Comment Not Deleted";
+        }
+    } 
+
 ?>

@@ -1,7 +1,8 @@
 <?php
 
     if ( isset($_POST["operation"]) && $_POST["operation"] == "createnewpost" ) {
-        
+        // var_dump($_FILES);
+        // var_dump($_FILES["post_thumnail"]);
         session_start();
         // include db connect file
         include("connect_to_db.php");
@@ -85,9 +86,9 @@
                     <span id="justifyText" class="writing-tool"></span>
                     <span id="fontsize" class="writing-tool">16px</span>
                 </div>
-                <div contentEditable="true" id="writing_pad_textversion">
+                <textarea contentEditable="true" id="writing_pad_textversion">
                     
-                </div>
+                </textarea>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
         echo json_encode($all);
         exit(0);
     }
-    if (isset($_POST["operation"]) && $_POST["operation"] == "getdashboardcommentlist" ) {
+    if ( isset($_POST["operation"]) && $_POST["operation"] == "getdashboardcommentlist" ) {
         // import database connector 
         include("connect_to_db.php");        
         if( session_status() == 1 )
@@ -37,8 +37,11 @@
         $all = array();
         while ( $row = $comments->fetch_assoc() ) {
             foreach( $row as $key => $value ){
-            $comment[$key] = $value;
-            }
+                $comment[$key] = $value;
+            }            
+            $tmp = $comment["comment_post_id"];
+            $post_tilte = $conn->query("SELECT `post_title` FROM `posts` WHERE `post_id`='$tmp' ")->fetch_assoc()["post_title"];
+            $comment["post_title"] = $post_tilte;
             array_push($all,$comment);
         }
         echo json_encode($all);
@@ -72,7 +75,7 @@
                     <span id="postnumberhash" class="allpostsheader-element">#</span>
                     <span id="posttumbpic" class="allpostsheader-element">Thumbnail</span>
                     <span id="posttitle" class="allpostsheader-element">Title</span>
-                    <span id="postvisits" class="allpostsheader-element">Visits</span>
+                    <span id="postvisits" class="allpostsheader-element">Views</span>
                     <span id="postcomments" class="allpostsheader-element">Comments</span>
                     <span id="delete" class="allpostsheader-element tools">DELETE</span>
                     <span id="edit" class="allpostsheader-element tools">EDIT</span>
@@ -90,8 +93,9 @@
             <div id="allcomments">
                 <div id="allcommentsheader">
                     <span id="commentnumberhash" class="allcommentsheader-element">#</span>
-                    <span id="commentcommentor" class="allcommentsheader-element">Commentor Name</span>
+                    <span id="commentcommentor" class="allcommentsheader-element">Commentor</span>
                     <span id="commentcomment" class="allcommentsheader-element">Comment</span>
+                    <span id="commentpost" class="allcommentsheader-element">Post</span>
                     <span id="commentdate" class="allcommentsheader-element">Comment Given On</span>
                     <span id="deletecomment" class="allcommentsheader-element commenttools">DELETE</span>
                     <span id="massagecommentor" class="allcommentsheader-element commenttools">Text Commentor</span>                    

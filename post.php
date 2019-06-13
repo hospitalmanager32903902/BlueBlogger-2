@@ -11,6 +11,10 @@
     // fetching the comments of the post
     $sql = "SELECT * FROM `comments` Where `comment_post_id`=".$_GET["post"]; // SQL code for fetching data from the database
     $comments = $conn->query( $sql ); // fetched the data
+
+    // fetching the ost author data
+    $sql = "SELECT * FROM `users` Where `user_username`='".$post["post_author_username"]."'"; // SQL code for fetching data from the database
+    $author = $conn->query( $sql )->fetch_assoc(); // fetched the data
     
 ?>
 <?php include("header.php"); ?>
@@ -42,12 +46,12 @@
                                 <button onclick="postpage_sidelogin(this.parentElement)" id="userpane-loginbutton">Login</button>';
                         } else {
                             echo 
-                                '<div data-username="'.$_SESSION["username"].'" id="userpane-userdetail" onclick=window.location="profile.php">
-                                    <img src="'.$user["user_profile_picture_link"].'" width="100px" height="100px" >
-                                    <span id="userpane-userdetail-name">'.$user["user_fullname"].'</span>
-                                    <div id="userpane-userdetail-age">'.$user["user_age"].'</div>
-                                    <div id="userpane-userdetail-gender">'.$user["user_gender"].'</div>
-                                    <div id="userpane-userdetail-profession">'.$user["user_profession"].'</div>
+                                '<div data-username="'.$author["user_username"].'" id="userpane-userdetail" onclick=window.location="profile.php">
+                                    <img src="'.$author["user_profile_picture_link"].'" width="100px" height="100px" >
+                                    <span id="userpane-userdetail-name">'.$author["user_fullname"].'</span>
+                                    <div id="userpane-userdetail-age">'.$author["user_age"].'</div>
+                                    <div id="userpane-userdetail-gender">'.$author["user_gender"].'</div>
+                                    <div id="userpane-userdetail-profession">'.$author["user_profession"].'</div>
                                 </div>';
                         }
                     ?>

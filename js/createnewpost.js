@@ -22,7 +22,7 @@ function publish(){
         return elem.charCodeAt() == 39 || elem.charCodeAt() == 34 ? "0" : elem;
     }).join("");
     console.log(post_body);
-    if ( !(post_thumb && post_title && post_excerpt && post_body) ) {
+    if ( !(post_thumb && post_title.length && post_excerpt.length && post_body.length ) ) {
         alert(`Enter all the fields`);
         return;
     }

@@ -12,16 +12,15 @@
         $comment_birthdate = date("d-m-y");
         $comment_order = (int)($conn->query("SELECT MAX(comment_id) AS comment_id from `comments` WHERE `comment_post_id`='$comment_post_id'")->fetch_assoc()["comment_id"]);
         $comment_order++;
+        $comment_date = date("Y-m-d");
 
-        $sql = "INSERT INTO `comments`(`comment_id`, `comment_post_id`, `comment_commentor_username`, `comment_commentor_fullname`, `comment_post_author_username`, `comment_content`, `comment_birthdate`, `comment_order`) VALUES ($comment_id, $comment_post_id, $comment_commentor_username, $comment_commentor_fullname, '$comment_post_author_username', $comment_content, $comment_birthdate, $comment_order)";
-        //echo $sql;
+        $sql = "INSERT INTO `comments`(`comment_id`, `comment_post_id`, `comment_commentor_username`, `comment_commentor_fullname`, `comment_post_author_username`, `comment_content`, `comment_birthdate`, `comment_order`,`comment_date`) VALUES ($comment_id, $comment_post_id, $comment_commentor_username, $comment_commentor_fullname, '$comment_post_author_username', $comment_content, $comment_birthdate, $comment_order,'$comment_date')";
+        // echo $sql;
         $r = $conn->query( $sql );
         
         $post_comment_count =  (int)$conn->query( "SELECT `post_comment_count` FROM `posts` WHERE `post_id`='$comment_post_id'" )->fetch_assoc()["post_comment_count"];
         $post_comment_count++;
-        $conn->query("UPDATE `posts` SET `post_comment_count`='$post_comment_count' WHERE `post_id`='$comment_post_id'");
-        //echo $sql;
-        $r = $conn->query( $sql );
+
         if( $r ){
             $r = $conn->query("UPDATE `posts` SET `post_comment_count`='$post_comment_count' WHERE `post_id`='$comment_post_id'");
             if( $r ){

@@ -28,7 +28,7 @@ function shootcomment() {
             N(".comment").classList.remove("newcommentanimation");
         }, 3001);
     } else {
-        alert(ajaxReq.responseText);
+        //alert(ajaxReq.responseText);
     }
 }
 

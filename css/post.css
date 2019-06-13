@@ -85,23 +85,26 @@ body {
     top: 0;
 }
 
-
-.shake{
+.shake {
     animation: fieldempty .1s ease-in 0s 3;
     position: relative;
-    border:1.5px solid red!important;
+    border: 1.5px solid red!important;
 }
-@keyframes fieldempty{
-    0%{
+
+@keyframes fieldempty {
+    0% {
         transform: rotateZ(3deg);
     }
-    40%{
+
+    40% {
         transform: rotateZ(-3deg);
     }
-    80%{
+
+    80% {
         transform: rotateZ(3deg);
     }
-    100%{
+
+    100% {
         transform: rotateZ(-3deg);
     }
 }
@@ -241,7 +244,8 @@ span#profile {
     float: none;
     color: #4f4f4fe0;
 }
-#post-bottom{
+
+#post-bottom {
     width: 524px;
     height: 40px;
     position: relative;
@@ -366,37 +370,38 @@ span#input_user_detail_save {
 span#input_user_detail_save:hover {
     background: #4CAF50;
 }
-/* ------------------------Comment box style--------------------------- */
 
-#commentbox{
+/* ------------------------Comment box style--------------------------- */
+#commentbox {
     width: 700px;
     min-height: 200px;
     height: auto;
     padding-left: 7px;
     padding-bottom: 50px;
     border-radius: 5px 5px 0px 0px;
-    background: #38b266;
-    border:1px solid #bbb;
+    /* background: #38b266; */
+    border: 1px solid #bbb;
     /* border-bottom: none; */
     margin: 0px 0px 50px 0px;
     /* padding: 10px; */
     box-sizing: border-box;
-    transition:.3s linear;
+    transition: .3s linear;
     position: relative;
     top: 20px;
     display: block;
     float: left;
 }
 
-#commentbox label{
+#commentbox label {
     text-align: start;
     margin: 10px auto;
     color: #434242;
     font-size: 22px;
     display: block;
 }
-label[for="commentorAvatar"]{
-    text-align:center!important;
+
+label[for="commentorAvatar"] {
+    text-align: center!important;
     display: block!important;
     width: 100%;
     height: 15px;
@@ -406,7 +411,8 @@ label[for="commentorAvatar"]{
     margin-top: 3px!important;
     overflow: hidden;
 }
-#newcomment{
+
+#newcomment {
     outline: none;
     border: 1.2px solid black;
     border-radius: 5px;
@@ -414,27 +420,33 @@ label[for="commentorAvatar"]{
     margin-bottom: 10px;
     box-sizing: border-box;
     resize: vertical;
-    transition: none;
+    /* transition: none; */
 }
-#newcomment:focus{
+
+#newcomment:focus {
     border: 1.2px solid rgba(102,175,233,.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
 }
+
 #commentbox button {
     width: 250px;
     height: 50px;
-    background: coral;
+    background: lightcoral;
     color: whitesmoke;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     font-family: verdana;
     font-size: 17px;
+    outline: none;
 }
+
 #commentbox button:hover {
-    background:#c24f24;
+    background: dodgerblue;
+    box-shadow:2px 1px 10px #05050599;
 }
-#blogbottompane{
+
+#blogbottompane {
     background: #1c10101f;
     min-height: 50px;
     width: 100%;
@@ -442,78 +454,94 @@ label[for="commentorAvatar"]{
     margin-top: 25px;
     /* bottom: -67px; */
 }
-#comments{
+
+#comments {
     width: 688px;
     min-height: 100px;
     height: auto;
-    background: #e9e9f6;
+    /* background: #e9e9f6; */
     margin-top: 40px;
     margin-bottom: 50px;
 }
-.comment{
+
+.comment {
     width: 100%;
     min-height: 100px;
     height: auto;
     /* background: lightgray; */
+    position: relative;
     margin-top: 19px;
 }
-.commentor{
+
+.commentor {
     /* margin: 5px auto; */
     width: 100px;
     height: 100px;
     display: block;
     float: left;
-    background: red;
+    /* background: red; */
     /* margin-top: 15px; */
 }
-.commentor img{
-    border:3px solid white;
-    display:block;
+
+.commentor img {
+    border: 3px solid white;
+    display: block;
     margin: 0px auto;
-    outline:1px solid lightgray;
+    outline: 1px solid lightgray;
 }
-#comments label{
+
+#comments label {
     font-size: 15px;
 }
-.commentcontent{
+
+.commentcontent {
     display: block;
     min-height: 20px;
     height: auto;
     max-height: 320px;
-    padding: 10px;
+    overflow-y: auto;
+    padding: 22px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #4d4d4d;
     background: #f6f6f6;
     width: 566px;
     float: left;
     border-radius: 5px;
-    margin-left: 18px;
-    border: 1.5px solid #aaa;
+    margin-left: 5px;
+    border: 2px dashed #000000;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px #acacac8c;
     /* box-shadow: 0px 0px 10px #aaa; */
 }
-.commentcontent:after{
+
+.commentor:after {
     content: '';
-    border-top: 15px solid #aaa;
-    border-left: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 15px solid transparent;
+    border-top: 15px solid #aaa0;
+    border-left: 15px solid #a6383800;
+    border-bottom: 15px solid #095489;
+    border-right: 15px solid #837e7e00;
+    /* box-shadow: 0px 0px 5px #aaa; */
     position: relative;
     z-index: 1000;
     width: 0px;
     height: 0px;
-    top: -22px;
-    left: -41px;
+    top: -102px;
+    left: 91px;
     transform: rotate(90deg);
     display: block;
 }
+
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
     width: 100%;
     height: 200px;
     background: #ecf0f2;
-    padding-top:10px;
+    padding-top: 10px;
     border: 1px solid #aaa;
     border-bottom: 3px solid #bbb;
     border-radius: 2px;
-    transition:1s linear;
+    transition: 1s linear;
 }
 
 #userpane-username {
@@ -551,7 +579,7 @@ label[for="commentorAvatar"]{
     cursor: pointer;
 }
 
-#userpane label{
+#userpane label {
     margin-left: 20px;
     margin-top: 10px;
     font-weight: bold;
@@ -560,86 +588,100 @@ label[for="commentorAvatar"]{
     display: block;
 }
 
-#userpane-userdetail{background: coral;overflow: hidden;height: 80px;cursor: pointer;}
-#userpane-userdetail img{
-    width:80px;
-    height:80px;
+#userpane-userdetail {
+    background: coral;
+    overflow: hidden;
+    height: 90px;
+    cursor: pointer;
+}
+
+#userpane-userdetail img {
+    width: 80px;
+    height: 80px;
     margin-left: 5px;
     margin-right: 5px;
-    float:left;
+    float: left;
 }
-#userpane-userdetail-name{
-    display:block;
+
+#userpane-userdetail-name {
+    display: block;
     width: 147px;
     height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 13px;
     text-align: center;
-    font-weight:bolder;
+    font-weight: bolder;
     margin-left: 90px;
     margin-top: 2px;
 }
-#userpane-userdetail-age{
+
+#userpane-userdetail-age {
     margin-top: 5px;
     margin-left: 40px;
-    display:inline-block;
+    display: inline-block;
     color: #3d3d3d;
+    font-size:15px;
 }
-#userpane-userdetail-gender{
+
+#userpane-userdetail-gender {
     margin-left: 10px;
-    display:inline-block;
+    display: inline-block;
     color: #3d3d3d;
+    font-size:15px;
 }
-#userpane-userdetail-profession{
-    margin: 7px 0px 10px 90px;
+
+#userpane-userdetail-profession {
+    margin: 8px 2px 10px 90px;
     text-shadow: 0px 0px 1px #1e90ff8a;
     color: #343a40;
     text-align: center;
+    font-size: 13.5px;
 }
 
-
-#content
-{
+#content {
     width: 700px;
     display: block;
     height: auto;
     min-height: 350px;
-    border-radius:5px;
-    background:white;
-    border:1px solid #bbb;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid #bbb;
     margin: 0px;
     line-height: 30px;
     padding: 10px;
-    box-sizing:border-box;
+    box-sizing: border-box;
     float: left;
-    transition:.3s linear;
+    transition: .3s linear;
 }
-.content-custom{
+
+.content-custom {
     /* transform: scale(1.01) translateY(50px)!important; */
 }
-#content img{
+
+#content img {
     display: inline-block;
     border: 3px solid white;
     outline: 1px solid lightgray;
 }
-h1{
+
+h1 {
     margin-left: 10px;
     font-size: 28px;
-    display:inline-block;
+    display: inline-block;
 }
 
 /* ---------------------- new comment animation --------------------- */
-
-.newcommentanimation{
+.newcommentanimation {
     animation: newcommentanimation 3s linear 0s 1;
 }
 
 @keyframes newcommentanimation {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1
     }
 }

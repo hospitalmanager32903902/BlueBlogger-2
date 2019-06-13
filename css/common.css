@@ -110,9 +110,9 @@ span#notification {
     cursor: pointer;
 }
 
-#notificationpad{
+#notificationpad {
     width: 160px;
-    min-height:200px;
+    min-height: 200px;
     text-align: center;
     height: auto;
     background: #242424;
@@ -142,14 +142,16 @@ span#profile {
     top: -5px;
     cursor: pointer;
     box-shadow: 0px 0px 5px #000000;
-    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-image: url("../img/post_image/post_1_thumpic.jpg");
     background-size: cover;
     transform: translateY(10deg);
-    transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1);
+    transition: .25s cubic-bezier(0.14, 6.1, 0.58, 1);
 }
+
 span#profile:hover {
     transform: scale(1.1) rotateZ(-10deg) skew(-5deg);
 }
+
 #homelink {
     color: white;
     font-family: w3incons;
@@ -168,4 +170,3 @@ span#profile:hover {
 }
 
 /* ------------------------------Main Body---------------------------------- */
-
