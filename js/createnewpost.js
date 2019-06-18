@@ -16,39 +16,37 @@ function publish(){
     // set animation
 
     var post_thumb = document.querySelector("#postthumbnail").files[0];
-    var post_title = document.querySelector("#post_title").value;
-    var post_excerpt = document.querySelector("#post_excerpt").value;
-    var post_body = document.querySelector("#writing_pad_textversion").value.trim().split("").map((elem)=>{
-        return elem.charCodeAt() == 39 || elem.charCodeAt() == 34 ? "0" : elem;
-    }).join("");
-    console.log(post_body);
+    var post_title = document.querySelector("#post_title").value.trim();
+    var post_excerpt =  document.querySelector("#post_excerpt").value.trim();
+    var post_body =  document.querySelector("#writing_pad_textversion").value.trim();
+
+
     if ( !(post_thumb && post_title.length && post_excerpt.length && post_body.length ) ) {
         alert(`Enter all the fields`);
         return;
     }
-    console.log(post_body);
+    // makes a new from data to send data to server
     var formData = new FormData();
-
-    formData.append(
-        "operation",
-        "createnewpost"
-    );
-    formData.append(
-        "post_thumnail",
-        post_thumb
-    );
-    formData.append(
-        "post_title",
-        post_title
-    );
-    formData.append(
-        "post_excerpt",
-        post_excerpt
-    );
-    formData.append(
-        "post_body",
-        post_body
-    );
+        formData.append(
+            "operation",
+            "createnewpost"
+        );
+        formData.append(
+            "post_thumnail",
+            post_thumb
+        );
+        formData.append(
+            "post_title",
+            post_title
+        );
+        formData.append(
+            "post_excerpt",
+            post_excerpt
+        );
+        formData.append(
+            "post_body",
+            post_body
+        );
     
     var ajaxReqquest = new XMLHttpRequest();
     ajaxReqquest.open("POST","createnewpost.php",false);    
@@ -68,4 +66,19 @@ function makeBold() {
     pad.innerHTML = `<b>${selected}</b>`;
 
     console.log(selected);
+}
+
+// shows the image on being chosen as thumbnail pic
+function showThumb(){
+    var thumbpic = document.querySelector("#thumbpic");
+    var file = document.querySelector("#postthumbnail");
+    var fr = new FileReader();
+    fr.readAsDataURL(file.files[0]);  
+    fr.onload = function (e) {   
+        thumbpic.src = fr.result;
+        thumbpic.style.width = "100%";
+        thumbpic.style.height = "100%";
+        thumbpic.style.border = "4px solid white";
+        thumbpic.style.margin = "0px";
+    }
 }

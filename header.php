@@ -70,7 +70,7 @@
                                     </g>
                                 </svg>
                                 </span>
-                                <a href="profile.php">
+                                <a href="profile.php" data-username='.$_SESSION["username"].'>
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
                                 </a>
@@ -134,6 +134,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="css/common.css" />
     <?php         
         $pageName = explode("/",$_SERVER["PHP_SELF"]);

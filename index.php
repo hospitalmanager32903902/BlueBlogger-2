@@ -3,14 +3,29 @@
         session_start();
 ?>
 <?php 
-    // including the file that makes a connetiong to database via mysqli
+  // including the file that makes a connetion to database via mySql
     include("connect_to_db.php");
 
-    // fetching the five foremost posts
-    $sql = "SELECT * FROM `posts` Where `post_status`='public' LIMIT 10"; // SQL code for fetching data from the database
+    $postPerPage = 5;
+  // finding out the number of posts that are public in the database 
+    $sql = "SELECT COUNT(post_id) FROM `posts` ";
+    $postCount = (int)$conn->query( $sql )->fetch_assoc()["COUNT(post_id)"];
+    // echo "<script> alert('$postCount') </script>";
+
+  // which page is it
+    if ( !isset($_GET["page"]) ) {
+        $page = 1;
+    } else {
+        $page = (int)$_GET["page"];
+    }
+
+  // fetching the  posts
+    $sql = "SELECT * FROM `posts` Where `post_status`='public' "; // SQL code for fetching data from the database
     $posts = $conn->query( $sql ); // fetched the data
+  
     
 ?>
+
 
 
 <?php include("header.php"); ?>
@@ -24,44 +39,87 @@
         <div id="postContainer">
 
             <?php
-                while( $post = $posts->fetch_assoc() ){
-                    //echo "ok it comes here";
-                    $post_thumbnail = $post['post_thumbnail'];
-                    $post_id = $post['post_id'];
-                    $post_excerpt = $post['post_excerpt'];
-                    if ( strlen($post_excerpt) < 1 ) {
-                        $post_excerpt = substr($post['post_content'],0,100);                        
-                    } else {
-                        $post_excerpt = substr($post_excerpt,0,180);
-                    }
-                    $post_title = $post['post_title'];
-                    $post_publish_date = $post['post_publish_date'];
-                    $post_comment_count = $post['post_comment_count'];
-                    $post_author_username = $post['post_author_username'];
 
-                    $sql = "SELECT `user_fullname`,`user_username` FROM `users` Where `user_username`='$post_author_username' LIMIT 1"; // SQL code for fetching data from the database
-                    $author = $conn->query( $sql ); // fetched the data
-                    $author_name = $author->fetch_assoc()["user_fullname"];
-                    echo 
-                        '
-                            <div class="post" >
-                                <img src="img/post_image/'.$post_thumbnail.'" alt="Thumbnail Picture">
-                                <a href="post.php?post='.$post_id.'"><span class="post_title">'.$post_title.'</span></a>
-                                <div class="excerpt">
-                                    '.$post_excerpt.'...     
-                                    <a style="color: white;background: dodgerblue;text-decoration:none;padding: 1px 4px 1px 6px;border-radius: 5px;display: inline-block;width: 109px;margin: 0px 5px;float: right;" href="post.php?post='.$post_id.'" title="Click to Read Full Post"> Read More...</a>                       
-                                </div>
-                                <div id="post-bottom">
-                                    <span class="post-author">Post Author :   <a href="user.php?username='.$post_author_username.'">'.$author_name.'</a> </span>|   
-                                    <span class="post-published">Published : '.$post_publish_date.'  </span>|   
-                                    <span class="post-comments">Comments : '.$post_comment_count.'</span> 
-                                </div>                                
-                            </div>';
+                $from = ( ($page-1)  * $postPerPage);
+                $to = $from + $postPerPage;
+                $tmp_i = 0;
+                while( $post = $posts->fetch_assoc() ){
+                    if ( $tmp_i >= $from && $tmp_i < $to  ) { 
+                        //echo "ok it comes here";
+                        $post_thumbnail = $post['post_thumbnail'];
+                        $post_id = $post['post_id'];
+                        $post_excerpt = $post['post_excerpt'];
+                        if ( strlen($post_excerpt) < 1 ) {
+                            $post_excerpt = substr($post['post_content'],0,100);                        
+                        } else {
+                            $post_excerpt = substr($post_excerpt,0,180);
+                        }
+                        $post_title = $post['post_title'];
+                        $post_publish_date = $post['post_publish_date'];
+                        $post_comment_count = $post['post_comment_count'];
+                        $post_author_username = $post['post_author_username'];
+
+                        $sql = "SELECT `user_fullname`,`user_username` FROM `users` Where `user_username`='$post_author_username' LIMIT 1"; // SQL code for fetching data from the database
+                        $author = $conn->query( $sql ); // fetched the data
+                        $author_name = $author->fetch_assoc()["user_fullname"];
+                        echo 
+                            '
+                                <div class="post" >
+                                    <img src="img/post_image/'.$post_thumbnail.'" alt="Thumbnail Picture">
+                                    <a href="post.php?post='.$post_id.'"><span class="post_title">'.$post_title.'</span></a>
+                                    <div class="excerpt">
+                                        '.$post_excerpt.'...     
+                                        <a href="post.php?post='.$post_id.'" title="Click to Read Full Post"> Read More...</a>                       
+                                    </div>
+                                    <div id="post-bottom">
+                                        <span class="post-author">Post Author :   <a href="user.php?username='.$post_author_username.'">'.$author_name.'</a> </span>|   
+                                        <span class="post-published">Published : '.$post_publish_date.'  </span>|   
+                                        <span class="post-comments">Comments : '.$post_comment_count.'</span> 
+                                    </div>                                
+                                </div>';
+                    }
+                    $tmp_i++;
                 }
             ?>
 
             
-        </div>    
+        </div> 
+        <!-- paginator code -->
+        <?php 
+        if ( $postCount > $postPerPage ) {
+            $pageNeeded = ($postPerPage % $postCount) > 0 ? 1 : 0; 
+            $pageNeeded += (int)($postCount / $postPerPage);
+            $tmp = "";
+            for ($i=1; $i <= $pageNeeded; $i++) { 
+                
+                $tmp .= "<a href='index.php?page=$i'>
+                    <div class='pagelinks'>$i</div>
+                </a>";
+            }
+            if ( $pageNeeded == $page ) {
+                $nextPage = $page;
+            } else {
+                $nextPage = $page + 1;
+            } 
+            if ( $page == 1 ) {                
+                $prevPage = 1;
+            } else {
+                $prevPage = $page - 1;
+            }
+            echo 
+                "<div id='paginator'>
+                    <a href='index.php?page=$prevPage'>
+                        <div class='pagelinks'> < </div>
+                    </a>
+                    $tmp
+                    <a href='index.php?page=$nextPage'>
+                        <div class='pagelinks'> > </div>
+                    </a>
+                </div>"; 
+        }
+        ?>
+        <!-- paginator code -->
+
         <div id="sidebar">
             <div id="userpane">
                 <?php 
@@ -76,7 +134,7 @@
                     } else {
                         echo 
                             '<div id="userpane-userdetail" onclick=window.location="profile.php">
-                                <img src="'.$user["user_profile_picture_link"].'" width="100px" height="100px" >
+                                <img src="img/profilepic/'.$user["user_profile_picture_link"].'" width="100px" height="100px" >
                                 <span id="userpane-userdetail-name">'.$user["user_fullname"].'</span>
                                 <div id="userpane-userdetail-age">'.$user["user_age"].'</div>
                                 <div id="userpane-userdetail-gender">'.$user["user_gender"].'</div>
@@ -84,6 +142,7 @@
                             </div>';
                     }
                 ?>
+
             </div>
         </div>
     </div>

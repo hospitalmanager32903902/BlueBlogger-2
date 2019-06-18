@@ -33,7 +33,7 @@ function homepage_sidelogin(node) {
         node.classList.remove("shake");
         node.innerHTML = 
                 `<div id="userpane-userdetail" onclick=window.location="user.php">
-                    <img src="${response.user_profile_picture_link}" width="100px" height="100px" >
+                    <img src="img/profilepic/${response.user_profile_picture_link}" width="100px" height="100px" >
                     <span id="userpane-userdetail-name">${response.user_fullname}</span>
                     <div id="userpane-userdetail-age">${response.user_age}</div>
                     <div id="userpane-userdetail-gender">${response.user_gender}</div>

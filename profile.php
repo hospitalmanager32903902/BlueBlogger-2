@@ -17,7 +17,10 @@
 
         <div id="container">
             <div id="leftside">
-                
+                <div id="prfile-pic" >
+                    <img style="border:3px solid white; width:inherit; height:120px;" src="img/profilepic/<?php echo $row["user_profile_picture_link"]; ?>" alt="">
+                    <div id="prfile-pic-caption"><?php echo $row["user_fullname"]; ?></div>
+                </div>
             </div>
             <div id="userdetail">
             <?php 

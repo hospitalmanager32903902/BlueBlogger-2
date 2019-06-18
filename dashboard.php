@@ -98,7 +98,7 @@
                     <span id="commentpost" class="allcommentsheader-element">Post</span>
                     <span id="commentdate" class="allcommentsheader-element">Comment Given On</span>
                     <span id="deletecomment" class="allcommentsheader-element commenttools">DELETE</span>
-                    <span id="massagecommentor" class="allcommentsheader-element commenttools">Text Commentor</span>                    
+                    <span id="massagecommentor" class="allcommentsheader-element commenttools">Send Massage</span>                    
                 </div>
                 <div id="allcommentslist">
                     

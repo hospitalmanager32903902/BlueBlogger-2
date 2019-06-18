@@ -13,37 +13,34 @@
     if ( isset($_POST["firstname"]) &&  isset($_POST["lastname"]) &&  isset($_POST["username"]) &&  isset($_POST["email"]) &&  isset($_POST["age"]) &&  isset($_POST["gender"]) &&  isset($_POST["bloodgroup"]) &&  isset($_POST["education"]) &&  isset($_POST["currentcity"]) &&   isset($_POST["fromcity"]) &&  isset($_POST["password"])) {
         // include mysql connection file
         include("connect_to_db.php");
-        $user_fullname = $_POST["firstname"] ." ".$_POST["lastname"];
-        $user_username = $_POST["username"];
-        $user_email = $_POST["email"];
-        $user_age = $_POST["age"];
-        $user_gender = $_POST["gender"];
-        $user_bloodgroup = $_POST["bloodgroup"];
-        $user_education = $_POST["education"];
-        $user_currentcity = $_POST["currentcity"];
-        $user_fromcity = $_POST["fromcity"];
-        $user_phone = $_POST["phone"];
-        $user_password = $_POST["password"];
-        $user_profile_picture_link = $_FILES["avatarimage"]["name"];
-        
-        $user_id = $conn->query("SELECT COUNT(user_id) FROM users user_id")->fetch_assoc()["COUNT(user_id)"];
+        $user_fullname = ucfirst(htmlentities($_POST["firstname"])) ." ".ucfirst(htmlentities($_POST["lastname"]));
+        $user_username = ucfirst(htmlentities($_POST["username"]));
+        $user_email = ucfirst(htmlentities($_POST["email"]));
+        $user_age = ucfirst(htmlentities($_POST["age"]));
+        $user_gender = ucfirst(htmlentities($_POST["gender"]));
+        $user_bloodgroup = ucfirst(htmlentities($_POST["bloodgroup"]));
+        $user_education = ucfirst(htmlentities($_POST["education"]));
+        $user_profession = ucfirst(htmlentities($_POST["profession"]));
+        $user_currentcity = ucfirst(htmlentities($_POST["currentcity"]));
+        $user_fromcity = ucfirst(htmlentities($_POST["fromcity"]));
+        $user_phone = ucfirst(htmlentities($_POST["phone"]));
+        $user_password = ucfirst(htmlentities($_POST["password"]));
+        $user_profile_picture_link = ucfirst(htmlentities($_FILES["avatarimage"]["name"]));
         
         // sql for entering new user into the batadase
-        $sql = "INSERT INTO `users`(`user_id`, `user_username`, `user_password`, `user_email`, `user_phone`, `user_fullname`, `user_age`, `user_gender`, `user_bloodgroup`, `user_education`, `user_current_city`, `user_from`, `user_post_count`, `user_comment_count`,`user_profile_picture_link`) VALUES ($user_id,'$user_username','$user_password','$user_email',$user_phone,'$user_fullname',$user_age,'$user_gender','$user_bloodgroup','$user_education','$user_currentcity','$user_fromcity',0,0,'$user_profile_picture_link')";
-        echo $sql;
+        $sql = "INSERT INTO `users`(`user_username`, `user_password`, `user_email`, `user_phone`, `user_fullname`, `user_age`, `user_gender`, `user_bloodgroup`, `user_education`,  `user_profession`, `user_current_city`, `user_from`,`user_profile_picture_link`) VALUES ('$user_username','$user_password','$user_email',$user_phone,'$user_fullname',$user_age,'$user_gender','$user_bloodgroup','$user_education','$user_profession','$user_currentcity','$user_fromcity','$user_profile_picture_link')";        
         $r = $conn->query( $sql );
         // if registration done then set the session variable and redirect to dashboard.php
-        if($r){
-
+        if ( $r ) {
             move_uploaded_file($_FILES["avatarimage"]["tmp_name"],$_FILES["avatarimage"]["name"]);
-
-            if ( session_status() == 1 ) {
-                session_start();
-                $_SESSION["username"] = $user_username;
-                header("Location:dashboard.php");
-            }
+            rename($_FILES["avatarimage"]["name"],"img/profilepic/".$_FILES["avatarimage"]["name"]);
+            if ( session_status() == 1 ) session_start();
+            $_SESSION["username"] = $user_username;
+            header("Location:dashboard.php");
+        } else {
+            echo $sql;
+            echo "<script>alert('Something Went Worng!!!')</script>";
         }
-        echo "<script>alert('Something Went Worng!!!')</script>";
 
     }
     
@@ -79,6 +76,8 @@
                     </select>
                     <label for="education">Enter Your Education</label>
                     <input type="text" name="education" id="education" placeholder="Education">
+                    <label for="profession">Enter Your Profession</label>
+                    <input type="text" name="profession" id="profession" placeholder="Profession">
                     <label for="currentcity">Enter Your Current City</label>
                     <input type="text" name="currentcity" id="currentcity" placeholder="Current City">
                     <label for="from">Enter Your Birth City</label>
@@ -92,6 +91,7 @@
                     <label for="passwordalert" id="unmatchalert"></label>
                     <label for="image">Choose a profile picture</label>
                     <input type="file" name="avatarimage" id="image">
+                    <img src="large.jpg" alt="" widtd="100px" height="120px">
                     <input type="submit" value="Register" id="register">
                 </form>
                 <input type="button" value="Register"  onclick="register()" >

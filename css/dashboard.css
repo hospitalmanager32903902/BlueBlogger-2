@@ -71,10 +71,12 @@ body{
 div#rightNav {
     background: purple;
     display: inline-block;
-    position: absolute;
+    position: fixed;
+    overflow: hidden;
     right: 0px;
     height: 45px;
     width: 200px;
+    transition: none!important;
 }
 
 span#notification {
@@ -119,7 +121,7 @@ span#profile {
 #homelink{
     color: white;
     font-family: w3incons;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
     text-decoration: none;
 }
@@ -163,7 +165,7 @@ path {
     height: 61px;
     line-height: 40px;
     color: white;
-    background: dodgerblue;
+    background: lightcoral;
     border-top: 20px solid white;
     border-bottom: 1.5px solid #434343;
     text-align: center;
@@ -282,8 +284,8 @@ path {
     overflow: hidden;
     transition: .15s ease-out;
 }
-.post:hover{
-        border-left: 5px solid black;
+.post{
+        /* border-left: 5px solid black; */
         transition: .15s ease-out;
 }
 .post:nth-child(even) {background: #e4e5ea;}
@@ -305,7 +307,7 @@ path {
     height: 100%;
     text-align: start;
     border-left: 0px solid transparent;
-    padding: 33px 20px;
+    /* padding: 33px 20px; */
 }
 #dashboard-post-title{
     width: 372px;
@@ -542,8 +544,8 @@ path {
     transition: .15s ease-out;
 }
 .post:hover{
-        border-left: 5px solid black;
-        transition: .15s ease-out;
+        /* border-left: 5px solid black; */
+        /* transition: .15s ease-out; */
 }
 .post:nth-child(even) {background: #e4e5ea;}
 .dashboard-post-element{
@@ -552,21 +554,28 @@ path {
     display: block;
     float: left;
     text-align: center;
-    /* box-sizing: border-box!important; */
+    box-sizing: border-box!important;
     overflow: hidden;
     border-right: 1px dotted #046cff21;
     word-break: break-word;
 }
-#dashboard-post-number{
+.dashboard-post-number{
     text-align: start;
     /* border-left: 5px solid black!important; */
-    width: 51px;
+    width: 65px;
     height: 100%;
     text-align: start;
     border-left: 0px solid transparent;
-    padding: 33px 20px;
+    /* padding: 33px 20px; */
+    display: block;
+    line-height:50px;
+    text-align:center;
+    box-sizing:border-box!important;
 }
-#dashboard-post-title{
+.post:hover .dashboard-post-number{
+    border-left:5px solid black;
+}
+.dashboard-post-title{
     width: 372px;
     position: relative;
     top: 50%;
@@ -574,16 +583,16 @@ path {
     transform: translateY(-50%);
     text-align: center;
 }
-#dashboard-post-tumbnail{
+.dashboard-post-tumbnail{
     border-radius: 0px;
     padding: 0px;
     width: 85px;
 }
-#dashboard-post-visit{
+.dashboard-post-visit{
     width: 120px;
     padding: 25px 0px;
 }
-#dashboard-post-comments{
+.dashboard-post-comments{
     width: 120px;
     padding: 25px 0px;
     text-align: center;

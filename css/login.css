@@ -313,7 +313,7 @@ input#image {
 
 .fieldempty{
     border:1.5px solid red;
-    animation: fieldempty .1s ease-in 0s 3;
+    animation: fieldempty .1s ease-in 0s 9;
     position: relative;
 }
 

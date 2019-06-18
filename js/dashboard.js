@@ -1,4 +1,9 @@
 function highlightSelected(node){
+    
+    setTimeout(() => {
+        fixNavSize();
+    }, 1);
+
     node.classList.add("selected");
     node.parentElement.querySelectorAll("*").forEach( elem => {
         elem.classList.remove("selected");
@@ -9,15 +14,15 @@ function highlightSelected(node){
 function renderAllPost( data,count ){
     var post = 
         `<div class="post" data-postid="${data.post_id}">
-                <span id="dashboard-post-number" class="dashboard-post-element">${count}</span>       
-                <span id="dashboard-post-tumbnail" class="dashboard-post-element">
+                <span class="dashboard-post-element dashboard-post-number">${count}</span>       
+                <span class="dashboard-post-element dashboard-post-tumbnail">
                     <img src=img/post_image/${data.post_thumbnail} width="100%" height="100%" />
                 </span>
                 <a href="post.php?post=${data.post_id}">
-                    <span id="dashboard-post-title" class="dashboard-post-element">${data.post_title}</span>
+                    <span class="dashboard-post-title dashboard-post-element">${data.post_title}</span>
                 </a>
-                <span id="dashboard-post-visit" class="dashboard-post-element">${data.post_visit_count}</span>
-                <span id="dashboard-post-comments" class="dashboard-post-element">${data.post_comment_count}</span>
+                <span id="" class="dashboard-post-visit dashboard-post-element">${data.post_visit_count}</span>
+                <span id="" class="dashboard-post-comments dashboard-post-element">${data.post_comment_count}</span>
                 
                 <!-- delete post ---->
                 <span id="dashboard-post-delete" class="dashboard-post-element"  onclick="alertPrompt(this.parentElement,'deletepost')">
@@ -108,10 +113,11 @@ function main(){
 // This function throws an prompt alert when any
 // deletion button is clicked to to be deleted
 function alertPrompt(node,type){
+    var navbar = document.querySelector("#navbar");
     // html code for the modal
     if ( type !="deletecomment" ) {
         var modal = 
-            `<div id="alertPromptModal" style="overflow:hidden;opacity:0;width:100vw;height:100vh;background: #000000a3;position: absolute;top: 0;left: 0px;z-index: 100;">
+            `<div id="alertPromptModal" style="overflow:hidden;opacity:0;width:${navbar.offsetWidth}px;height:100vh;background: #000000a3;position: absolute;top: 0;left: 0px;z-index: 100;">
                 <div id="modalContent" style=" transition-duration:0.2s; transition-timing-function:cubic-bezier(0, 0, 0, 2.79); transform:scale(.5); text-align: center;width: 515px;height: 200px;border-radius: 5px;position:relative;margin:200px auto;background: white;box-sizing: border-box;padding: 20px;opacity: 1;">
                     <h3 style="margin: 1px 1px 55px 0px;"> Are you Sure You Want to Delete This post ?  </h3>
                     <button onclick="deletePost(${node.getAttributeNode("data-postid").value})" style="font-family:verdana;font-size: 17px;color: white;border:0px;width: 48%;height:50px;background: dodgerblue;cursor: pointer;border-radius: 4px;"> Yes </button>
@@ -121,7 +127,7 @@ function alertPrompt(node,type){
             `;        
     } else if ( type =="deletecomment" ){
         var modal = 
-        `<div id="alertPromptModal" style="overflow:hidden;opacity:0;width:100vw;height:100vh;background: #000000a3;position: absolute;top: 0;left: 0px;z-index: 100;">
+        `<div id="alertPromptModal" style="overflow:hidden;opacity:0;width:${navbar.offsetWidth}px;height:100vh;background: #000000a3;position: absolute;top: 0;left: 0px;z-index: 100;">
             <div id="modalContent" style=" transition-duration:0.2s; transition-timing-function:cubic-bezier(0, 0, 0, 2.79); transform:scale(.5); text-align: center;width: 515px;height: 200px;border-radius: 5px;position:relative;margin:200px auto;background: white;box-sizing: border-box;padding: 20px;opacity: 1;">
                 <h3 style="margin: 1px 1px 55px 0px;"> Are you Sure You Want to Delete This post ?  </h3>
                 <button onclick="deleteComment(${node.getAttributeNode("data-commentid").value},)" style="font-family:verdana;font-size: 17px;color: white;border:0px;width: 48%;height:50px;background: dodgerblue;cursor: pointer;border-radius: 4px;"> Yes </button>
@@ -290,7 +296,27 @@ function showPosts(node) {
     highlightSelected(node);
     N("#all-post-content").style.display="inline-block";
     N("#all-comment-content").style.display="none";
+    setTimeout(() => {
+        reveserFixNavSize();
+    }, 1);
 }
 
 
 
+function fixNavSize(){
+    console.log("fixNavSize");
+    var navbar = document.querySelector("#navbar");
+    var rightNav = document.querySelector("#rightNav");
+    navbar.style.width = document.body.scrollWidth + "px";
+    var tmpx = rightNav.offsetLeft;
+    window.addEventListener("scroll", ()=>{
+        rightNav.style.left = (tmpx + window.scrollX) + "px";
+    });
+};
+
+
+function reveserFixNavSize(){
+    console.log("reveserFixNavSize");
+    var navbar = document.querySelector("#navbar");
+    navbar.style.width = "100%";
+};

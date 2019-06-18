@@ -10,9 +10,9 @@
         // setting all the attributes for new post
         $post_title = $_POST["post_title"];
         $post_id = (int)($conn->query("SELECT MAX(post_id) AS post_id from `posts`")->fetch_assoc()["post_id"]);
-        $post_id++;
-        $post_content = $_POST["post_body"];
-        $post_excerpt = $_POST["post_excerpt"];
+        $post_id++; 
+        $post_content = htmlentities($_POST["post_body"]);
+        $post_excerpt = htmlentities($_POST["post_excerpt"]);
         $post_author_id = $conn->query("SELECT `user_id` FROM `users` WHERE `user_username`=".$user)->fetch_assoc()["user_id"];
         $post_author_username = $_SESSION["username"];
         $post_comment_count = 0;
@@ -34,7 +34,11 @@
             $r = $conn->query("UPDATE `users` SET `user_post_count`=$post_number WHERE `user_username`=".$user);
             if( $r ) {
                 echo "Successsful";
+            } else {
+                echo "Something Went Worng";
             }
+        } else {
+            echo "$sql";
         }
         
 
@@ -62,13 +66,13 @@
         <div id="createnewpost">
             <div id="upper">
                 <div id="tumbnailupload" onclick="document.querySelector('#postthumbnail').click()">
-                    <img src="img/choosethumcoverpic.png" alt="" >
+                    <img src="img/choosethumcoverpic.png" width="95%" height="70%" alt="" id="thumbpic">
                     <label for="tumbnailupload">Choose a Thumbnail</label>
-                    <input type="file" name="postthumbnail" id="postthumbnail">
+                    <input type="file" name="postthumbnail" id="postthumbnail" onchange="showThumb()">
                 </div>
                 <div id="excerpt">
                     <label for="post_excerpt">Write An Excerpt of Your Post</label>
-                    <textarea name="post_excerpt" id="post_excerpt" cols="37" rows="4" placeholder="Smaller the Better "></textarea>
+                    <textarea name="post_excerpt" id="post_excerpt" cols="40" rows="4" placeholder="Smaller the Better "></textarea>
                 </div>
             </div>
         </div>

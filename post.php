@@ -36,6 +36,7 @@
             </div>
             <div id="sidebar">
                 <div id="userpane">
+                    <div style="margin:0px;margin-bottom:10px;font-size:15px;color: #ffffff;background: dodgerblue;text-align: center;padding: 2px 0px;">Author Detail </div>
                     <?php 
                         if(!isset($_SESSION["username"])){
                             echo 
@@ -47,7 +48,7 @@
                         } else {
                             echo 
                                 '<div data-username="'.$author["user_username"].'" id="userpane-userdetail" onclick=window.location="profile.php">
-                                    <img src="'.$author["user_profile_picture_link"].'" width="100px" height="100px" >
+                                    <img src="img/profilepic/'.$author["user_profile_picture_link"].'" width="100px" height="100px" >
                                     <span id="userpane-userdetail-name">'.$author["user_fullname"].'</span>
                                     <div id="userpane-userdetail-age">'.$author["user_age"].'</div>
                                     <div id="userpane-userdetail-gender">'.$author["user_gender"].'</div>
@@ -60,11 +61,15 @@
         </div>
         <!-- code for comment section -->
         <div id="commentbox">
-            <label for="comment"> Shoot a Comment</label>
-            <textarea name="newcomment" id="newcomment" cols="80" rows="6"></textarea>
-            <button onclick="shootcomment()">Shoot</button>
-            <div id="comments">             
-                
+            <?php
+            if ( isset($_SESSION["username"]) ) { 
+                echo '    
+                    <label for="comment"> Shoot a Comment</label>
+                    <textarea name="newcomment" id="newcomment" cols="80" rows="6"></textarea>
+                    <button onclick="shootcomment()">Shoot</button>';
+            }
+            ?>
+            <div id="comments">                             
                 <!-- Sample Comment  --> 
                 <?php   
                 while( $comment = $comments->fetch_assoc() ){   
@@ -74,7 +79,7 @@
                     echo 
                     '<div class="comment">
                         <div class="commentor">
-                            <img src="'.$commentor_avatar.'" alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
+                            <img src=img/profilepic/'.$commentor_avatar.' alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
                             <label for="commentorAvatar">'.$comment["comment_commentor_fullname"].'</label>
                         </div>                       
                         <div class="commentcontent"> 
@@ -83,8 +88,7 @@
                     </div>';
                 }
                 ?>
-                <!-- /Sample Comment -->
-                
+                <!-- /Sample Comment -->                
             </div>
 
         </div>

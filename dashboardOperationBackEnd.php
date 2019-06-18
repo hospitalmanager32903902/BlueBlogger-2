@@ -19,7 +19,7 @@
             echo "Post Deleted";
             // decrepent post count by 1 
             $post_number = (int)($conn->query("SELECT `user_post_count` FROM `users` WHERE `user_username`='".$user."'")->fetch_assoc()["user_post_count"]);
-            $post_number--; // icrease it by 1
+            if( $post_number > 0 ) $post_number--; // decrease it by 1
             $r = $conn->query("UPDATE `users` SET `user_post_count`=$post_number WHERE `user_username`='".$user."'");
 
             if ( $r ) {
@@ -27,6 +27,14 @@
             } else {
                 echo "User Post Count Not Decremented";
             }
+            // delete all the comments off that post
+            $r = $conn->query("DELETE FROM `comments` WHERE comment_post_id='$postid'");            
+            if ( $r ) {
+                echo "All comments of that post is deleted";
+            } else {
+                echo " comments not deleted";
+            }
+
         } else {
             echo "Post Not Deleted";
         }

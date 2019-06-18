@@ -88,7 +88,7 @@ body {
 
 div#rightNav {
     perspective: 300px;
-    background: purple;
+    /* background: purple; */
     display: inline-block;
     position: absolute;
     right: 0px;
@@ -97,7 +97,7 @@ div#rightNav {
 }
 
 span#notification {
-    background: green;
+    /* background: green; */
     box-sizing: border-box;
     display: block;
     float: left;
