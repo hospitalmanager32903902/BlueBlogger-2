@@ -2,7 +2,7 @@
     if( session_status() == 1 ){
         session_start();
     }
-    include("connect_to_db.php");
+    include_once("connect_to_db.php");
 
     // fetching the content of the post
     $sql = "SELECT * FROM `posts` Where `post_id`=".$_GET["post"];
@@ -12,12 +12,23 @@
     $sql = "SELECT * FROM `comments` Where `comment_post_id`=".$_GET["post"]; // SQL code for fetching data from the database
     $comments = $conn->query( $sql ); // fetched the data
 
-    // fetching the ost author data
+    // fetching the post author data
     $sql = "SELECT * FROM `users` Where `user_username`='".$post["post_author_username"]."'"; // SQL code for fetching data from the database
     $author = $conn->query( $sql )->fetch_assoc(); // fetched the data
     
 ?>
-<?php include("header.php"); ?>
+
+<?php
+
+    if ( $post["post_author_username"] != $_SESSION["username"] ){
+        $post_visit_count = (int)$post["post_visit_count"] + 1;
+        // fetching the content of the post
+        $sql = "UPDATE posts SET post_visit_count=".$post_visit_count ." WHERE `post_id`=".$_GET["post"];
+        $conn->query( $sql ); // fetched the data
+    }
+?>
+
+<?php include_once("header.php"); ?>
     
     <div id="container">
         <div>   
