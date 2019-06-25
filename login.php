@@ -9,10 +9,11 @@
         $sql = "SELECT `user_password` from `users` Where `user_username`='$username' LIMIT 1";
         $r = $conn->query($sql);
         if( $password ==  $r->fetch_assoc()["user_password"] ){            
-            $_SESSION["username"] = $username;
+            $_SESSION["username"] = $username; 
             $sql = "SELECT *  from `users` Where `user_username`='$username' LIMIT 1";
-            $r = $conn->query($sql);
-            echo json_encode($r->fetch_assoc());
+            $r = $conn->query($sql)->fetch_assoc();
+            $_SESSION["user_roll"] = $r["user_roll"];
+            echo json_encode($r);
         } else {
             echo "login failed";
         }

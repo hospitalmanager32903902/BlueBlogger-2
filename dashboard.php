@@ -1,10 +1,11 @@
 <?php
+
+    if( session_status() == 1 )
+    session_start();
+
     if (isset($_POST["operation"]) && $_POST["operation"] == "getdashboardpostlist" ) {
         // import database connector 
         include("connect_to_db.php");
-        
-        if( session_status() == 1 )
-            session_start();
 
         // fetching all the post of the user and
         // putting them all in all() array 
@@ -22,6 +23,8 @@
         echo json_encode($all);
         exit(0);
     }
+
+
     if ( isset($_POST["operation"]) && $_POST["operation"] == "getdashboardcommentlist" ) {
         // import database connector 
         include("connect_to_db.php");        
@@ -47,12 +50,19 @@
         echo json_encode($all);
         exit(0);
     }
+    
+?>
+
+<?php
+    $admin = false;
+    if( isset($_SESSION["user_roll"]) &&  $_SESSION["user_roll"] == "admin" ){
+        $admin = true;
+    }
 ?>
 
 <?php
     // Check if user logged in if yes
     // continue otherwise redirect to login page
-    session_start();
     if( !isset($_SESSION["username"]) ){
         header("Location:login.php");
     }
@@ -67,6 +77,11 @@
                 <div id="posts" onclick="showPosts(this)">Posts</div>
                 <div id="comments" onclick="showComments(this)">Comments</div>
                 <div id="drafts" onclick="highlightSelected(this)">Drafts</div>
+                <?php 
+                    if( $admin ){
+                        echo '<div id="users" onclick="highlightSelected(this)">Users</div>';
+                    }
+                ?>
         </nav>
         <!-- tab for the post list -->
         <div id="all-post-content">

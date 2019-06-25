@@ -152,6 +152,8 @@
             echo '<link rel="stylesheet" href="css/post.css" />';
         } else if( $pageName[count($pageName)-1] == "profile.php" ){
             echo '<link rel="stylesheet" href="css/profile.css" />';
+        } else if( $pageName[count($pageName)-1] == "search.php" ) {
+            echo '<link rel="stylesheet" href="css/search.css" />';
         } else {
             echo '<link rel="stylesheet" href="css/index.css" />';
         }
@@ -186,7 +188,11 @@
                     echo "<a href='dashboard.php'>Dashboard</a>";
                 }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "signup.php" ) {                  
                     echo "<a href='login.php'>Login</a>";
-                }   
+                }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "search.php" ) {                  
+                    echo "<a href='login.php'>Login</a>";
+                }   else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "search.php" ) {                  
+                    echo "<a href='index.php'>Home</a>";
+                } 
             ?>
             <a style="margin-left:10px;text-decoration:none;color:white;" href="index.php"><span id="homelink"></span></a>
             <?php

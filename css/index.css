@@ -7,7 +7,7 @@
 * {
     box-sizing: border-box;
     /* color: black; */
-    font-family: verdana;
+    font-family: sans-serif;
     transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
@@ -121,23 +121,23 @@ path {
 }
 
 span#profile {
-    width: 60px;
-    height: 60px;
-    display: block;
-    float: left;
-    position: relative;
+    /* width: 60px; */
+    /* height: 60px; */
+    /* display: block; */
+    /* float: left; */
+    /* position: relative; */
     /* margin-top: 11px; */
     /* background: red; */
-    border-radius: 50%;
-    margin-left: 10px;
-    top: -7px;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px #000000;
-    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
-    background-size: 100% 100%;
+    /* border-radius: 50%; */
+    /* margin-left: 10px; */
+    /* top: -7px; */
+    /* cursor: pointer; */
+    /* box-shadow: 0px 0px 5px #000000; */
+    /* background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg"); */
+    /* background-size: 100% 100%; */
     transform: translateY(10deg);
-    transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1);
-    border:3px solid white;
+    /* transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1); */
+    /* border:3px solid white; */
 }
 span#profile:hover {
     transform: scale(1.1) rotateZ(-10deg) skew(-5deg);
@@ -233,7 +233,7 @@ span#profile:hover {
     top: 0px;
     font-size: large;
     text-overflow: ellipsis;
-    /* background:red; */
+    background:red;
     color: black;
 }
 .post_title:hover{
@@ -253,6 +253,7 @@ span#profile:hover {
     border-radius: 3px;
     border: 1px solid #79841047;
     box-shadow: 3px 2px 5px #3d4b7445;
+    position: relative;
 }
 .post:hover{
     box-shadow:6px 5px 7px #3d4b7482;
@@ -273,8 +274,8 @@ span#profile:hover {
     overflow: hidden;
     display: block;
     float: none;
-    color: #4f4f4f9e;
-    /* background: blueviolet; */
+    color: white;
+    background: rebeccapurple;
     margin-left: 122px;
     position: relative;
 }
@@ -282,8 +283,8 @@ span#profile:hover {
     width: 500px;
     height: 25px;
     position: relative;
-    /* background: #0fb8ad; */
-    font-size: 12px;
+    background: #0fb8ad;
+    font-size: 11px!important;
     /* top: -44px; */
     /* color: #000000c4; */
     /* text-shadow: 1px -1px 3px #8f8f8f; */
@@ -291,17 +292,17 @@ span#profile:hover {
     text-align: left;
     font-size: 12px;
     line-height: 25px;
-    overflow:auto;
-    box-sizing: content-box;
+    overflow: hidden;
+    box-sizing: border-box;
     border-top: 1px solid lightgray;
 }
 .post-author{
     display:inline-block;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
     color: #000000c4;
     text-shadow: 1px 1px 1px #8f8f8f;
-    /* font-size: 12px; */
+    font-size: 11px;
 }
 .post-author a{
     text-decoration:none;
@@ -314,7 +315,7 @@ span#profile:hover {
 }
 .post-published{
     display:inline-block;
-    margin-right:10px;
+    margin-right: 4px;
     color: #000000c4;
     text-shadow: 1px -1px 3px #8f8f8f;
 }
@@ -376,6 +377,10 @@ span#profile:hover {
     margin-left: 5px;
     border-radius:3px;
 }
+.active {
+    background:#1e90ffa8;
+    color:white;
+}
 .pagelinks:hover{
     box-shadow:0px 0px 5px rgba(0, 0, 0, 0.44)
 }
@@ -396,6 +401,81 @@ span#profile:hover {
     right: 0px;
 }
 
+/* ------------------------  Search  ------------------------------ */
+    #searchbox {
+        width: 100%;
+        min-height: 51px;
+        height: auto;
+        overflow: hidden;
+        margin: 10px 0px;
+        display: block;
+        background: white;
+    }
+    #searchtext {
+        width: 70%;
+        height: 33px;
+        outline: none;
+        padding-left: 10px;
+        position: relative;
+        display: block;
+        float: left;
+        margin: 0px;
+        box-sizing: border-box;
+        /* border: 1px solid orange; */
+    }
+    #searchaction {
+        border: none;
+        width: 30%;
+        height: 33px;
+        position: relative;
+        /* margin-left: -6px; */
+        background: #ddd;
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: block;
+        float: left;
+        /* border: 1px solid white; */
+        cursor: pointer;
+        outline:none;
+        background-size: 80% 80%;
+        background-position-x: 9px;
+        background-position-y: 4px;
+        background-image: url('../img/search.svg');
+        background-repeat: no-repeat;
+    }
+    #searchaction:active {
+        background:lightcoral;
+    }
+    #searchaction:hover {
+        border: none;
+        width: 30%;
+        height: 33px;
+        position: relative;
+        /* margin-left: -6px; */
+        background: #aaa;
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        display: block;
+        float: left;
+        /* border: 1px solid white; */
+        cursor: pointer;
+        outline:none;
+        background-size: 80% 80%;
+        background-position-x: 9px;
+        background-position-y: 4px;
+        background-image: url('../img/search.svg');
+        background-repeat: no-repeat;
+    }
+    #searchbox label {
+        display:block;
+        text-align :end;
+        padding: 5px 5px;
+        font-size:13px;
+        color: #444444;
+        background: #eee;
+        font-family: sans-serif;
+        text-align: center;
+    }
 
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
@@ -559,7 +639,7 @@ body {
 }
 
 #header {
-    height: 180px;
+    height: 140px;
     width: 100%;
     padding: 0px;
     box-sizing: border-box;
@@ -567,7 +647,7 @@ body {
     /* left: -7px; */
     /* top: -8px; */
     margin: 0px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 #headerPoster {

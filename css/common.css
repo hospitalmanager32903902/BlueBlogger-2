@@ -97,7 +97,7 @@ div#rightNav {
 }
 
 span#notification {
-    /* background: green; */
+    background: green;
     box-sizing: border-box;
     display: block;
     float: left;
@@ -130,8 +130,8 @@ path {
 }
 
 span#profile {
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
     display: block;
     float: left;
     position: relative;
@@ -139,13 +139,14 @@ span#profile {
     /* background: red; */
     border-radius: 50%;
     margin-left: 10px;
-    top: -5px;
+    top: -7px;
     cursor: pointer;
     box-shadow: 0px 0px 5px #000000;
-    background-image: url("../img/post_image/post_1_thumpic.jpg");
-    background-size: cover;
+    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-size: 100% 100%;
     transform: translateY(10deg);
-    transition: .25s cubic-bezier(0.14, 6.1, 0.58, 1);
+    transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1);
+    border:3px solid white;
 }
 
 span#profile:hover {

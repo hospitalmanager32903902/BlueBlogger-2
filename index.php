@@ -58,6 +58,7 @@
                         $post_publish_date = $post['post_publish_date'];
                         $post_comment_count = $post['post_comment_count'];
                         $post_author_username = $post['post_author_username'];
+                        $post_visit_count = $post['post_visit_count'];
 
                         $sql = "SELECT `user_fullname`,`user_username` FROM `users` Where `user_username`='$post_author_username' LIMIT 1"; // SQL code for fetching data from the database
                         $author = $conn->query( $sql ); // fetched the data
@@ -74,7 +75,8 @@
                                     <div id="post-bottom">
                                         <span class="post-author">Post Author :   <a href="user.php?username='.$post_author_username.'">'.$author_name.'</a> </span>|   
                                         <span class="post-published">Published : '.$post_publish_date.'  </span>|   
-                                        <span class="post-comments">Comments : '.$post_comment_count.'</span> 
+                                        <span class="post-comments">Comments : '.$post_comment_count.'</span> |
+                                        <span class="post-visits">Views : '.$post_visit_count.'</span>
                                     </div>                                
                                 </div>';
                     }
@@ -87,13 +89,17 @@
         <!-- paginator code -->
         <?php 
         if ( $postCount > $postPerPage ) {
-            $pageNeeded = ($postPerPage % $postCount) > 0 ? 1 : 0; 
+            $pageNeeded = ($postCount % $postPerPage) > 0 ? 1 : 0;
             $pageNeeded += (int)($postCount / $postPerPage);
             $tmp = "";
-            for ($i=1; $i <= $pageNeeded; $i++) { 
-                
+            for ($i=1; $i <= $pageNeeded; $i++) {                 
+                if( $page == $i) {
+                    $active = "active";
+                } else {
+                    $active = "";
+                }
                 $tmp .= "<a href='index.php?page=$i'>
-                    <div class='pagelinks'>$i</div>
+                    <div class='pagelinks $active'>$i</div>
                 </a>";
             }
             if ( $pageNeeded == $page ) {
@@ -121,9 +127,15 @@
         <!-- paginator code -->
 
         <div id="sidebar">
+            <div id="searchbox">
+                <label> Search For Content </label>
+                <form action="search.php" method="get">
+                    <input type="text" name="q" id="searchtext">
+                    <button style="" type="submit" id="searchaction"></button>
+                </form>
+            </div>
             <div id="userpane">
-                <?php 
-                
+                <?php                 
                     if(!isset($_SESSION["username"])){
                         echo 
                             '<label for="username">User Name:</label>
@@ -143,6 +155,9 @@
                     }
                 ?>
 
+            </div>
+            <div id="recentpost">
+                
             </div>
         </div>
     </div>

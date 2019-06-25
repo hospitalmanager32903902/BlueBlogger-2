@@ -14,18 +14,18 @@
         // include mysql connection file
         include("connect_to_db.php");
         $user_fullname = ucfirst(htmlentities($_POST["firstname"])) ." ".ucfirst(htmlentities($_POST["lastname"]));
-        $user_username = ucfirst(htmlentities($_POST["username"]));
-        $user_email = ucfirst(htmlentities($_POST["email"]));
-        $user_age = ucfirst(htmlentities($_POST["age"]));
-        $user_gender = ucfirst(htmlentities($_POST["gender"]));
+        $user_username = htmlentities($_POST["username"]);
+        $user_email = htmlentities($_POST["email"]);
+        $user_age = htmlentities($_POST["age"]);
+        $user_gender = htmlentities($_POST["gender"]);
         $user_bloodgroup = ucfirst(htmlentities($_POST["bloodgroup"]));
         $user_education = ucfirst(htmlentities($_POST["education"]));
         $user_profession = ucfirst(htmlentities($_POST["profession"]));
         $user_currentcity = ucfirst(htmlentities($_POST["currentcity"]));
         $user_fromcity = ucfirst(htmlentities($_POST["fromcity"]));
         $user_phone = ucfirst(htmlentities($_POST["phone"]));
-        $user_password = ucfirst(htmlentities($_POST["password"]));
-        $user_profile_picture_link = ucfirst(htmlentities($_FILES["avatarimage"]["name"]));
+        $user_password = $_POST["password"];
+        $user_profile_picture_link = $_FILES["avatarimage"]["name"];
         
         // sql for entering new user into the batadase
         $sql = "INSERT INTO `users`(`user_username`, `user_password`, `user_email`, `user_phone`, `user_fullname`, `user_age`, `user_gender`, `user_bloodgroup`, `user_education`,  `user_profession`, `user_current_city`, `user_from`,`user_profile_picture_link`) VALUES ('$user_username','$user_password','$user_email',$user_phone,'$user_fullname',$user_age,'$user_gender','$user_bloodgroup','$user_education','$user_profession','$user_currentcity','$user_fromcity','$user_profile_picture_link')";        
@@ -89,9 +89,11 @@
                     <label for="repassword">Re Enter Password</label>
                     <input type="password" name="repassword" id="repassword" placeholder="Password" onkeyup="repasswordcheck(this)">
                     <label for="passwordalert" id="unmatchalert"></label>
-                    <label for="image">Choose a profile picture</label>
-                    <input type="file" name="avatarimage" id="image">
-                    <img src="large.jpg" alt="" widtd="100px" height="120px">
+                    <label for="image">
+                        <img src="img/upload.svg" alt="" widtd="100px" height="120px" id="signup-selected-thumb">                        
+                    </label>
+                    <label for="imageCap">Choose a profile picture</label>
+                    <input type="file" name="avatarimage" id="image" onchange="showSelectedThumb(this)">
                     <input type="submit" value="Register" id="register">
                 </form>
                 <input type="button" value="Register"  onclick="register()" >
@@ -107,12 +109,17 @@
             // check if any field is empty or not 
             var flag = 1;
             for (let i=0;i<input.length;i++) {
-                console.log(input[i]);  
                 // if empty then make the border red and shake it
                 if(!input[i].value.length){
                     input[i].style.border="1.5px solid red";
                     input[i].classList.add("fieldempty");
+                    if( i == 13) {                        
+                        var chooseThumbImageCap = document.querySelector("label[for='imageCap']");
+                        chooseThumbImageCap.classList.add("fieldempty");
+                        input[i].offsetTop = chooseThumbImageCap.offsetTop;             
+                    }
                     window.scrollBy(0,input[i].offsetTop - window.pageYOffset-200 );
+                    console.log(input[i].offsetTop - window.pageYOffset);
                     setTimeout(() => {                        
                         input[i].classList.remove("fieldempty");
                     }, 1000);
@@ -149,6 +156,19 @@
                     node.nextElementSibling.style.color="white";
                     node.nextElementSibling.innerText = "";      
                 }, 1000);
+            }
+        }
+
+        function showSelectedThumb( thumbImg ) {
+            console.log("Thumb Loaded !! ");
+            let fr = new FileReader();
+            fr.readAsDataURL(thumbImg.files[0]);
+            fr.onload = function(){
+                var st = document.querySelector("#signup-selected-thumb");
+                st.src = fr.result;
+                st.style.boxShadow = "0px 0px 5px #aaa";
+                var chooseThumbImageCap = document.querySelector("label[for='imageCap']");
+                chooseThumbImageCap.style.color = "#04d604";
             }
         }
 
