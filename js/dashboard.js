@@ -224,9 +224,9 @@ function deleteComment(commentid) {
     alertPromptModal.style.transitionTimingFunction="linear"; 
     alertPromptModal.style.transitionDeuration=".8s"; 
     // after fading in completely for 300 milisecond remove modal 
-    setTimeout(() => {       
-        alertPromptModal.remove();
-    }, 10);
+  
+    alertPromptModal.remove();
+
     if(commentid){
         // deletion operation of the post offline
         console.log("Delete the Comment of ID " + commentid);
@@ -237,17 +237,17 @@ function deleteComment(commentid) {
                 commentnumber = i;
             }
         });
-        setTimeout( ()=>{
-            c = c[commentnumber]; // comment we have to delete
-            c.classList.remove("removeAnimationPart_2");
-            c.classList.add("removeAnimation");
-        } , 1);
+
+        // setting the removeAnimation class which makes the animation that we want disappear
+        c = c[commentnumber]; // comment node we have to delete
+        c.classList.remove("removeAnimationPart_2");
+        c.classList.add("removeAnimation");
+
         if( c.previousElementSibling ){
             c.nextElementSibling ? c.nextElementSibling.classList.add("removeAnimationPart_2") : "";
         }
 
-        // remove that node after the disappearing 
-        // animation has done running 
+        // remove that node after the "disappearing animation" has done running 
         setTimeout(()=>{
             c.remove();
         },500);

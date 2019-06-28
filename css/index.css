@@ -52,6 +52,7 @@ body {
     background: #343a40;
     overflow: hidden;
     box-shadow: 0px 5px 11px 0px #aaa;
+    text-align: start;
 }
 
 #navbar > a:first-child {
@@ -183,7 +184,8 @@ span#profile:hover {
     text-align: center;
     color: black;
     background: white;
-    display: inline-block;
+    display: block;
+    /* position: absolute; */
     text-decoration: none;
 }
 #homepage-createnewpost span:first-child{
@@ -233,7 +235,7 @@ span#profile:hover {
     top: 0px;
     font-size: large;
     text-overflow: ellipsis;
-    background:red;
+    /* background:red; */
     color: black;
 }
 .post_title:hover{
@@ -274,8 +276,8 @@ span#profile:hover {
     overflow: hidden;
     display: block;
     float: none;
-    color: white;
-    background: rebeccapurple;
+    /* color: white; */
+    /* background: rebeccapurple; */
     margin-left: 122px;
     position: relative;
 }
@@ -283,7 +285,7 @@ span#profile:hover {
     width: 500px;
     height: 25px;
     position: relative;
-    background: #0fb8ad;
+    /* background: #0fb8ad; */
     font-size: 11px!important;
     /* top: -44px; */
     /* color: #000000c4; */
@@ -333,14 +335,14 @@ span#profile:hover {
     color: white;
     background: dodgerblue;
     text-decoration: none;
-    padding: 1px 4px 1px 6px;
+    padding: 3px 4px 1px 6px;
     border-radius: 5px;
     display: inline-block;
     width: 109px;
     /* margin: 0px 5px; */
     /* float: right; */
-    bottom: 2px;
-    right: 0;
+    bottom: 4px;
+    right: 4px;
     position: absolute;
 }
 
@@ -472,22 +474,27 @@ span#profile:hover {
         padding: 5px 5px;
         font-size:13px;
         color: #444444;
-        background: #eee;
+        background: lightblue;
         font-family: sans-serif;
-        text-align: center;
+        text-align: start;
+        border-left: 5px solid skyblue;
+        color: black;
+        font-weight: bold;
+        text-shadow: 0px 0px 5px #aaa;
     }
 
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
-        width: 100%;
-        height: 200px;
-        background: #ecf0f2;
-        padding-top:10px;
-        border: 1px solid #aaa;
-        border-bottom: 3px solid #bbb;
-        border-radius: 2px;
-        transition:1s linear;
-    }
+    width: 100%;
+    min-height: 140px;
+    height: auto;
+    background: #ecf0f2;
+    padding-top:10px;
+    border: 1px solid #aaa;
+    border-bottom: 3px solid #bbb;
+    border-radius: 2px;
+    transition:1s linear;
+}
     
     #userpane-username {
         width: 90%;
@@ -539,7 +546,7 @@ span#profile:hover {
     }
     
     #userpane-userdetail{
-        background: coral;
+        /* background: coral; */
         overflow: hidden;
         height: 87px;
         cursor: pointer;
@@ -587,7 +594,80 @@ span#profile:hover {
         text-align: center;
         font-size: 13.5px;
     }
-    
+
+
+
+/* ------------------ Recent Post-------------------- */
+
+#recentpost {
+    width: 100%;
+    min-height: 233px;
+    height: auto;
+    background: #fdfdfd;
+    padding-top:0;
+    border: 1px solid #aaa;
+    border-bottom: 3px solid #bbb;
+    border-radius: 2px;
+    transition:1s linear;
+    margin-top: 10px;
+    overflow: hidden;
+}
+#recentpostheader {
+    width: 100%;
+    height: 30px;
+    background: lightgray;
+    line-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: black;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px #aaa;
+    position: relative;
+}
+#recentposttab, #topposttab{
+    height: 100%;
+    width: 50%;
+    display: block;
+    float: left;
+    border: 1px solid #aaa;
+    border-bottom: 0px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: #eee;
+}
+#topposttab{    
+    background: transparent;
+}
+#recentpostheader > span:first-child {
+
+}
+.recentpostsitem {
+    width: 100%;
+    padding: 4px 5px;
+    height: auto;
+    overflow: hidden;
+    text-align: start;
+    font-size: 15px;
+}
+.recentpostsitem:hover {
+    background: #f1f1f1;
+}
+.recentpostsitem:nth-child(odd) {
+    background: #f1f1f1;
+}
+
+.recentpostsitem a {
+    text-decoration: none;
+    color: #3c3c3c;
+    text-shadow: 1px 1px 4px lightgrey;
+}
+.recentpostsitem a:hover {
+    text-decoration: underline;
+    color: darkblue;
+}
+/* ------------------ /Recent Post-------------------- */
     
     .shake{
         animation: fieldempty .1s ease-in 0s 3;
@@ -661,6 +741,7 @@ body {
 }
 
 #navbar {
+    /* position: sticky; */
     z-index: 1000;
     width: 100%;
     height: 45px;

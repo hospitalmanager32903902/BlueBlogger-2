@@ -160,7 +160,7 @@
     ?>
     <title>Blue Blogger</title>
 </head>
-<body>
+<body>    
     <header id="header">
         <div id="headerPoster"></div>        
     </header>

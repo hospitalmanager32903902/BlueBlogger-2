@@ -3,6 +3,10 @@
 function shootcomment() {
     // setting data variables
     var comment_content = N("#newcomment").value;
+    if ( comment_content.length < 1 ) {
+        console.log("Write Something First");
+        return;
+    }
     var commentor_post_author_username = N("#userpane-userdetail").getAttribute("data-username");
     var commentor_fullname = N("#rightNav > a").getAttribute("data-username");
     var comment_post_id = parseInt(document.querySelector("#content").getAttribute("data-post-id"));
@@ -23,9 +27,9 @@ function shootcomment() {
                             </div>`;
         N("#comments").innerHTML = newcomment + N("#comments").innerHTML;
         N("#newcomment").value = "";
-        setTimeout(() => {
-            N(".comment").classList.remove("newcommentanimation");
-        }, 3001);
+        // setTimeout(() => {
+        //     N(".comment").classList.remove("newcommentanimation");
+        // }, 3001);
     } else {
         //alert(ajaxReq.responseText);
     }
@@ -33,12 +37,6 @@ function shootcomment() {
 
 function N(identifier) {
     return document.querySelector(identifier);
-}
-
-
-
-function getField(user_id,user_username) {
-   
 }
 
 

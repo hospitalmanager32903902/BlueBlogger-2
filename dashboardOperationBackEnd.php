@@ -49,6 +49,7 @@
         } else {
             $pub_unpub = "public";
         }
+        
         $sql = "UPDATE `posts` SET post_status='$pub_unpub' WHERE `post_id`=$postid";
         $r = $conn->query( $sql );
         if($r){
@@ -59,7 +60,9 @@
     // checking if operation and commentid exist and the operation "deletecomment"
     if( isset($_SESSION["username"]) && isset($_POST["operation"]) && isset($_POST["commentid"]) && $_POST["operation"] == "deletecomment" ){
         $commentid = $_POST["commentid"];
-        $user = $_SESSION["username"];
+        $user = $_SESSION["username"];        
+        $post_id = (int)$conn->query( "SELECT * FROM comments where `comment_id`=".$commentid )->fetch_assoc()["comment_post_id"];
+
         $sql = "DELETE FROM `comments` WHERE `comment_id`=$commentid AND `comment_post_author_username`='$user'";
         // echo $sql;
         $r = $conn->query( $sql );
@@ -71,14 +74,14 @@
             $r = $conn->query("UPDATE `users` SET `user_comment_count`=$commnet_number WHERE `user_username`='".$user."'");
 
             // decrement Comment count by 1 
-            $commnet_number = (int)($conn->query("SELECT `post_comment_count` FROM `posts` WHERE `post_id`='".$post_id."'")->fetch_assoc()["user_comment_count"]);
+            $commnet_number = (int)($conn->query("SELECT `post_comment_count` FROM `posts` WHERE `post_id`=".$post_id)->fetch_assoc()["post_comment_count"]);
             $commnet_number == 0 ? $commnet_number : $commnet_number--; // decrease it by 1
-            $r = $conn->query("UPDATE `users` SET `user_comment_count`=$commnet_number WHERE `user_username`='".$user."'");
+            $r = $conn->query("UPDATE `posts` SET `post_comment_count`=$commnet_number WHERE `post_id`=".$post_id);
 
             if ( $r ) {
-                echo "User Comment Count Decremented";
+                echo "\nTotal Comment Count Dcremented By 1 which is now $commnet_number \n";
             } else {
-                echo "User Comment Count Not Decremented";
+                echo $r;
             }
         } else {
             echo "Comment Not Deleted";

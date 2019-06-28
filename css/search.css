@@ -1,0 +1,177 @@
+/* importing w3schools fonts */
+@font-face {
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
+}
+
+* {
+    box-sizing: border-box;
+    /* color: black; */
+    font-family: sans-serif;
+    transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+body {
+    perspective: 1000px;
+    height: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background: #b1d1f21a;
+    position: relative;
+    /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
+    /* transform: skew(45deg); */
+    /* left: -105%; */
+}
+
+#header {
+    height: 135px;
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    /* position: unset; */
+    /* left: -7px; */
+    /* top: -8px; */
+    margin: 0px;
+    /* margin-bottom: 10px; */
+}
+
+#headerPoster {
+    width: 100%;
+    height: 140px;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    background-size: cover;
+}
+
+#navbar {
+    z-index: 1000;
+    width: 100%;
+    height: 45px;
+    background: #343a40;
+    overflow: hidden;
+    box-shadow: 0px 5px 11px 0px #aaa;
+}
+
+#navbar > a:first-child {
+    transition: .09s ease-out;
+    width: 150px;
+    height: 45px;
+    display: block;
+    float: left;
+    line-height: 45px;
+    background: #242424;
+    color: white;
+    text-decoration: none;
+    /* line-height: 40px; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    border-right: 2.5px solid white;
+    margin: 0px;
+}
+
+#navbar>a:first-child:hover {
+    background: white;
+    color: #2c2b2c;
+}
+
+.sticky {
+    position: sticky;
+    top: 0px;
+}
+
+
+span#notification {
+    background: green;
+    box-sizing: border-box;
+    display: none;
+    float: left;
+    position: relative;
+    /* margin-right: 10px; */
+    left: 0px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+#notificationpad{
+    width: 160px;
+    min-height:200px;
+    text-align: center;
+    height: auto;
+    background: #242424;
+    color: white;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 999999;
+    /* top: 0px; */
+    right: 200px;
+    display: none;
+}
+
+path {
+    fill: white;
+}
+
+span#profile {
+    /* width: 60px; */
+    /* height: 60px; */
+    /* display: block; */
+    /* float: left; */
+    /* position: relative; */
+    /* margin-top: 11px; */
+    /* background: red; */
+    /* border-radius: 50%; */
+    /* margin-left: 10px; */
+    /* top: -7px; */
+    /* cursor: pointer; */
+    /* box-shadow: 0px 0px 5px #000000; */
+    /* background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg"); */
+    /* background-size: 100% 100%; */
+    transform: translateY(10deg);
+    /* transition:.25s cubic-bezier(0.14, 6.1, 0.58, 1); */
+    /* border:3px solid white; */
+}
+span#profile:hover {
+    transform: scale(1.1) rotateZ(-10deg) skew(-5deg);
+}
+#homelink {
+    color: white;
+    font-family: w3incons;
+    font-size: 26px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+
+#homelink:hover {
+    color: dodgerblue;
+}
+
+#homelink:after {
+    content: '\e800';
+}
+
+
+#container {
+    box-sizing: border-box;
+    width: 970px;
+    min-height: 900px;
+    overflow: hidden;
+    /* height: auto; */
+    background: #b22077;
+    /* box-shadow: 0px 0px 3px #bababa; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    position: relative;
+}

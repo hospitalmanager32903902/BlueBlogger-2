@@ -9,8 +9,7 @@
         $user = "'".$_SESSION["username"]."'";
         // setting all the attributes for new post
         $post_title = $_POST["post_title"];
-        $post_id = (int)($conn->query("SELECT MAX(post_id) AS post_id from `posts`")->fetch_assoc()["post_id"]);
-        $post_id++; 
+        $post_id = (int)($conn->query("SELECT MAX(post_id) AS post_id from `posts`")->fetch_assoc()["post_id"]) + 1;
         $post_content = htmlentities($_POST["post_body"]);
         $post_excerpt = htmlentities($_POST["post_excerpt"]);
         $post_author_id = $conn->query("SELECT `user_id` FROM `users` WHERE `user_username`=".$user)->fetch_assoc()["user_id"];
@@ -19,15 +18,15 @@
         $post_visit_count = 0;
         $post_thumbnail = "img/post_image/"."post_".$post_id."_thumpic.jpg";
         $post_thumbnail_name = "post_".$post_id."_thumpic.jpg";
-        $post_birthdate = date("d-m-Y");
-        $post_publish_date = date("d-m-Y");
+        $post_birthdate = date("d-m-y h:m:s");
+        $post_publish_date = date("d-m-y h:m:s");
         $post_status = "public";
         $post_comment_allowed = "yes";
         $post_number = (int)($conn->query("SELECT `user_post_count` FROM `users` WHERE `user_username`=".$user)->fetch_assoc()["user_post_count"]);
         $post_number++;
 
         move_uploaded_file($_FILES["post_thumnail"]["tmp_name"],$post_thumbnail);
-        $sql = "INSERT INTO `posts`(`post_title`, `post_id`, `post_content`, `post_excerpt`, `post_author_id`, `post_author_username`, `post_comment_count`, `post_visit_count`, `post_thumbnail`, `post_birthdate`, `post_publish_date`, `post_status`, `post_comment_allowed`, `post_number`) VALUES ('$post_title','$post_id','$post_content','$post_excerpt','$post_author_id', '$post_author_username', '$post_comment_count', '$post_visit_count', '$post_thumbnail_name', '$post_birthdate', '$post_publish_date', '$post_status', '$post_comment_allowed', '$post_number')";
+        $sql = "INSERT INTO `posts`(`post_title`, `post_content`, `post_excerpt`, `post_author_id`, `post_author_username`, `post_comment_count`, `post_visit_count`, `post_thumbnail`, `post_birthdate`, `post_publish_date`, `post_status`, `post_comment_allowed`, `post_number`) VALUES ('$post_title','$post_content','$post_excerpt','$post_author_id', '$post_author_username', '$post_comment_count', '$post_visit_count', '$post_thumbnail_name', '$post_birthdate', '$post_publish_date', '$post_status', '$post_comment_allowed', '$post_number')";
         // echo $sql;
         $r = $conn->query($sql);
         if( $r ) {

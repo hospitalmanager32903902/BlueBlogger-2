@@ -11,6 +11,7 @@ window.onload = ()=>{
         }
     });
     //document.querySelector("body").innerText = blog.join("");
+    switchTabTopRecentPostTab( N("#recentposttab") );
 }
 // window.addEventListener("load",()=>{
 //     var body = document.querySelector("body");
@@ -67,4 +68,33 @@ function showNotification(e) {
     }
     // notpad.style.top = (window.event.clientY+30) + "px";
     // notpad.style.left = (window.event.clientX-125) + "px";
+}
+
+let topposts = {
+    "content" : "",
+    "time" : (new Date())
+};
+let recentposts = {
+    "content" : "",
+    "time" : (new Date())
+};
+function switchTabTopRecentPostTab(node) {
+    let isSelected = node.getAttribute("data-selected");
+    let nodeName = node.id;
+    if( isSelected == "no" ) {
+        node.setAttribute("data-selected","yes");
+        node.style.background = "#eee";
+        if(node.previousElementSibling){
+            node.previousElementSibling.style.background="transparent";
+            node.previousElementSibling.setAttribute("data-selected","no");
+        }
+        if(node.nextElementSibling){
+            node.nextElementSibling.style.background="transparent";
+            node.nextElementSibling.setAttribute("data-selected","no");
+        }
+        let ajaxReq = new XMLHttpRequest();
+        ajaxReq.open("GET","index.php?givetoprecentposts="+nodeName,false);
+        ajaxReq.send();
+        N("#recentpostlist").innerHTML = ajaxReq.responseText;
+    }
 }

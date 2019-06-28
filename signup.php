@@ -47,11 +47,10 @@
 ?>
 <?php include("header.php"); ?>
 
-
         <div id="container">
             <div id="signupbox">
                 <h2>Signup form</h2>
-                <form action="signup.php" method="post"  enctype="multipart/form-data">
+                <form name="signupform" action="signup.php" method="post"  enctype="multipart/form-data">
                     <label for="firstname">Enter Your name</label>
                     <input type="text" name="firstname" id="firstname" placeholder="First Name" >
                     <input type="text" name="lastname" id="lastname" placeholder="Last Name" >

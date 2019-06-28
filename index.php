@@ -1,10 +1,33 @@
+
 <?php
     if( session_status() == 1 )
         session_start();
+    // including the file that makes a connetion to database via mySql
+        include("connect_to_db.php");
 ?>
+
+<!-- give me top/recent post -->
+<?php
+    if( isset($_GET["givetoprecentposts"]) ) {
+        if ( $_GET["givetoprecentposts"] == "topposttab" ) {
+            $sql = "SELECT post_title,post_id,post_visit_count FROM posts ORDER BY post_visit_count DESC LIMIT 5";
+        } else {
+            $sql = "SELECT post_title,post_id,post_visit_count FROM posts ORDER BY post_publish_date DESC LIMIT 5";
+        }
+        $recentPosts = $conn->query($sql);
+        while( $recentpostitem = $recentPosts->fetch_assoc() ){
+            $postttititle = $recentpostitem["post_title"];
+            $postid = (int)$recentpostitem["post_id"];
+            echo "<div class='recentpostsitem'>
+                    <a href='post.php?post=$postid'>$postttititle</a>
+                </div>";
+        }
+        exit(0);
+    }
+?>
+<!-- /give me top/recent post -->
+
 <?php 
-  // including the file that makes a connetion to database via mySql
-    include("connect_to_db.php");
 
     $postPerPage = 5;
   // finding out the number of posts that are public in the database 
@@ -25,7 +48,6 @@
   
     
 ?>
-
 
 
 <?php include("header.php"); ?>
@@ -134,6 +156,8 @@
                     <button style="" type="submit" id="searchaction"></button>
                 </form>
             </div>
+            
+            <!-- User Login pane -->
             <div id="userpane">
                 <?php                 
                     if(!isset($_SESSION["username"])){
@@ -154,11 +178,22 @@
                             </div>';
                     }
                 ?>
+            </div>
+            <!-- / User Login pane -->
 
-            </div>
+            <!-- Recently uploaded Posts pane -->
             <div id="recentpost">
-                
-            </div>
+                <div id="recentpostheader">
+                    <span onclick="switchTabTopRecentPostTab(this)" id="recentposttab" data-selected="no">Recent Posts</span>
+                    <span onclick="switchTabTopRecentPostTab(this)" id="topposttab" data-selected="yes">Top Posts</span>
+                </div>   
+                <div id="recentpostlist">
+
+                </div>           
+            </div>            
+            <!-- / Recently uploaded Posts pane -->
+
+
         </div>
     </div>
     <!-- /Container for the Post -->

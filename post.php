@@ -77,7 +77,7 @@
             if ( isset($_SESSION["username"]) ) { 
                 echo '    
                     <label for="comment"> Shoot a Comment</label>
-                    <textarea name="newcomment" id="newcomment" cols="80" rows="6"></textarea>
+                    <textarea name="newcomment" id="newcomment" cols="80" rows="6" placeholder="Write Your Opinion Here And Hit Shoot"></textarea>
                     <button onclick="shootcomment()">Shoot</button>';
             }
             ?>
@@ -86,13 +86,17 @@
                 <?php   
                 while( $comment = $comments->fetch_assoc() ){   
                     // fetching author avatar
-                    $commentor_avatar = $conn->query( "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'" )->fetch_assoc()["user_profile_picture_link"];         
+                    $commentor_avatar = $conn->query( "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'" )->fetch_assoc();
+                    $commentor_username = $commentor_avatar["user_username"]; 
+                    $commentor_avatar = $commentor_avatar["user_profile_picture_link"];        
                     // echo "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'";
                     echo 
                     '<div class="comment">
                         <div class="commentor">
-                            <img src=img/profilepic/'.$commentor_avatar.' alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
-                            <label for="commentorAvatar">'.$comment["comment_commentor_fullname"].'</label>
+                            <a href="user.php?username='.$commentor_username.'">
+                                <img src=img/profilepic/'.$commentor_avatar.' alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
+                                <label for="commentorAvatar">'.$comment["comment_commentor_fullname"].'</label>
+                            </a>
                         </div>                       
                         <div class="commentcontent"> 
                             '.$comment["comment_content"].'                       
