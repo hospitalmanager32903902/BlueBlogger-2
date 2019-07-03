@@ -43,11 +43,14 @@
         include("connect_to_db.php");
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $sql = "SELECT `user_password` from `users` Where `user_username`='$username' LIMIT 1";
-        $r = $conn->query($sql);
-        if( $password ==  $r->fetch_assoc()["user_password"] ){
+        $sql = "SELECT * from `users` Where `user_username`='$username' LIMIT 1";
+        $r = $conn->query($sql)->fetch_assoc();
+        $fetched_pass = $r["user_password"];
+        $user_roll = $r["user_roll"];
+        if( $password == $fetched_pass ){
             header("Location:dashboard.php");
             $_SESSION["username"] = $username;
+            $_SESSION["user_roll"] = $user_roll;
         } else {
             $doesnotmatch = true;
         }

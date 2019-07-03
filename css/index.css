@@ -50,7 +50,7 @@ body {
     width: 100%;
     height: 45px;
     background: #343a40;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0px 5px 11px 0px #aaa;
     text-align: start;
 }
@@ -486,10 +486,11 @@ span#profile:hover {
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
     width: 100%;
-    min-height: 140px;
+    min-height: 105px;
     height: auto;
     background: #ecf0f2;
     padding-top:10px;
+    /* padding-bottom: 10px; */
     border: 1px solid #aaa;
     border-bottom: 3px solid #bbb;
     border-radius: 2px;
@@ -526,7 +527,7 @@ span#profile:hover {
         border-radius: 5px;
         font-size: 20px;
         border: none;
-        margin: 10px 0px 0px 18px;
+        margin: 10px 0px 10px 18px;
         display: inline-block;
         cursor: pointer;
         text-shadow: 1px 1px 1px #aaa;
@@ -597,7 +598,7 @@ span#profile:hover {
 
 
 
-/* ------------------ Recent Post-------------------- */
+/* ------------------ Sidebar Recent Post-------------------- */
 
 #recentpost {
     width: 100%;
@@ -615,22 +616,23 @@ span#profile:hover {
 #recentpostheader {
     width: 100%;
     height: 30px;
-    background: lightgray;
+    background: white;
     line-height: 30px;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     color: black;
     font-weight: bold;
-    text-shadow: 0px 0px 5px #aaa;
+    /* text-shadow: 0px 0px 5px #aaa; */
     position: relative;
 }
 #recentposttab, #topposttab{
     height: 100%;
-    width: 50%;
+    width: 45%;
+    border-radius: 7px 7px 0px 0px;
     display: block;
     float: left;
-    border: 1px solid #aaa;
+    border: 1px solid #ddd;
     border-bottom: 0px;
     text-align: center;
     box-sizing: border-box;
@@ -650,6 +652,7 @@ span#profile:hover {
     overflow: hidden;
     text-align: start;
     font-size: 15px;
+    /* border-bottom: 1px solid #ddd; */
 }
 .recentpostsitem:hover {
     background: #f1f1f1;
@@ -667,7 +670,51 @@ span#profile:hover {
     text-decoration: underline;
     color: darkblue;
 }
-/* ------------------ /Recent Post-------------------- */
+/* ------------------ / Sidebar Recent Post-------------------- */
+
+/* ------------------ Sidebar Recent Comments -------------------- */
+#recentcomments {
+    width: 100%;
+    min-height: 233px;
+    height: auto;
+    background: #fdfdfd;
+    padding-top:0;
+    border: 1px solid #aaa;
+    border-bottom: 3px solid #bbb;
+    border-radius: 2px;
+    transition:1s linear;
+    margin-top: 10px;
+    overflow: hidden;
+}
+#recentcommentsheader {
+    width: 100%;
+    height: 30px;
+    background: dodgerblue;
+    line-height: 30px;
+    text-align: center;
+    border-left: 5px solid lightblue;
+    color: white;
+}
+#recentcommentslist {
+
+}
+.recentcommentsitem {
+    width: 100%;
+    padding: 4px 5px;
+    height: auto;
+    overflow: hidden;
+    text-align: start;
+    font-size: 15px;
+    /* border-bottom: 1px solid #ddd; */
+}
+.recentcommentsitem:nth-child(odd){
+    background: #f9e7e7;
+}
+.recentcommentsitem a {
+    text-decoration: none;
+}
+
+/* ------------------ / Sidebar Recent Comments -------------------- */
     
     .shake{
         animation: fieldempty .1s ease-in 0s 3;

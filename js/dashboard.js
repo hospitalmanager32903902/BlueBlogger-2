@@ -9,7 +9,8 @@ function highlightSelected(node){
         elem.classList.remove("selected");
     });    
     node.classList.add( "selected" );
-} highlightSelected( N("#posts") );
+}
+N("#posts").click();
 
 function renderAllPost( data,count ){
     var post = 
@@ -77,6 +78,27 @@ function renderAllComments( data,count) {
         console.log(data);
 }
 
+function renderAllUser(data,count) {
+    var user = `
+                    <tr data-user-name="${data.user_username}">
+                        
+                            <td class="user-username"><a href="user.php?username=${data.user_username}">${data.user_fullname}</a></td>
+                            <td class="user-username">${data.user_username}</td>
+                            <td class="user-id" style="width:80px;">${data.user_id}</td>
+                            <td class="user-posts">${data.user_post_count}</td>
+                            <td class="user-joined">${data.user_username}</td>
+                            <td class="user-email" style="width:200px;">${data.user_email}</td>
+                            <td class="user-from">${data.user_from}</td>
+                            <td class="user-delete-checkbox" style="width:50px;">
+                                <input style="
+                                transform: scale(1.5);
+                            " type="checkbox" data-user-name="${data.user_username}">
+                            </td>
+                    </tr>`;
+    N("#user-table-body").innerHTML += user;
+    console.log(user);
+}
+
 //  fetches the posts from the database and retuens it
 //  it does it in synchronusly method 
 function getData(type){    
@@ -90,6 +112,11 @@ function getData(type){
         ajaxReqquest.open("POST","dashboard.php",false);
         ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajaxReqquest.send(`operation=getdashboardcommentlist`);
+    }  else if ( type == "getusers" ) {
+        var ajaxReqquest = new XMLHttpRequest();
+        ajaxReqquest.open("POST","dashboard.php",false);
+        ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajaxReqquest.send(`operation=getdashboarduserlist`);
     }     
     return ajaxReqquest.responseText;
 }
@@ -106,6 +133,13 @@ function main(){
     JSON.parse( getData("getcomments") ).forEach(( data,count ) => {
         renderAllComments( data,count + 1 );
     });
+
+    // rendering all the users
+    if( N("#users") ) {
+        JSON.parse( getData("getusers") ).forEach(( data,count ) => {
+            renderAllUser( data,count + 1 );
+        });
+    }
 
 
 }
@@ -279,23 +313,34 @@ window.addEventListener("load",()=>{
 });
 
 
-function showComments(node) {
-    
-    // rendering all the Comments
-    
+function showComments(node) {    
+    // rendering all the Comments    
     N("#allcommentslist").innerHTML = "";
     JSON.parse( getData("getcomments") ).forEach(( data,count ) => {
         renderAllComments( data,count + 1 );
     });
     highlightSelected(node);
     N("#all-post-content").style.display="none";
+    N("#all-user-content") ? N("#all-user-content").style.display="none" : "";
     N("#all-comment-content").style.display="inline-block";
     // render comments 
 }
+
 function showPosts(node) {
     highlightSelected(node);
     N("#all-post-content").style.display="inline-block";
     N("#all-comment-content").style.display="none";
+    N("#all-user-content") ? N("#all-user-content").style.display="none" : "";
+    setTimeout(() => {
+        reveserFixNavSize();
+    }, 1);
+}
+
+function showUser(node) {
+    highlightSelected(node);
+    N("#all-user-content") ? N("#all-user-content").style.display="block" : "";
+    N("#all-comment-content").style.display="none";
+    N("#all-post-content").style.display="none";
     setTimeout(() => {
         reveserFixNavSize();
     }, 1);

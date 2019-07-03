@@ -20,7 +20,7 @@
 
 <?php
 
-    if ( $post["post_author_username"] != $_SESSION["username"] ){
+    if ( !isset($_SESSION["username"]) || $post["post_author_username"] != $_SESSION["username"] ){
         $post_visit_count = (int)$post["post_visit_count"] + 1;
         // fetching the content of the post
         $sql = "UPDATE posts SET post_visit_count=".$post_visit_count ." WHERE `post_id`=".$_GET["post"];
@@ -88,10 +88,12 @@
                     // fetching author avatar
                     $commentor_avatar = $conn->query( "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'" )->fetch_assoc();
                     $commentor_username = $commentor_avatar["user_username"]; 
-                    $commentor_avatar = $commentor_avatar["user_profile_picture_link"];        
+                    $commentor_avatar = $commentor_avatar["user_profile_picture_link"]; 
+                    $comment_date = $comment["comment_birthdate"];
+                    $commentid = $comment["comment_id"];
                     // echo "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'";
                     echo 
-                    '<div class="comment">
+                    '<div class="comment" data-commentid="'.$commentid.'">
                         <div class="commentor">
                             <a href="user.php?username='.$commentor_username.'">
                                 <img src=img/profilepic/'.$commentor_avatar.' alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
@@ -99,7 +101,8 @@
                             </a>
                         </div>                       
                         <div class="commentcontent"> 
-                            '.$comment["comment_content"].'                       
+                            '.$comment["comment_content"].'
+                            <span id="commentDate">'.$comment_date.'</span>                   
                         </div>
                     </div>';
                 }

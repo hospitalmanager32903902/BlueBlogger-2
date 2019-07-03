@@ -10,9 +10,9 @@
 <?php
     if( isset($_GET["givetoprecentposts"]) ) {
         if ( $_GET["givetoprecentposts"] == "topposttab" ) {
-            $sql = "SELECT post_title,post_id,post_visit_count FROM posts ORDER BY post_visit_count DESC LIMIT 5";
+            $sql = "SELECT post_title,post_id,post_visit_count FROM posts WHERE post_status='public' ORDER BY post_visit_count DESC LIMIT 5";
         } else {
-            $sql = "SELECT post_title,post_id,post_visit_count FROM posts ORDER BY post_publish_date DESC LIMIT 5";
+            $sql = "SELECT post_title,post_id,post_visit_count FROM posts WHERE post_status='public' ORDER BY post_publish_date ASC LIMIT 5";
         }
         $recentPosts = $conn->query($sql);
         while( $recentpostitem = $recentPosts->fetch_assoc() ){
@@ -43,7 +43,7 @@
     }
 
   // fetching the  posts
-    $sql = "SELECT * FROM `posts` Where `post_status`='public' "; // SQL code for fetching data from the database
+    $sql = "SELECT * FROM `posts` Where `post_status`='public' ORDER BY post_publish_date ASC "; // SQL code for fetching data from the database
     $posts = $conn->query( $sql ); // fetched the data
   
     
@@ -59,9 +59,7 @@
             }
         ?>
         <div id="postContainer">
-
             <?php
-
                 $from = ( ($page-1)  * $postPerPage);
                 $to = $from + $postPerPage;
                 $tmp_i = 0;
@@ -109,44 +107,10 @@
             
         </div> 
         <!-- paginator code -->
-        <?php 
-        if ( $postCount > $postPerPage ) {
-            $pageNeeded = ($postCount % $postPerPage) > 0 ? 1 : 0;
-            $pageNeeded += (int)($postCount / $postPerPage);
-            $tmp = "";
-            for ($i=1; $i <= $pageNeeded; $i++) {                 
-                if( $page == $i) {
-                    $active = "active";
-                } else {
-                    $active = "";
-                }
-                $tmp .= "<a href='index.php?page=$i'>
-                    <div class='pagelinks $active'>$i</div>
-                </a>";
-            }
-            if ( $pageNeeded == $page ) {
-                $nextPage = $page;
-            } else {
-                $nextPage = $page + 1;
-            } 
-            if ( $page == 1 ) {                
-                $prevPage = 1;
-            } else {
-                $prevPage = $page - 1;
-            }
-            echo 
-                "<div id='paginator'>
-                    <a href='index.php?page=$prevPage'>
-                        <div class='pagelinks'> < </div>
-                    </a>
-                    $tmp
-                    <a href='index.php?page=$nextPage'>
-                        <div class='pagelinks'> > </div>
-                    </a>
-                </div>"; 
-        }
+        <?php
+            require_once("paginator.php");
         ?>
-        <!-- paginator code -->
+        <!-- /paginator code -->
 
         <div id="sidebar">
             <div id="searchbox">
@@ -192,7 +156,33 @@
                 </div>           
             </div>            
             <!-- / Recently uploaded Posts pane -->
-
+            
+            <!-- Recent Comments -->
+            <?php
+                if( isset($_SESSION["username"]) ){
+                    echo '
+                        <div id="recentcomments">                
+                            <div id="recentcommentsheader">
+                                Recent Comments
+                            </div>
+                            <div id="recentcommentslist">';
+                            
+                                $sql = "SELECT comment_content,comment_post_id,comment_id FROM comments ORDER BY comment_date DESC LIMIT 5";                
+                                $recentComments = $conn->query($sql);
+                                while( $recentcommentitem = $recentComments->fetch_assoc() ){
+                                    $commenttitle= substr($recentcommentitem["comment_content"],0,20);
+                                    $postid = (int)$recentcommentitem["comment_post_id"];
+                                    $commentid = $recentcommentitem["comment_id"];
+                                    echo "<div class='recentcommentsitem' data-commentid='$commentid'>
+                                            <a href='post.php?post=$postid&commentid=$commentid'>$commenttitle</a>
+                                        </div>";
+                                }
+                            
+                    echo "</div>    
+                    </div>";
+                }
+            ?>
+            <!-- /Recent Comments -->
 
         </div>
     </div>

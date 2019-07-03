@@ -50,6 +50,28 @@
         echo json_encode($all);
         exit(0);
     }
+    if ( isset($_POST["operation"]) && $_POST["operation"] == "getdashboarduserlist" ) {
+        // import database connector 
+        include("connect_to_db.php");        
+        if( session_status() == 1 )
+            session_start();
+
+        // fetching all the post of the user and
+        // putting them all in all() array 
+        $username = $_SESSION["username"];
+        $sql = "SELECT * FROM `users`"; // SQL code for fetching data from the database
+        $users = $conn->query( $sql ); // fetched the data
+        $user = array();
+        $all = array();
+        while ( $row = $users->fetch_assoc() ) {
+            foreach( $row as $key => $value ){
+                $user[$key] = $value;
+            }                        
+            array_push($all,$user);
+        }
+        echo json_encode($all);
+        exit(0);
+    }
     
 ?>
 
@@ -76,10 +98,9 @@
                 <a href="createnewpost.php" id="createnewpost" >Create New Post</a>
                 <div id="posts" onclick="showPosts(this)">Posts</div>
                 <div id="comments" onclick="showComments(this)">Comments</div>
-                <div id="drafts" onclick="highlightSelected(this)">Drafts</div>
                 <?php 
                     if( $admin ){
-                        echo '<div id="users" onclick="highlightSelected(this)">Users</div>';
+                        echo '<div id="users" onclick="showUser(this)">Users</div>';
                     }
                 ?>
         </nav>
@@ -122,6 +143,34 @@
         </div>
         <!-- tab for the comments list -->
 
+        <!-- tab for the users list -->
+        <?php
+        if( $admin ){
+            echo '
+                <div id="all-user-content">
+                <table id="user-table">
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>User Name</td>
+                                <td  style="width:80px;">ID</td>
+                                <td>Posts</td>
+                                <td>Joined</td>
+                                <td style="width:200px">Email</td>
+                                <td>From</td>
+                                <td style="width:50px;cursor: pointer;padding-bottom: 7px;">
+                                    <svg viewBox="0 0 24 24" id="ic_delete_24px" width="24px" height="24px"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            
+                        </tbody>
+                </table>
+                </div>';
+            }
+        ?>        
+        <!-- tab for the comments list -->
     </div>
 
     <script src="js/bblibrary.js"></script>

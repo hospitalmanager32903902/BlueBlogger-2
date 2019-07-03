@@ -85,11 +85,11 @@ function switchTabTopRecentPostTab(node) {
         node.setAttribute("data-selected","yes");
         node.style.background = "#eee";
         if(node.previousElementSibling){
-            node.previousElementSibling.style.background="transparent";
+            node.previousElementSibling.style.background="lightgray";
             node.previousElementSibling.setAttribute("data-selected","no");
         }
         if(node.nextElementSibling){
-            node.nextElementSibling.style.background="transparent";
+            node.nextElementSibling.style.background="lightgray";
             node.nextElementSibling.setAttribute("data-selected","no");
         }
         let ajaxReq = new XMLHttpRequest();
