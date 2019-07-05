@@ -14,8 +14,7 @@
         $comment_content = $_POST["comment_content"];
         $comment_birthdate = date("d-m-y h:m:s");
         $comment_order = (int)($conn->query("SELECT MAX(comment_id) AS comment_id from `comments` WHERE `comment_post_id`='$comment_post_id'")->fetch_assoc()["comment_id"]) + 1;
-        $comment_date = date("Y-m-d");
-
+        $comment_date = date("d-m-y h:m:s");
         $sql = "INSERT INTO `comments`( `comment_post_id`, `comment_commentor_username`, `comment_commentor_fullname`, `comment_post_author_username`, `comment_content`, `comment_birthdate`, `comment_order`) VALUES ($comment_post_id, '$comment_commentor_username', '$comment_commentor_fullname', $comment_post_author_username, $comment_content, '$comment_birthdate', $comment_order)";
 
         // executing sql command to insert a new comment into db

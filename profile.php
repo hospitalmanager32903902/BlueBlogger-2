@@ -25,7 +25,7 @@
             <div id="userdetail">
             <?php 
                 foreach ($row as $key => $value) {
-                    if( $key == "user_profile_picture_link" || $key == "user_comment_count" || $key == "user_post_count" ){
+                    if( $key == "user_id" || $key == "user_profile_picture_link" || $key == "user_comment_count" || $key == "user_post_count" ){
                         continue;
                     }
                     $tmpkey = $key;
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-    <script type="text/javascript" src="js/user.js"></script>
+    <script type="text/javascript" src="js/profile.js"></script>
     <script type="text/javascript" src="js/bblibrary.js"></script>
 </body>
 </html>

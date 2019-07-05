@@ -154,6 +154,10 @@
             echo '<link rel="stylesheet" href="css/profile.css" />';
         } else if( $pageName[count($pageName)-1] == "search.php" ) {
             echo '<link rel="stylesheet" href="css/search.css" />';
+        } else if( $pageName[count($pageName)-1] == "editpost.php" ) {
+            echo '<link rel="stylesheet" href="css/editpost.css" />';
+        } else if( $pageName[count($pageName)-1] == "user.php" ) {
+            echo '<link rel="stylesheet" href="css/user.css" />';
         } else {
             echo '<link rel="stylesheet" href="css/index.css" />';
         }
@@ -167,31 +171,35 @@
         <div id="navbar">
             <?php
                 if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "index.php"){
-                        echo "<a href='dashboard.php' title='Dashboard Page'>Dashboard</a>";
+                        echo "<a href='dashboard.php' title='Dashboard Page'>Dashboard ✇</a>";
                 }  else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "index.php") {                  
-                        echo "<a href='login.php'>Login</a>";
-
+                        echo "<a href='login.php'>Login ♌</a>";
                 }  else if( $pageName[count($pageName)-1] == "login.php") {                  
-                        echo "<a href='index.php'>Home</a>";
-
+                        echo "<a href='index.php'>Home ➥</a>";
                 }  else if( $pageName[count($pageName)-1] == "profile.php" ) {                  
-                        echo "<a href='dashboard.php'>Dashboard</a>";
+                        echo "<a href='dashboard.php'>Dashboard ✇</a>";
                 }  else if( $pageName[count($pageName)-1] == "dashboard.php" ) {                  
-                        echo "<a href='profile.php'>Profile</a>";
+                        echo "<a href='profile.php'>Profile ❄</a>";
                 }  else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "post.php" ) {                  
-                    echo "<a href='dashboard.php'>Dashboard</a>";
+                        echo "<a href='dashboard.php'>Dashboard ✇</a>";
                 }  else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "post.php" ) {                  
-                    echo "<a href='login.php'>Login</a>";
+                        echo "<a href='login.php'>Login ♌</a>";
                 }   else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "createnewpost.php" ) {                  
-                    echo "<a href='dashboard.php'>Dashboard</a>";
+                        echo "<a href='dashboard.php'>Dashboard ✇</a>";
                 }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "createnewpost.php" ) {                  
-                    echo "<a href='dashboard.php'>Dashboard</a>";
+                        echo "<a href='dashboard.php'>Dashboard ✇</a>";
                 }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "signup.php" ) {                  
-                    echo "<a href='login.php'>Login</a>";
+                        echo "<a href='login.php'>Login ♌</a>";
                 }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "search.php" ) {                  
-                    echo "<a href='login.php'>Login</a>";
+                        echo "<a href='login.php'>Login ♌</a>";
                 }   else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "search.php" ) {                  
-                    echo "<a href='index.php'>Home</a>";
+                        echo "<a href='index.php'>Home ➥</a>";
+                }   else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "editpost.php" ) {                  
+                        echo "<a href='dashboard.php'>Dashboard ✇</a>";
+                }   else if( isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "user.php" ) {                  
+                        echo "<a href='index.php'>Home ➥</a>";
+                }   else if( !isset($_SESSION["username"]) && $pageName[count($pageName)-1] == "user.php" ) {                  
+                        echo "<a href='index.php'>Home ➥</a>";
                 } 
             ?>
             <a style="margin-left:10px;text-decoration:none;color:white;" href="index.php"><span id="homelink"></span></a>

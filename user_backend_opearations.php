@@ -10,11 +10,16 @@
 <?php   include("connect_to_db.php");
 
     // checking if operation and postid exist and the operation "delete"
-    if( isset($_POST["operation"]) && $_POST["operation"] == "updatefield" && isset($_POST["newvalue"]) && isset($_POST["fieldname"])  ){
+    if ( 
+        isset($_POST["operation"]) && 
+        $_POST["operation"] == "updatefield" && 
+        isset($_POST["newvalue"]) && 
+        isset($_POST["fieldname"]) && 
+        $_POST["fieldname"] != "password"  ){
 
         $user_username = $_SESSION["username"];
         $newvalue = $_POST["newvalue"];
-        $fieldname = $_POST["fieldname"];
+        $fieldname = addslashes($_POST["fieldname"]);
         $sql = "UPDATE `users` SET `$fieldname`='$newvalue' WHERE `user_username`='$user_username'";
         $r = $conn->query( $sql );
         if($r){

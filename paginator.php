@@ -26,11 +26,11 @@
         echo 
             "<div id='paginator'>
                 <a href='index.php?page=$prevPage'>
-                    <div class='pagelinks'> < </div>
+                    <div class='pagelinks'> ❮ </div>
                 </a>
                 $tmp
                 <a href='index.php?page=$nextPage'>
-                    <div class='pagelinks'> > </div>
+                    <div class='pagelinks'> ❯ </div>
                 </a>
             </div>"; 
     }

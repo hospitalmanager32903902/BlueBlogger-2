@@ -31,8 +31,8 @@
 
     $postPerPage = 5;
   // finding out the number of posts that are public in the database 
-    $sql = "SELECT COUNT(post_id) FROM `posts` ";
-    $postCount = (int)$conn->query( $sql )->fetch_assoc()["COUNT(post_id)"];
+    $sql = "SELECT COUNT(*) FROM `posts` WHERE post_status='public'";
+    $postCount = (int)$conn->query( $sql )->fetch_assoc()["COUNT(*)"];
     // echo "<script> alert('$postCount') </script>";
 
   // which page is it

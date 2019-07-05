@@ -75,7 +75,7 @@ function postpage_sidelogin(node) {
                     </svg>
                     </span>
                     <a href="profile.php">
-                        <span style="background-image:url(img/profilepic/${globalThis})"   id="profile" title="Click to go to Profile Page">                        
+                        <span style="background-image:url(img/profilepic/${response.user_profile_picture_link})"   id="profile" title="Click to go to Profile Page">                        
                         </span>
                     </a>
                 </div>`;

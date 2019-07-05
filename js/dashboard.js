@@ -9,6 +9,8 @@ function highlightSelected(node){
         elem.classList.remove("selected");
     });    
     node.classList.add( "selected" );
+
+
 }
 N("#posts").click();
 
@@ -24,6 +26,8 @@ function renderAllPost( data,count ){
                 </a>
                 <span id="" class="dashboard-post-visit dashboard-post-element">${data.post_visit_count}</span>
                 <span id="" class="dashboard-post-comments dashboard-post-element">${data.post_comment_count}</span>
+
+                <span style="width:140px; overflow:hidden;"  class="dashboard-post-publish-date dashboard-post-element">${data.post_publish_date}</span>
                 
                 <!-- delete post ---->
                 <span id="dashboard-post-delete" class="dashboard-post-element"  onclick="alertPrompt(this.parentElement,'deletepost')">
@@ -33,49 +37,23 @@ function renderAllPost( data,count ){
                 <span id="dashboard-post-edit" class="dashboard-post-element" onclick="window.location='editpost.php?postid=${data.post_id}'">
                     <svg viewBox="0 0 24 24" id="ic_edit_24px" width="50%" height="50%"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
                 </span>
-                <span data-post-status="${data.post_status}" id="dashboard-post-unpublish" class="dashboard-post-element" onclick="pubunpub(this)">
-                    ${data.post_status=="public"? "UNPUBLISH" : "PUBLISH" }     
+                <span data-post-status="${data.post_status}" class="dashboard-post-unpublish dashboard-post-element" onclick="pubunpub(this)">   
+                    <div class="pubunpubToggler">
+                        <span>${data.post_status.toUpperCase()}</span>
+                        <div class="pubunpubTogglerButton">                             
+                            
+                        <div>
+                    </div> 
                 </span>
             </div>`;
     var allpostlist = N("#allpostlist");
     allpostlist.innerHTML += post;
 }
 
-function renderAllComments( data,count) {
-    var comment = 
-    `<div class="comment" data-commentid="${data.comment_id}">
-    
-            <!-- comment commentor name ---->
-            <span id="dashboard-comment-number" class="dashboard-comment-element">${count}</span>  
-
-            <!-- comment commentor ---->    
-            <a href="user.php?username=${data.comment_post_author_username}">
-                <span id="dashboard-comment-commentor" class="dashboard-comment-element">${data.comment_commentor_fullname}</span>
-            </a>
-
-            <!-- comment content ---->
-            <span id="dashboard-comment-content" class="dashboard-comment-element">${data.comment_content}</span>
-            
-            <!-- comment post ---->
-            <a href="post.php?post=${data.comment_post_id}">
-                <span id="dashboard-comment-post" class="dashboard-comment-element">${data.post_title}</span>
-            </a>
-
-            <!-- comment date ---->
-            <span id="dashboard-comment-date" class="dashboard-comment-element">${data.comment_date.split("-")[2]}-${data.comment_date.split("-")[1]}-${data.comment_date.split("-")[0]}</span>
-            
-            <!-- comment delete sender icon ---->
-            <span id="dashboard-comment-delete" class="dashboard-comment-element"  onclick="alertPrompt(this.parentElement,'deletecomment')">
-                <svg viewBox="0 0 24 24" id="ic_delete_24px" width="30px" height="30px"><path   d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
-            </span>
-
-            <!-- comment text sender icon ---->
-            <span id="dashboard-comment-text" class="dashboard-comment-element" onclick="text(this)">
-                     
-            </span>
-        </div>`;
-        N("#allcommentslist").innerHTML += comment;
-        console.log(data);
+function renderAllComments( data,count ) {
+    var comment = ``;
+    // N("#allcommentslist").innerHTML += comment;
+    console.log(data);
 }
 
 function renderAllUser(data,count) {
@@ -86,7 +64,7 @@ function renderAllUser(data,count) {
                             <td class="user-username">${data.user_username}</td>
                             <td class="user-id" style="width:80px;">${data.user_id}</td>
                             <td class="user-posts">${data.user_post_count}</td>
-                            <td class="user-joined">${data.user_username}</td>
+                            <td class="user-joined" style='font-size:14px;color:#2a2a2a;'>${data.user_joined}</td>
                             <td class="user-email" style="width:200px;">${data.user_email}</td>
                             <td class="user-from">${data.user_from}</td>
                             <td class="user-delete-checkbox" style="width:50px;">
@@ -232,17 +210,37 @@ function deletePostFromDatabase(postid) {
 
 // ----------------------------- pubunpub()------------------------------------- //
 
-function pubunpub(node_pub_unpub) {
-    var post = node_pub_unpub.parentElement;
+function pubunpub(node) {
+    var post = node.parentElement;
     var postid = post.getAttributeNode("data-postid").value;
     var ajaxReqquest = new XMLHttpRequest();
     ajaxReqquest.open("POST","dashboardOperationBackEnd.php",false);    
     ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    ajaxReqquest.send(`operation=${node_pub_unpub.getAttributeNode('data-post-status').value}&postid=${postid}`);    
+    ajaxReqquest.send(`operation=${node.innerText.toLowerCase()}&postid=${postid}`);    
     console.log(ajaxReqquest.responseText);
     if( ajaxReqquest.responseText == "public" || ajaxReqquest.responseText == "private" ){
-        node_pub_unpub.getAttributeNode('data-post-status').value = ajaxReqquest.responseText;
-        node_pub_unpub.innerHTML = ajaxReqquest.responseText == "public" ? "<span style='transition-duration:1s;color:green'>UNPUBLISH</span>" : "<span style='transition-duration:1s;color:red'>PUBLISH</span>";
+        
+        let button = node.querySelector(".pubunpubTogglerButton");        
+        let bar = node.querySelector(".pubunpubToggler");     
+        let text = node.querySelector("div > span");
+
+        if( text.innerText.trim().toUpperCase() == "PUBLIC" ){
+            button.style.left = "62px";
+            button.style.background = "linear-gradient(to left,#b3b3b3, white)";
+            bar.style.background = "lightcoral";
+            text.style.left = "3px";
+            setTimeout( ()=>{
+                text.innerText = "PRIVATE";
+            },165);
+        } else {
+            button.style.left = "-8px";
+            button.style.background = "linear-gradient(to right,#b3b3b3, white)";
+            bar.style.background = "#48a5ff";
+            text.style.left = "21px";
+            setTimeout( ()=>{
+                text.innerText = "PUBLIC";
+            },130);
+        }
     } else {
         alert(ajaxReqquest.responseText);
     }
@@ -310,10 +308,33 @@ function deleteCommentFromDatabase(commentid) {
 
 window.addEventListener("load",()=>{
     main();
+    
+    Array.from( document.querySelectorAll(".dashboard-post-unpublish") ).forEach( function(node){
+        let button = node.querySelector(".pubunpubTogglerButton");        
+        let bar = node.querySelector(".pubunpubToggler");     
+        let text = node.querySelector("div > span");
+
+        if( text.innerText.trim().toUpperCase() != "PUBLIC" ){
+            button.style.left = "62px";
+            button.style.background = "linear-gradient(to left,#b3b3b3, white)";
+            bar.style.background = "lightcoral";
+            text.style.left = "3px";
+            text.innerText = "PRIVATE";
+        } else {
+            button.style.left = "-8px";
+            button.style.background = "linear-gradient(to right,#b3b3b3, white)";
+            bar.style.background = "#48a5ff";
+            text.style.left = "21px";
+            text.innerText = "PUBLIC";
+        }
+    });
+
+
 });
 
 
 function showComments(node) {    
+    return "Dokan Bondho For Now";
     // rendering all the Comments    
     N("#allcommentslist").innerHTML = "";
     JSON.parse( getData("getcomments") ).forEach(( data,count ) => {
@@ -365,3 +386,110 @@ function reveserFixNavSize(){
     var navbar = document.querySelector("#navbar");
     navbar.style.width = "100%";
 };
+
+function sort( node,by ) {
+    let posts = Array.from(document.querySelectorAll(".post"));
+    if( by == "title" ) {
+        var order = node.getAttributeNode("data-sorted-bytitle").value;
+        if( order == "no" || order == "asc") {
+            node.setAttribute("data-sorted-bytitle","desc");
+            node.innerText = "Title ▼";
+            posts.sort( (a,b)=>{
+                if( order == "no" || order == "asc"){
+                    tmp = a;
+                    a = b;
+                    b = tmp;
+                }
+                return a.querySelector(".dashboard-post-title").innerText[0].charCodeAt(0) - b.querySelector(".dashboard-post-title").innerText[0].charCodeAt(0);
+            });
+        }
+        else {            
+            node.setAttribute("data-sorted-bytitle","asc");
+            node.innerText = "Title ▲";
+            posts.sort( (a,b)=>{
+                return a.querySelector(".dashboard-post-title").innerText[0].charCodeAt(0) - b.querySelector(".dashboard-post-title").innerText[0].charCodeAt(0);
+            });
+        }
+    }
+
+
+    if( by == "views" ) {
+        var order = node.getAttributeNode("data-sorted-byviews").value;
+        if( order == "no" || order == "asc") {
+            node.setAttribute("data-sorted-byviews","desc");
+            node.innerText = "Views ▼";
+            posts.sort( (a,b)=>{
+                if( order == "no" || order == "asc"){
+                    tmp = a;
+                    a = b;
+                    b = tmp;
+                }
+                return parseInt(a.querySelector(".dashboard-post-visit").innerText) - parseInt(b.querySelector(".dashboard-post-visit").innerText);
+            });
+        }
+        else {            
+            node.setAttribute("data-sorted-byviews","asc");
+            node.innerText = "Views ▲";
+            posts.sort( (a,b)=>{
+                return parseInt(a.querySelector(".dashboard-post-visit").innerText) - parseInt(b.querySelector(".dashboard-post-visit").innerText);
+            });
+        }
+    }
+
+
+    if( by == "comments" ) {
+        var order = node.getAttributeNode("data-sorted-bycomments").value;
+        if( order == "no" || order == "asc") {
+            node.setAttribute("data-sorted-bycomments","desc");
+            node.innerText = "Comments ▼";
+            posts.sort( (a,b)=>{
+                if( order == "no" || order == "asc"){
+                    tmp = a;
+                    a = b;
+                    b = tmp;
+                }
+                return parseInt(a.querySelector(".dashboard-post-comments").innerText) - parseInt(b.querySelector(".dashboard-post-comments").innerText);
+            });
+        }
+        else {            
+            node.setAttribute("data-sorted-bycomments","asc");
+            node.innerText = "Comments ▲";
+            posts.sort( (a,b)=>{
+                return parseInt(a.querySelector(".dashboard-post-comments").innerText) - parseInt(b.querySelector(".dashboard-post-comments").innerText);
+            });
+        }
+    }
+
+    if( by == "date" ) {
+        var order = node.getAttributeNode("data-sorted-bydate").value;
+        if( order == "no" || order == "asc") {
+            node.setAttribute("data-sorted-bydate","desc");
+            node.innerText = "Published ▼";
+            posts.sort( (a,b)=>{
+                var sa = new Date(a.querySelector(".dashboard-post-publish-date").innerText).getTime();
+                var sb = new Date(b.querySelector(".dashboard-post-publish-date").innerText).getTime();
+                return  sb - sa;
+            });
+        }
+        else {            
+            node.setAttribute("data-sorted-bydate","asc");
+            node.innerText = "Published ▲";
+            posts.sort( (a,b)=>{                
+                var sa = new Date(a.querySelector(".dashboard-post-publish-date").innerText).getTime();
+                var sb = new Date(b.querySelector(".dashboard-post-publish-date").innerText).getTime();
+                return  sa - sb
+            });
+        }
+        console.log(posts);
+    }
+
+
+    let allpostlist = N("#allpostlist");
+    allpostlist.innerHTML = "";
+    posts.forEach( (post,index)=>{
+        setTimeout( ()=>{
+            allpostlist.appendChild(post);
+        },100*index);
+    });
+
+}

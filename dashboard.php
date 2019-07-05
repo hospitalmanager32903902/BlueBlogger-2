@@ -10,7 +10,7 @@
         // fetching all the post of the user and
         // putting them all in all() array 
         $username = $_SESSION["username"];
-        $sql = "SELECT `post_status`, `post_thumbnail`,`post_id`,`post_visit_count`,`post_comment_count`,`post_title`,`post_number` FROM `posts` WHERE `post_author_username`='$username' "; // SQL code for fetching data from the database
+        $sql = "SELECT * FROM `posts` WHERE `post_author_username`='$username' "; // SQL code for fetching data from the database
         $posts = $conn->query( $sql ); // fetched the data
         $post = array();
         $all = array();
@@ -109,13 +109,14 @@
             <div id="allposts">
                 <div id="allpostsheader">
                     <span id="postnumberhash" class="allpostsheader-element">#</span>
-                    <span id="posttumbpic" class="allpostsheader-element">Thumbnail</span>
-                    <span id="posttitle" class="allpostsheader-element">Title</span>
-                    <span id="postvisits" class="allpostsheader-element">Views</span>
-                    <span id="postcomments" class="allpostsheader-element">Comments</span>
+                    <span id="posttumbpic" class="allpostsheader-element">Thumbnail </span>
+                    <span id="posttitle" class="allpostsheader-element" data-sorted-bytitle="no" onclick="sort(this,'title')">Title ▶</span>
+                    <span style="width:80px" id="postvisits" class="allpostsheader-element" data-sorted-byviews="no" data-sorted="no"  onclick="sort(this,'views')">Views ▶</span>
+                    <span id="postcomments" class="allpostsheader-element"  data-sorted-bycomments="no" onclick="sort(this,'comments')">Comments ▶</span>
+                    <span style="width:140px" id="postdate" class="allpostsheader-element"  data-sorted-bydate="no" onclick="sort(this,'date')">Published At ▶</span>
                     <span id="delete" class="allpostsheader-element tools">DELETE</span>
                     <span id="edit" class="allpostsheader-element tools">EDIT</span>
-                    <span id="unpublish" class="allpostsheader-element tools">UN <strong>/</strong> PUBLISH</span>
+                    <span style="width:105px" id="unpublish" class="allpostsheader-element tools">UN<strong>-</strong>PUBLISH</span>
                 </div>
                 <div id="allpostlist">
                     
@@ -126,20 +127,7 @@
 
         <!-- tab for the comments list -->
         <div id="all-comment-content">
-            <div id="allcomments">
-                <div id="allcommentsheader">
-                    <span id="commentnumberhash" class="allcommentsheader-element">#</span>
-                    <span id="commentcommentor" class="allcommentsheader-element">Commentor</span>
-                    <span id="commentcomment" class="allcommentsheader-element">Comment</span>
-                    <span id="commentpost" class="allcommentsheader-element">Post</span>
-                    <span id="commentdate" class="allcommentsheader-element">Comment Given On</span>
-                    <span id="deletecomment" class="allcommentsheader-element commenttools">DELETE</span>
-                    <span id="massagecommentor" class="allcommentsheader-element commenttools">Send Massage</span>                    
-                </div>
-                <div id="allcommentslist">
-                    
-                </div>
-            </div>
+            
         </div>
         <!-- tab for the comments list -->
 

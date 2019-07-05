@@ -8,10 +8,10 @@
         include("connect_to_db.php");
         $user = "'".$_SESSION["username"]."'";
         // setting all the attributes for new post
-        $post_title = $_POST["post_title"];
+        $post_title = addslashes( $_POST["post_title"] );
         $post_id = (int)($conn->query("SELECT MAX(post_id) AS post_id from `posts`")->fetch_assoc()["post_id"]) + 1;
-        $post_content = htmlentities($_POST["post_body"]);
-        $post_excerpt = htmlentities($_POST["post_excerpt"]);
+        $post_content = addslashes( $_POST["post_body"] );
+        $post_excerpt = addslashes( $_POST["post_excerpt"] );
         $post_author_id = $conn->query("SELECT `user_id` FROM `users` WHERE `user_username`=".$user)->fetch_assoc()["user_id"];
         $post_author_username = $_SESSION["username"];
         $post_comment_count = 0;
@@ -58,7 +58,6 @@
 
     <div id="createnewpost-toolbox">
         <div id="Publish" onclick="publish()">Publish</div>
-        <div id="Draft" onclick="draft()">Draft</div>
         <div id="Cancel" onclick="cancel()">Cancel</div>
     </div>
     <div id="container">
@@ -71,7 +70,7 @@
                 </div>
                 <div id="excerpt">
                     <label for="post_excerpt">Write An Excerpt of Your Post</label>
-                    <textarea name="post_excerpt" id="post_excerpt" cols="40" rows="4" placeholder="Smaller the Better "></textarea>
+                    <textarea name="post_excerpt" id="post_excerpt" cols="40" rows="5" placeholder="Smaller the Better "></textarea>
                 </div>
             </div>
         </div>

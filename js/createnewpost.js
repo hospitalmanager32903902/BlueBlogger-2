@@ -82,3 +82,11 @@ function showThumb(){
         thumbpic.style.margin = "0px";
     }
 }
+
+function cancel(params) {
+    let con = confirm("Are You Sure You Want to Drop Your Work? ");
+    if (con) {
+        window.location = "dashboard.php";
+    }
+    
+}

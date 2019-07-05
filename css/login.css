@@ -35,42 +35,10 @@ body{
 }
 
 #headerPoster{
-    width: 100%;
-    height: 140px;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-    background: #3ba1cb;
-    background-size: cover;
+    
 }
 
-#navbar{
-    z-index: 1000;
-    width: 100%;
-    height: 45px;
-    background: #343a40;
-    overflow: hidden;
-    box-shadow: 0px 5px 11px 0px #aaa;
-}
-#navbar > a:first-child{
-    transition: .09s ease-out;
-    width: 150px;
-    height: 45px;
-    display: inline-block;
-    background: #242424;
-    color: white;
-    text-decoration: none;
-    line-height: 48px;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 17px;
-    text-align: center;
-    border-right: 2.5px solid white;
-    margin: 0px;
-}
+
 #navbar>a:first-child:hover{
     background: white;
     color: #2c2b2c;

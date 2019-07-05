@@ -43,7 +43,7 @@ body{
     z-index: 99;
     width: 100%;
     height: 45px;
-    background: #343a40;
+    background: dodgerblue;
     position: relative;
     overflow: hidden;
 }
@@ -51,7 +51,7 @@ body{
     width: 167px;
     height: 100%;
     display: inline-block;
-    background: #242424;
+    background: #007bf3;
     color: white;
     text-decoration: none;
     line-height: 45px;
@@ -160,8 +160,11 @@ span#notification path {
     top: 0px;
 }
 
+#dashboard-post-delete path {
+    fill: red;
+}
 path {
-    fill: black;
+    fill:indigo;
 }
 /* ------------------------------sidenav---------------------------------- */
 
@@ -255,7 +258,7 @@ path {
 #allpostsheader{
     width: auto;
     height:45px;
-    background: #000000;
+    background: dodgerblue;
     color: wheat;
     border: 1px solid #00000036;
     /* border-left: 0px; */
@@ -269,7 +272,7 @@ path {
     width:120px;
     height: 100%;
     line-height: 45px;
-    border-right: 1px dotted gray;
+    border-right: 1px solid #ffffff36;
     margin: 0px;
     padding: 0px;
     cursor:pointer;
@@ -289,10 +292,11 @@ path {
 }
 .tools{
     width:100px;
-    background: #1d1d1d;
+    background: dodgerblue;
     border:none;
-    font-style:italic;
-    font-size:14px;
+    /* font-style:italic; */
+    font-size: 13px;
+    font-weight: bold;
     color: #ededef;
     cursor: default;
 }
@@ -303,7 +307,7 @@ path {
     width:120px;
 }
 #unpublish strong {
-    color:dodgerblue;
+    color: inherit;
 }
 .post{
     width: 100%;
@@ -404,10 +408,10 @@ path {
 }
 
 #dashboard-post-unpublish{
-    opacity: .6;
+    /* opacity: .6; */
 }
 #dashboard-post-unpublish:hover{
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 /* --------------------------------- / post tab ----------------------- */
@@ -573,7 +577,17 @@ path {
     overflow: hidden;
     transition: .15s ease-out;
     background: white;
+    animation: showUpPost 1s 1;
 }
+@keyframes showUpPost{
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
 .post:hover{
         /* border-left: 5px solid black; */
         /* transition: .15s ease-out; */
@@ -609,10 +623,18 @@ path {
 .dashboard-post-title{
     width: 352px;
     position: relative;
-    top: 50%;
-    height: auto;
-    transform: translateY(-50%);
+    /* top: 50%; */
+    height: 100%;
+    /* transform: translateY(-50%); */
     text-align: center;
+    font-size: 13px;
+    padding: 10px;
+    overflow-y: auto;
+    transition:all .5s;
+}
+
+.dashboard-post-title:hover{
+    text-decoration:underline;
 }
 .dashboard-post-tumbnail{
     border-radius: 0px;
@@ -620,7 +642,7 @@ path {
     width: 103px;
 }
 .dashboard-post-visit{
-    width: 120px;
+    width: 80px;
     padding: 25px 0px;
 }
 .dashboard-post-comments{
@@ -632,7 +654,7 @@ path {
     padding: 12px 12px;
     margin-top: 10px;
     width: 100px;
-    opacity:.6;
+    opacity: 0.4;
     cursor:pointer;
 }
 #dashboard-post-delete:hover{ 
@@ -663,19 +685,19 @@ path {
 #dashboard-post-draft:after{
     content: '\e804';
 }
-#dashboard-post-unpublish{
-    width: 120px;
+.dashboard-post-unpublish{
+    width: 105px;
     padding: 0px;
     text-align: center;
-    line-height: 70px;
+    line-height: 63px;
     cursor: pointer;
 }
 
 #dashboard-post-unpublish{
-    opacity: .6;
+    /* opacity: .6; */
 }
 #dashboard-post-unpublish:hover{
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 /*  comment removal animtion */
@@ -685,6 +707,73 @@ path {
     animation-name: removeAnimation;
     animation-iteration-count: 1;
  
+}
+
+
+.pubunpubToggler {
+    transition: background .5s;
+    position: relative;
+    width: 76px;
+    height: 30px;
+    display: inline-block;
+    overflow: visible;
+    background: lightcoral;
+    /* box-shadow: inset 0px 0px 5px white; */
+    /* border-radius: 25%; */
+    top: 18px;
+    z-index: 99999999;
+}
+
+.pubunpubToggler::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: inherit;
+    position: absolute;
+    top: 0px;
+    left: -14px;
+}
+
+.pubunpubToggler::after {}
+
+.pubunpubToggler::after {}
+
+.pubunpubToggler::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: inherit;
+    position: absolute;
+    top: 0px;
+    left: 60px;
+}
+
+.pubunpubTogglerButton {
+    transition: all .5s;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    background: linear-gradient(to right,lightgrey, white);
+    top: 4px;
+    left: 62px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #7c7c7c;
+    z-index: 10;
+}
+.pubunpubToggler > span {
+    transition: left .7s;
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: -3px;
+    color: white;
+    text-shadow: 0px 0px 3px #ffffffcc;
+    z-index: 9;
+    font-size: 12px;
+    font-family: arial;
+    font-weight: bold;
 }
 
 @keyframes removeAnimation {
@@ -723,7 +812,7 @@ path {
 }
 #user-table thead tr td {
     box-sizing: content-box;
-    background: black;
+    background: dodgerblue;
     display: block;
     float: left;
     width: 120px;
@@ -733,6 +822,9 @@ path {
 }
 #user-table path {
     fill:white;
+}
+#ic_delete_24px path:hover {
+    fill:red;
 }
 #user-table tbody tr {
     background: #f9f9f9;

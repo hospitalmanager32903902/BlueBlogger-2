@@ -4,9 +4,19 @@
     }
     include_once("connect_to_db.php");
 
+    if( !isset($_GET["post"]) )
+        header("Location:index.php");
+
+
+    $user = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
     // fetching the content of the post
     $sql = "SELECT * FROM `posts` Where `post_id`=".$_GET["post"];
     $post = $conn->query( $sql )->fetch_assoc(); // fetched the data
+    
+    // checking if the post is public or not
+    if( $post["post_status"] == "private" && $post["post_author_username"] != $user ) {        
+        header("Location:index.php");
+    }
 
     // fetching the comments of the post
     $sql = "SELECT * FROM `comments` Where `comment_post_id`=".$_GET["post"]; // SQL code for fetching data from the database
@@ -16,6 +26,14 @@
     $sql = "SELECT * FROM `users` Where `user_username`='".$post["post_author_username"]."'"; // SQL code for fetching data from the database
     $author = $conn->query( $sql )->fetch_assoc(); // fetched the data
     
+
+    $belongsTo = false;
+    $post_id = $_GET["post"];
+    $sql = "SELECT post_author_username FROM `posts` WHERE post_id=".$post_id;
+    $post_author_username = $conn->query($sql)->fetch_assoc()["post_author_username"];
+    if( $user == $post_author_username ){
+        $belongsTo = true;
+    }
 ?>
 
 <?php
@@ -31,9 +49,20 @@
 <?php include_once("header.php"); ?>
     
     <div id="container">
+       
         <div>   
             <div id="content" data-post-id="<?php echo $post["post_id"]; ?>" >
-                    
+
+                <?php 
+                    if($belongsTo){
+                        $postid  = (int)$post["post_id"];
+                        echo '
+                            <div title="Edit This Post" id="editpost-tool" onclick="window.location=\'editpost.php?postid='.$postid.'\'">
+                                <svg viewBox="0 0 24 24" id="ic_edit_24px" width="100%" height="100%"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
+                            </div>';
+                    }
+                ?>
+
                 <img src="img/post_image/<?php echo $post["post_thumbnail"]; ?>" alt="Thumnail Image" width="100px" height="100px" />
                 <h1>
                     <?php echo $post["post_title"]; ?>
@@ -49,7 +78,7 @@
                     <div style="margin:0px;margin-bottom:10px;font-size:15px;color: #ffffff;background: dodgerblue;text-align: center;padding: 2px 0px;">Author Detail </div>
                     <?php 
                         echo 
-                            '<div data-username="'.$author["user_username"].'" id="userpane-userdetail" onclick=window.location="profile.php">
+                            '<div data-username="'.$author["user_username"].'" id="userpane-userdetail" onclick=window.location="user.php?username='.$author["user_username"].'">
                                 <img src="img/profilepic/'.$author["user_profile_picture_link"].'" width="100px" height="100px" >
                                 <span id="userpane-userdetail-name">'.$author["user_fullname"].'</span>
                                 <div id="userpane-userdetail-age">'.$author["user_age"].'</div>

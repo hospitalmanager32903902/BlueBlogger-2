@@ -175,3 +175,108 @@ span#profile:hover {
     margin-bottom: 50px;
     position: relative;
 }
+
+/*  ----------------- content ------------------ */
+
+#content {
+    min-width: 600px;
+    width: 100%;
+    min-height: 300px;
+    background: white;
+    margin: 0px auto;
+}
+#searchBox{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border: 1px solid lightgray;
+    background: #f3f3f3;
+    border-radius: 3px;
+}
+#searchkey {
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    font-size: 17px;
+    padding-left: 10px;
+    color: rgb(82, 82, 82);
+    transition-duration: .3s;
+}
+
+#searchkey:focus {
+    box-shadow: 0px 0px 7px #1E90FF;
+    border: 1px solid #1E90FF;
+}
+
+#searchBox button {
+    border:none;
+    width: 180px;
+    height: 40px;
+    background:lightcoral;
+    color: white;
+    font-size: 17px;
+    font-family: sans-serif;
+    border-radius: 3px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#searchResultBox{
+    width: 100%;
+    min-height: 600px;
+    background: white;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #808080b0;
+    background: white;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.matched-item{
+    width: 100%;
+    height: 131px;
+    border: 1px solid #aaa;
+    padding: 10px;
+    border-radius: 3px;
+    background: #fbf8f1;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 0px;
+    transition: all .5s ease-in;
+    margin-top:25px;
+    box-shadow: inset 0px 0px 8px rgb(231, 231, 231);
+}
+.matched-content-item{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    /* border: 1px solid #aaa; */
+}
+.post-title {
+    margin: 0px;
+    padding: 0px;
+    font: 17px;
+    font-weight: bold;
+}
+.matched-content-item p {
+    margin: 5px 8px;
+}
+.show-more{
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    font-size: 15px;
+    background: #ffffff;
+    margin-top: -10px;
+    border: 1px solid #a7a7a7;
+    border-radius:5px;
+    z-index: 2;
+    color: #03A9F4;
+    cursor: pointer;
+}
