@@ -53,6 +53,7 @@ body {
     overflow: visible;
     position: relative;
     /* box-shadow: 0px 5px 11px 0px #aaa; */
+    transition:none!important;
 }
 
 #navbar > a:first-child {
@@ -85,7 +86,7 @@ body {
 .sticky {
     position: sticky!important;
     top: 0px;
-    overflow: hidden!important;
+    /* overflow: hidden!important; */
     box-shadow: 0px 5px 11px 0px #aaa;
 }
 
@@ -167,7 +168,7 @@ span#profile:hover {
 }
 
 #homelink:hover {
-    color: dodgerblue;
+    /* color: dodgerblue; */
 }
 
 #homelink:after {
@@ -175,3 +176,43 @@ span#profile:hover {
 }
 
 /* ------------------------------Main Body---------------------------------- */
+
+
+/* ------------------------------Notification Pane ------------------------- */
+
+#notification-pane {
+    width: 220px;
+    min-height: 200px;
+    max-height: 350px;
+    background: #1c1c1c;
+    position: absolute;
+    top: 170%;
+    transform: translate(-50%);
+    box-shadow: -5px 5px 15px #000000b0;
+    left: 50%;
+    display: none;
+    animation: notiShowAni .2s ease-in 0s;
+    z-index: 10;
+    cursor: initial;
+}
+#notification-pane::before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #000000cc;
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes notiShowAni {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

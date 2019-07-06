@@ -17,7 +17,7 @@
         $user_username = htmlentities($_POST["username"]);
         $user_email = htmlentities($_POST["email"]);
         $user_age = htmlentities($_POST["age"]);
-        $user_gender = htmlentities($_POST["gender"]);
+        $user_gender = ucfirst(htmlentities($_POST["gender"]));
         $user_bloodgroup = ucfirst(htmlentities($_POST["bloodgroup"]));
         $user_education = ucfirst(htmlentities($_POST["education"]));
         $user_profession = ucfirst(htmlentities($_POST["profession"]));

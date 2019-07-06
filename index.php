@@ -187,7 +187,8 @@
         </div>
     </div>
     <!-- /Container for the Post -->
+
+
     <script src="js/index.js"></script>
-    <script src="js/bblibrary.js"></script>
-</body>
-</html>
+
+<?php include_once("footer.php") ?>

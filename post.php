@@ -142,6 +142,5 @@
         </div>
     </div>
     <script type="text/javascript" src="js/post.js"></script>
-    <script type="text/javascript" src="js/bblibrary.js"></script>
-</body>
-</html>
+    
+<?php include_once("footer.php") ?>

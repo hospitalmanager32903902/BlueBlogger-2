@@ -26,7 +26,7 @@
                     if ( $key == "user_password" || $key == "user_profile_picture_link" || $key == "user_id" ) {
                         continue;
                     }
-                    $tmpkey = $key;
+                    $field_name = $key;
                     $key = strtoupper(explode("_",$key)[1]);
                     if ($key == "PASSWORD") {
                         $value = "****";
@@ -36,11 +36,10 @@
                         if( !stripos($value,"-") ){
                             $value = $value . "+";
                         }
-                    } elseif ($key == "FULLNAME") {
-                        $key = "NAME ";
-                        $value = strtoupper($value);
+                    } elseif( $key != "USERNAME" ){
+                        $value  = ucfirst($value);
                     }
-                    echo "<div data-field-name='$tmpkey' class='user-detail-element' ><strong >$i. $key : </strong> <span class='value'>". $value . '</span><span title="click to edit" id="edit-detail"></span></div>'; 
+                    echo "<div data-field-name='$field_name' class='user-detail-element' ><strong >$i. $key : </strong> <span class='value'>". $value . '</span><span title="click to edit" id="edit-detail"></span></div>'; 
                     $i++;
                 }
 
@@ -49,6 +48,5 @@
         </div>
 
     <script type="text/javascript" src="js/user.js"></script>
-    <script type="text/javascript" src="js/bblibrary.js"></script>
-</body>
-</html>
+
+<?php include_once("footer.php") ?>

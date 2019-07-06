@@ -4,7 +4,7 @@
     }
     include("connect_to_db.php");
 
-    $searchTerm = $_GET["q"];
+    $searchTerm = isset($_GET["q"])? $_GET["q"] : "";
     
     $results = array();
     if( strlen($searchTerm) ){
@@ -24,8 +24,8 @@
     <div id="container">
         <div id="content">
             <div id="searchBox">
-                <input type="text" name="searchkey" onkeypress="enterSearch(event)" id="searchkey" placeholder="Enter Your Search Term and Hit Search" value="<?php echo $searchTerm; ?> ">
-                <button onclick="search(this)"  id="searchButton">Search</button>
+                <input type="text" name="searchkey" onkeypress="enterSearch(event)" id="searchkey" placeholder="What You want ? Type and Hit Enter" <?php strlen($searchTerm) > 1 ? printf("value=".$searchTerm) : '' ; ?> >
+                <button onclick="search(this)"  id="searchButton" >Search</button>
             </div>
             
             <div id="searchResultBox">
@@ -52,7 +52,8 @@
 
         </div>
     </div>
+
+
     <script type="text/javascript" src="js/search.js"></script>
-    <script type="text/javascript" src="js/bblibrary.js"></script>
-</body>
-</html>
+
+<?php include_once("footer.php") ?>

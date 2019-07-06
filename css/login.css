@@ -32,8 +32,11 @@ body{
     /* top: -8px; */
     margin: 0px;
     /* margin-bottom: 10px; */
+    display: none;
 }
-
+#navbar {
+    position:fixed;
+}
 #headerPoster{
     
 }
@@ -106,26 +109,30 @@ span#profile{
 /* ------------------------------Main Body---------------------------------- */
 #container{
     box-sizing: border-box;
-    width: 970px;
-    min-height: 600px;
-    max-height: 1500px;
+    width: 100vw;
+    height: 100vh;
+    /* max-height: 1500px; */
     overflow: hidden;
+    overflow-y: scroll;
     /* height: auto; */
-    /* background: #b22077; */
+    background: url("../img/login_page_bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     /* box-shadow: 0px 0px 3px #bababa; */
     margin-left: auto;
     margin-right: auto;
-    border-radius:5px;
+    /* border-radius:5px; */
 }
 
 #content{
     width: 480px;
     height: auto;
-    background: #b1cff624;
-    margin: 30px auto;
+    background: #b1cff680;
+    margin: 150px auto;
     padding-bottom: 20px;
     padding-top: 1px;
-    border-left: 10px solid black;
+    border: 1px solid #ffeb3ba1;
+    /* border-left: 10px solid black; */
     /* box-shadow: 0px 0px 5px #c9c9c9; */
 }
 input{
@@ -201,6 +208,8 @@ input[type="submit"]:hover{
     border: 1.5px solid #141414;
     margin: 30px auto 10px 58%;
     border-radius: 5px;
+    position: relative;
+    top: 50px;
 }
 #signupbox h2 {
     text-align: center;
@@ -211,8 +220,8 @@ label {
     margin-top: 20px;
     /* font-weight: bold; */
     font-size: 18px;
-    color: #4d4d4d;
-    text-shadow: 0px 0px 1px #282828;
+    color: #000000de;
+    /* text-shadow: 0px 0px 1px #282828; */
     display: block;
 }
 label[for="imageCap"] {
@@ -265,7 +274,7 @@ option{
 input[type="submit"],input[type="button"]{
     margin-left: 19px;
     color: white;
-    background: #be0000;
+    background: lightcoral;
     height: 40px;
 }
 #register{

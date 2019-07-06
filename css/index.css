@@ -40,13 +40,13 @@ body {
 }
 
 #navbar {
-    z-index: 1000;
-    width: 100%;
-    height: 45px;
-    background: dodgerblue;
-    overflow: visible;
+    /* z-index: 1000; */
+    /* width: 100%; */
+    /* height: 45px; */
+    /* background: dodgerblue; */
+    /* overflow: visible; */
     /* box-shadow: 0px 5px 11px 0px #aaa; */
-    text-align: start;
+    /* text-align: start; */
 }
 
 #navbar > a:first-child {
@@ -79,15 +79,15 @@ body {
 .sticky {
     position: sticky;
     top: 0px;
-    box-shadow: 0px 5px 11px 0px #aaa;
+    box-shadow: 0px 0px 11px 0px #000000c7;
 }
 
 
 span#notification {
     background: green;
     box-sizing: border-box;
-    display: none;
-    float: left;
+    display: block;
+    /* float: left; */
     position: relative;
     /* margin-right: 10px; */
     left: 0px;
@@ -139,16 +139,16 @@ span#profile:hover {
     transform: scale(1.1) rotateZ(-10deg) skew(-5deg);
 }
 #homelink {
-    color: white;
-    font-family: w3incons;
-    font-size: 26px;
-    cursor: pointer;
-    text-decoration: none;
-    line-height: 45px;
+    /* color: white; */
+    /* font-family: w3incons; */
+    /* font-size: 26px; */
+    /* cursor: pointer; */
+    /* text-decoration: none; */
+    /* line-height: 45px; */
 }
 
 #homelink:hover {
-    color: dodgerblue;
+    /* color: dodgerblue; */
 }
 
 #homelink:after {
@@ -162,7 +162,7 @@ span#profile:hover {
     min-height: 900px;
     overflow: hidden;
     /* height: auto; */
-    background: #b22077;
+    /* background: #b22077; */
     /* box-shadow: 0px 0px 3px #bababa; */
     margin-left: auto;
     margin-right: auto;
@@ -205,7 +205,7 @@ span#profile:hover {
     height: auto;
     width: 674px;
     overflow: hidden;
-    background: orange;
+    /* background: orange; */
 }
 
 .post>img:first-child {
@@ -242,12 +242,12 @@ span#profile:hover {
 
 .post {
     box-sizing: border-box;
-    width: 650px;
-    height: 130px;
-    padding: 5px 10px 15px 5px;
+    width: 635px;
+    height: 122px;
+    padding: 5px 5px 5px 5px;
     overflow: hidden;
     margin: 20px auto;
-    background: black;
+    background: oldlace;
     box-sizing: border-box;
     border-radius: 3px;
     border: 1px solid #79841047;
@@ -263,13 +263,14 @@ span#profile:hover {
 
 .excerpt {
     box-sizing: border-box;
+    line-height: 15px;
     padding: 4px 7px;
     min-width: 14%;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 15px;
     box-sizing: border-box;
     width: 500px;
-    height: 63px;
+    height: 51px;
     overflow: hidden;
     display: block;
     float: none;
@@ -280,27 +281,30 @@ span#profile:hover {
 }
 #post-bottom{
     width: 500px;
-    height: 20px;
-    position: relative;
+    height: 24px;
+    position: absolute;
     background: #0fb8ad;
     font-size: 11px!important;
     /* top: -44px; */
-    /* color: #000000c4; */
+    color: #081e72;
     /* text-shadow: 1px -1px 3px #8f8f8f; */
     left: 12px;
     text-align: left;
     font-size: 12px;
-    line-height: 20px;
+    line-height: 24px;
     overflow: hidden;
     box-sizing: border-box;
     border-top: 1px solid lightgray;
+    /* top: 5px; */
+    bottom: 0px;
+    left: 127px;
 }
 .post-author{
     display:inline-block;
     margin-right: 3px;
     margin-left: 3px;
     color: #000000c4;
-    text-shadow: 1px 1px 1px #8f8f8f;
+    /* text-shadow: 1px 1px 1px #8f8f8f; */
     font-size: 11px;
 }
 .post-author a{
@@ -316,11 +320,11 @@ span#profile:hover {
     display:inline-block;
     margin-right: 4px;
     color: #000000c4;
-    text-shadow: 1px -1px 3px #8f8f8f;
+    /* text-shadow: 1px -1px 3px #8f8f8f; */
 }
 .post-comments{
     color: #000000c4;
-    text-shadow: 1px -1px 3px #8f8f8f;
+    /* text-shadow: 1px -1px 3px #8f8f8f; */
 }
 /* ------------------------- More link Styling -------------------------------- */
 
@@ -349,7 +353,7 @@ span#profile:hover {
     display: block;
     width: 674px;
     height: 50px;
-    background: lightcoral;
+    /* background: lightcoral; */
     position: relative;
     bottom: 0px;
     line-height: 50px;
@@ -386,7 +390,7 @@ span#profile:hover {
 
 /* -----------------------sidebar--------------------------------- */
 #sidebar {
-    background: pink;
+    /* background: pink; */
     /* min-width: 250px; */
     /* max-width: 30%; */
     width: 296px;

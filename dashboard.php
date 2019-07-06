@@ -34,17 +34,16 @@
         // fetching all the post of the user and
         // putting them all in all() array 
         $username = $_SESSION["username"];
-        $sql = "SELECT * FROM `comments` WHERE `comment_post_author_username`='$username' "; // SQL code for fetching data from the database
+
+        $sql = "SELECT posts.post_title, posts.post_id, comments.comment_post_id, comments.comment_commentor_username, comments.comment_commentor_fullname, comments.comment_post_author_username, comments.comment_content, comments.comment_birthdate, comments.comment_birthdate, comments.comment_id FROM `posts` JOIN `comments` ON comments.comment_post_id = posts.post_id AND comments.comment_post_author_username='$username'";
+        
         $comments = $conn->query( $sql ); // fetched the data
         $comment = array();
         $all = array();
         while ( $row = $comments->fetch_assoc() ) {
             foreach( $row as $key => $value ){
                 $comment[$key] = $value;
-            }            
-            $tmp = $comment["comment_post_id"];
-            $post_tilte = $conn->query("SELECT `post_title` FROM `posts` WHERE `post_id`='$tmp' ")->fetch_assoc()["post_title"];
-            $comment["post_title"] = $post_tilte;
+            }
             array_push($all,$comment);
         }
         echo json_encode($all);
@@ -159,9 +158,28 @@
             }
         ?>        
         <!-- tab for the comments list -->
+        <div id="comment-table" style="display: inline-block;">
+            <div id="all-comments">
+                    <div id="all-comments-header">
+                        <span class="allcommentsheader-element" style="font-weight: bold; width:50px;">#</span>
+                        <span class="allcommentsheader-element comment-commentor" data-sorted-bytitle="no" onclick="sortComments(this,'commentor')" style="width:180px;">Commentor ▶</span>
+                        <span class="allcommentsheader-element comment-content" style="width:380px;" data-sorted-byviews="no" data-sorted="no" onclick="sortComments(this,'content')">Said ▶</span>
+                        <span class="allcommentsheader-element comment-post" data-sorted-bycomments="no" onclick="sortComments(this,'post')" style="width:280px;">On The Post ▶</span>
+                        <span class="allcommentsheader-element comment-date" style="width:120px;" data-sorted-bydate="no" onclick="sortComments(this,'date')">At ▶</span>
+                        <span class="allcommentsheader-element comment-delete-tool" style="padding-top: 5px;width:65px;">
+                            <svg viewBox="0 0 24 24" id="ic_delete_24px" width="24px" height="24px"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                        </span>
+                    </div>
+                    <div id="all-comments-list">
+                        
+                    </div>
+                </div>
+        </div>
+
+
     </div>
 
     <script src="js/bblibrary.js"></script>
     <script src="js/dashboard.js"></script>
-</body>
-</html>
+    
+<?php include_once("footer.php") ?>

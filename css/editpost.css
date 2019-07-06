@@ -1,0 +1,433 @@
+/* importing w3schools fonts */
+@font-face {
+    font-family: w3incons;
+    src: url('../font/fontawesome8deb.woff');
+}
+
+* {
+    box-sizing: border-box;
+    color: black;
+    font-family: verdana;
+    transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+body {
+    height: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background: #b1d1f21a;
+    position: relative;
+    /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
+    /* transform: skew(45deg); */
+    /* left: -105%; */
+}
+
+#header {
+    height: auto;
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative;
+    /* left: -7px; */
+    /* top: -8px; */
+    margin: 0px;
+    /* margin-bottom: 10px; */
+}
+
+#headerPoster {
+    width: 100%;
+    height: 0;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: #3ba1cb;
+    background-size: cover;
+}
+
+.sticky {
+    position: sticky!important;
+    top: 0px;
+    z-index: 10000;
+}
+#navbar {
+    z-index: 99;
+    width: 100%;
+    height: 45px;
+    background: #343a40;
+    overflow: hidden;
+    box-shadow: 0px 5px 11px 0px #aaa;
+    position: fixed;
+    top: 0px;
+}
+
+#navbar > a:first-child {
+    transition: .09s ease-out;
+    width: 150px;
+    height: 100%;
+    display: inline-block;
+    background: #242424;
+    color: white;
+    text-decoration: none;
+    line-height: 48px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    border-right: 2.5px solid white;
+    margin: 0px;
+}
+
+#navbar>a:first-child:hover {
+    background: white;
+    color: #2c2b2c;
+}
+
+
+div#rightNav {
+    background: purple;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    width: 200px;
+}
+
+span#notification {
+    background: green;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-right: 10px; */
+    left: 0px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+path {
+    fill: white;
+}
+
+span#profile {
+    width: 45px;
+    height: 45px;
+    display: block;
+    float: left;
+    position: relative;
+    /* margin-top: 11px; */
+    /* background: red; */
+    border-radius: 50%;
+    margin-left: 10px;
+    top: 0px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #000000;
+    background-image: url("http://localhost/code/php/projects/blueBlogger_(2-100)/img/post_image/post_1_thumpic.jpg");
+    background-size: cover;
+}
+
+#homelink {
+    color: white;
+    font-family: w3incons;
+    font-size: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 45px;
+}
+
+#homelink:hover {
+    color: dodgerblue;
+}
+
+#homelink:after {
+    content: '\e800';
+}
+
+/* ------------------------------------------------------------------ */
+#container {
+    width: 741px;
+    min-height: 800px;
+    height: auto;
+    background: #eee;
+    border: 1px solid #aaa;
+    margin: 80px auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 20px 10px;
+}
+
+/* -----------------------------style code for toolbox------------------------------------- */
+#createnewpost-toolbox {
+    line-height: 45px;
+    padding-right: 5px;
+    width: 733px;
+    height: 45px;
+    position: relative;
+    top: 50px;
+    left: 50%;
+    /* background: #3ba1cb; */
+    transform: translateX(-50%);
+    text-align: right;
+    /* display: none; */
+}
+
+#createnewpost-toolbox > div {
+    box-sizing: border-box;
+    width: 90px;
+    height: 40px;
+    display: inline-block;
+    background: dodgerblue;
+    cursor: pointer;
+    transition: .1s linear;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#createnewpost-toolbox > div:nth-child(1):hover {
+    background: white;
+    color: dodgerblue;
+}
+
+#createnewpost-toolbox > div:nth-child(2) {
+    background: #aaa;
+}
+
+#createnewpost-toolbox > div:nth-child(2):hover {
+    background: white;
+    color: #aaa;
+}
+
+#createnewpost-toolbox > div:nth-child(3) {
+    background: red;
+}
+
+#createnewpost-toolbox > div:nth-child(3):hover {
+    background: white;
+    color: red;
+}
+
+/* ----------------------------- /style code for toolbox------------------------------------- */
+#createnewpost {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+#upper {
+    width: 100%;
+    height: 202px;
+    /* background: lightgrey; */
+    padding: 10px;
+    overflow: hidden;
+}
+
+#tumbnailupload {
+    width: 24%;
+    height: 101%;
+    background: whitesmoke;
+    float: left;
+    border: 1.2px solid #cccccc;
+    /* border-radius: 3px; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#tumbnailupload img {
+    display: block;
+    /* margin: auto; */
+    /* margin-top: 10px; */
+    /* margin-bottom: 20px; */
+    box-sizing: border-box;
+}
+
+#tumbnailupload label {
+    color: black;
+    text-shadow: 1px 0px 3px #aaa;
+    display: block;
+    text-align: center;
+    font-size: 14.5px;
+}
+
+#excerpt {
+    width: 70%;
+    height: 100%;
+    /* background: lightcyan; */
+    float: left;
+}
+
+#excerpt label {
+    text-shadow: 0px 1px 2px #01010178;
+    display: block;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 10px 0px 5px 40px;
+}
+
+#excerpt textarea {
+    /* border-radius: 5px; */
+    margin: 1px 0px 10px 40px;
+    /* text-shadow: 0px 1px 3px #010101; */
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    resize: none;
+    border: 1.3px solid dodgerblue;
+    /* box-shadow: inset 0px 0px 8px #aaa; */
+}
+
+#excerpt textarea:focus {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    border-color: #66afe9;
+    outline: 0;
+}
+
+#postthumbnail {
+    display: none;
+}
+
+#lower {
+    width: 100%;
+    padding: 10px;
+    margin: 20px auto;
+}
+
+#lower label {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0px 5px 10px;
+}
+
+#lower textarea {
+    resize: vertical;
+    border: 1.3px solid dodgerblue;
+    /* border-radius: 5px; */
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 22px;
+    /* box-shadow: inset 0px 0px 10px lightgrey; */
+}
+
+#lower textarea:focus {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    border-color: #66afe9;
+    outline: 0;
+}
+
+#postbody {
+    width: 700px;
+    padding: 0;
+    min-height: 480px;
+    height: auto;
+    border: 1.5px solid dodgerblue;
+    margin-top: 20px;
+    background: red;
+    outline: 0;
+    /* overflow: hidden; */
+    /* border-radius: 5px; */
+}
+
+#writingtool {
+    width: 100%;
+    height: 63px;
+    background: #f2f2f2;
+    position: sticky;
+    top: 45px;
+    border-bottom: 10px solid black;
+    margin: 0px auto;
+    padding: 0px;
+    box-sizing: border-box;
+    z-index: 100;
+    overflow: hidden;
+    line-height: 60px;
+    /* left: 50%!important; */
+    /* transform: translateX(-50%); */
+    /* transition: none; */
+}
+.writing-tool{
+    transition-duration:.1s;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+#makeBold{
+    margin-left: 12px;
+}
+#makeItalic{font-weight: normal;}
+#makeUnderline{font-weight: normal;text-decoration: underline;}
+#textColor{
+}
+#textColor span{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: coral;
+    margin: 1px auto;
+}
+#justifyText{
+    font-family: w3incons;
+}
+#fontsize{
+    width: 48px;
+    height: 34px;
+    font-size: 12px;
+    transform: scaleX(0.8);
+    font-weight: bold;
+    position: relative;
+    top: -2px;
+    left: -2px;
+    /* padding-left: 3px; */
+    /* padding-right: 6px; */
+}
+.writing-tool:hover{
+    box-shadow: 0px 0px 3px #aaa;
+}
+#justifyText:after{
+    content: '\f0c9';
+    /* position: relative; */
+    /* display: inline; */
+}
+
+#writing_pad_textversion {
+    width: 100%;
+    min-height: 600px;
+    height: auto;
+    background: white;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px!important;
+}
+
+#writing_pad_htmlversion {
+    width: 100%;
+    min-height: 600px;
+    height: auto;
+    background: white;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: none;
+}

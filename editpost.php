@@ -101,6 +101,5 @@
 
         <script src="js/bblibrary.js"></script>
         <script src="js/editpost.js"></script>
-    </div>
-</body>
-</html>
+
+<?php include_once("footer.php") ?>

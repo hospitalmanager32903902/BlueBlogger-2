@@ -2,7 +2,7 @@
 #leftside {
   margin-bottom: 50px;
   padding-bottom: 10px;
-  width: 450px;
+  width: 350px;
   min-height: 480px;
   height: auto;
   background: white;
@@ -13,6 +13,7 @@
           box-shadow: inset 0px 0px 100px 100px white;
   display: block;
   float: left;
+  overflow: hidden;
 }
 #prfile-pic {
     width: 120px;
@@ -44,12 +45,12 @@
   width: 100%;
   min-height: 30px;
   padding: 4px 0px;
-  background: linear-gradient(to left,#daedff, white);
+  background: linear-gradient(to left,#dfdfdf, white);
   color: black;
   /* border-radius: 5px; */
   /* border: .8px solid #7a7a7a; */
   border-bottom: none;
-  /* border-bottom: .8px solid #5542134a; */
+  border-bottom: .8px solid #5542134a;
   /* margin-top: 18px; */
   /* position: relative; */
   /* padding-left: 10px; */
@@ -71,7 +72,7 @@
   text-shadow: 0px 0px 1.5px #535353;
 }
 
-.user-detail-element:nth-child(odd) {background: linear-gradient(to right,#1e90ff2b, white);}
+.user-detail-element:nth-child(odd) {background: linear-gradient(to right,#dfdfdf, white);}
 
 #edit-detail {
   width: 25px;

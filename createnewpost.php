@@ -96,6 +96,5 @@
     </div>
 
     <script src="js/createnewpost.js"></script>
-    <script src="js/bblibrary.js"></script>
-</body>
-</html>
+
+    <?php include_once("footer.php") ?>

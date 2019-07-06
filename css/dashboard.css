@@ -45,7 +45,7 @@ body{
     height: 45px;
     background: dodgerblue;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 #navbar > a:first-child{
     width: 167px;
@@ -72,7 +72,7 @@ div#rightNav {
     background: purple;
     display: inline-block;
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
     right: 0px;
     height: 45px;
     width: 200px;
@@ -147,7 +147,7 @@ span#notification path {
     text-decoration: none;
 }
 #homelink:hover{
-    color: dodgerblue;
+    /* color: dodgerblue; */
 }
 #homelink:after{
     content: '\e800';
@@ -160,11 +160,12 @@ span#notification path {
     top: 0px;
 }
 
-#dashboard-post-delete path {
-    fill: red;
-}
 path {
-    fill:indigo;
+    fill:dodgerblue;
+}
+
+.dashboard-post-delete path {
+    fill: coral;
 }
 /* ------------------------------sidenav---------------------------------- */
 
@@ -237,7 +238,7 @@ path {
 }
 /* --------------------------------- style for post tab ------------------------------------- */
 #all-post-content{
-    min-width: 1068px;
+    min-width: 1164px;
     width: auto;
     display: none;
     /* min-height:600px; */
@@ -245,7 +246,7 @@ path {
     /* box-shadow: 1px 4px 5px #aaa; */
     border: 1px solid white;
     position: relative;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 235px;
     overflow-y: auto;
     margin-bottom: 100px;
@@ -257,12 +258,12 @@ path {
 }
 #allpostsheader{
     width: auto;
-    height:45px;
+    height: 50px;
     background: dodgerblue;
     color: wheat;
     border: 1px solid #00000036;
     /* border-left: 0px; */
-    margin: 0px;
+    margin-bottom: 5px;
     box-shadow: 0px 0px 5px #aaa;
 }
 .allpostsheader-element{
@@ -312,7 +313,7 @@ path {
 .post{
     width: 100%;
     height: 70px;
-    margin-top:5px;
+    /* margin-top:5px; */
     /* box-shadow: 0px 0px 5px #bbb; */
     overflow: hidden;
     transition: .15s ease-out;
@@ -364,14 +365,14 @@ path {
     padding: 25px 0px;
     text-align: center;
 }
-#dashboard-post-delete{
+.dashboard-post-delete{
     padding: 12px 12px;
     margin-top: 10px;
     width: 100px;
     opacity:.6;
     cursor:pointer;
 }
-#dashboard-post-delete:hover{ 
+.dashboard-post-delete:hover{ 
     opacity: 1;
 }
 #dashboard-post-edit{
@@ -455,11 +456,17 @@ path {
     width: 500px;
     height: 100%;
     line-height: 45px;
-    border-right: 1px dotted gray;
+    border-right: 1px solid #ffffff36;
     margin: 0px;
     padding: 0px;
     cursor:pointer;
     color: white;
+}
+.allcommentsheader-element path {
+    fill:white;
+}
+.allcommentsheader-element:hover path {
+    fill:lightcoral;
 }
 
 #commentnumberhash{
@@ -501,20 +508,30 @@ path {
     /* min-height: 10px; */
     display: block;
     position: relative;
-    background: #5f89dd;
+    background: white;
     margin: 0px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     /* padding: 11px 0px 0px 0px; */
     /* border-top: 1.5px solid #7a7a7a; */
     box-shadow: 0px 0px 2px #aaa;
     overflow: hidden;
 }
+.comment a {
+    text-decoration:none;
+}
+.comment a:hover{
+    text-decoration:underline;
+    color:blue;
+}
+.comment:nth-child(even){
+    background:#fff9ee;
+}
 .dashboard-comment-element{
-    width:100px;
+    /* width:100px; */
     /* height: auto; */
-    display: block;
-    text-align: center;
-    float: left;
+    /* display: block; */
+    /* text-align: center; */
+    /* float: left; */
 }
 #dashboard-comment-commentor{
     width:180px;
@@ -572,7 +589,7 @@ path {
 .post{
     width: 100%;
     height: 70px;
-    margin-top:5px;
+    /* margin-top:5px; */
     /* box-shadow: 0px 0px 5px #bbb; */
     overflow: hidden;
     transition: .15s ease-out;
@@ -721,7 +738,7 @@ path {
     /* box-shadow: inset 0px 0px 5px white; */
     /* border-radius: 25%; */
     top: 18px;
-    z-index: 99999999;
+    z-index: 9;
 }
 
 .pubunpubToggler::before {
@@ -799,13 +816,16 @@ path {
 #all-user-content{
     display: block;
     position: absolute;
-    top:100px;
-    left: 220px;
+    /* top: 30px; */
+    margin-top: 30px;
+    margin-left: 235px;
+    /* left: 220px; */
+    min-width: 1268px;
 }
 
 #user-table{
     border-collapse: collapse;
-    border:1px solid white;
+    /* border:1px solid white; */
     text-align: center;
 }
 #user-table thead tr {
@@ -860,4 +880,79 @@ path {
 
 #user-table tbody tr:hover{
     opacity: .9;
+}
+
+/* --------------------------- style for comment table ---------------------------------------- */
+div#comment-table {
+    display: inline-block;
+    /* left: 100px; */
+    /* top: 100px; */
+    min-width: 1077px;
+    width: auto;
+    display: block;
+    /* min-height: 600px; */
+    max-height: 546px;
+    /* box-shadow: 1px 4px 5px #aaa; */
+    border: 1px solid white;
+    border-right: none;
+    border-left: none;
+    position: relative;
+    margin-top: 30px;
+    margin-left: 235px;
+    overflow-y: auto;
+    margin-bottom: 100px;
+}
+
+#all-comments{
+    width: 100%;
+    /* min-height: 300px; */
+    /* height: auto; */
+}
+#all-comments-header{
+    width: auto;
+    height: 50px;
+    background: dodgerblue;
+    color: wheat;
+    border: 1px solid #00000036;
+    /* border-left: 0px; */
+    margin: 0px;
+    box-shadow: 0px 0px 5px #aaa;
+}
+.dashboard-comment-element {
+    /* padding: 7px 8px 0px 7px; */
+    height: 50px;
+    display: block;
+    float: left;
+    text-align: center;
+    box-sizing: border-box!important;
+    overflow: hidden;
+    /* border-right: 1px dotted #046cff21; */
+    word-break: break-word;
+    padding-top: 10px;
+    font-size: 15px;
+    /* line-height: 60px; */
+    transition-duration:.2s;
+}
+
+.dashboard-comment-element:hover {
+    height:auto;
+}
+
+.comment-count {
+    width:50px;
+}
+.comment-commentor{
+    width:180px;
+}
+.comment-content{
+    width:380px;
+}
+.comment-post {
+    width:280px;
+}
+.comment-date{
+    width:120px;
+}
+.comment-delete-checkbox{
+    width: 65px;
 }

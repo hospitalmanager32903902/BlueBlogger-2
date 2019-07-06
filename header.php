@@ -13,23 +13,25 @@
         $user_avatar_link = $user["user_profile_picture_link"];
         // $user_avatar_link = "img/profilepic/".explode("/",$user_avatar_link)[2];
     }
-
+    include("notification.php");
 ?>
 
 <?php
     
     // grab page name 
     $pageName = explode("/",$_SERVER["PHP_SELF"]);
-    $rightSideNav ="";
+    $rightSideNav = "";
     if( $pageName[count($pageName)-1] == "profile.php" ){
         $rightSideNav = '<div id="rightNav"> 
-                            <span id="notification">
-                            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
-                                <g class="style-scope yt-icon">
-                                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
-                                    </path>
-                                </g>
-                            </svg>
+
+                            <span id="notification" onclick="showNotificationPane(this)">
+                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                    <g class="style-scope yt-icon">
+                                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
+                                        </path>
+                                    </g>
+                                </svg>
+                                '. getNot() .'
                             </span>
                             <a href="signout.php" style="text-decoration:none;">
                             <span id="signout" title="Click to Logout" style="display:inline-block;border-radius:none;width: 162px;height:100%;line-height:45px;color: wheat;text-align: center;margin-left: 10px;border-left: 2px solid white;">
@@ -44,13 +46,15 @@
 
     } else if( isset($_SESSION["username"]) &&  $pageName[count($pageName)-1] == "index.php" ) {
         $rightSideNav = '   <div id="rightNav"> 
-                                <span id="notification" onclick="showNotification()">
+
+                                <span id="notification" onclick="showNotificationPane(this)">
                                     <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
                                         <g class="style-scope yt-icon">
                                             <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
                                             </path>
                                         </g>
                                     </svg>
+                                    '. getNot() .'
                                 </span>
                                 <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')" id="profile" title="Click to go to Profile Page">                        
@@ -62,14 +66,17 @@
         $rightSideNav = "";
     } else if( isset($_SESSION["username"]) &&  $pageName[count($pageName)-1] == "post.php" ) {
         $rightSideNav = '   <div id="rightNav"> 
-                                <span id="notification">
-                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
-                                    <g class="style-scope yt-icon">
-                                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
-                                        </path>
-                                    </g>
-                                </svg>
+
+                                <span id="notification" onclick="showNotificationPane(this)">
+                                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                        <g class="style-scope yt-icon">
+                                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
+                                            </path>
+                                        </g>
+                                    </svg>                                    
+                                    '. getNot() .'
                                 </span>
+
                                 <a href="profile.php" data-username='.$_SESSION["username"].'>
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
@@ -80,14 +87,17 @@
         $rightSideNav = "";
     } else if( isset($_SESSION["username"]) &&  $pageName[count($pageName)-1] == "createnewpost.php" ) {
         $rightSideNav = '   <div id="rightNav"> 
-                                <span id="notification">
-                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
-                                    <g class="style-scope yt-icon">
-                                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
-                                        </path>
-                                    </g>
-                                </svg>
+
+                                <span id="notification" onclick="showNotificationPane(this)">
+                                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                        <g class="style-scope yt-icon">
+                                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
+                                            </path>
+                                        </g>
+                                    </svg>                                    
+                                    '. getNot() .'
                                 </span>
+
                                 <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>
@@ -96,14 +106,17 @@
                         ';
     } else if( isset($_SESSION["username"]) &&  $pageName[count($pageName)-1] == "editpost.php" ) {
         $rightSideNav = '   <div id="rightNav"> 
-                                <span id="notification">
-                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
-                                    <g class="style-scope yt-icon">
-                                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
-                                        </path>
-                                    </g>
-                                </svg>
+
+                                <span id="notification"  onclick="showNotificationPane(this)">
+                                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                        <g class="style-scope yt-icon">
+                                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    '. getNot() .'
                                 </span>
+
                                 <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"   id="profile" title="Click to go to Profile Page">                        
                                     </span>
@@ -112,14 +125,17 @@
                         ';
     } else if( isset($_SESSION["username"]) &&  $pageName[count($pageName)-1] == "dashboard.php" ) {
         $rightSideNav = '   <div id="rightNav"> 
-                                <span id="notification">
-                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
-                                    <g class="style-scope yt-icon">
-                                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
-                                        </path>
-                                    </g>
-                                </svg>
+
+                                <span id="notification" onclick="showNotificationPane(this)">
+                                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                        <g class="style-scope yt-icon">
+                                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" class="style-scope yt-icon">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    '. getNot() .'
                                 </span>
+
                                 <a href="profile.php">
                                     <span style="background-image:url(\'img/profilepic/'.$user_avatar_link.'\')"  id="profile" title="Click to go to Profile Page">                        
                                     </span>

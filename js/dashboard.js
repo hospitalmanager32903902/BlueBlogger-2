@@ -1,8 +1,9 @@
+
+let table = [N("#all-post-content"),N("#all-user-content"),N("#comment-table")];
+
+
 function highlightSelected(node){
     
-    setTimeout(() => {
-        fixNavSize();
-    }, 1);
 
     node.classList.add("selected");
     node.parentElement.querySelectorAll("*").forEach( elem => {
@@ -11,8 +12,7 @@ function highlightSelected(node){
     node.classList.add( "selected" );
 
 
-}
-N("#posts").click();
+} N("#posts").click();
 
 function renderAllPost( data,count ){
     var post = 
@@ -30,8 +30,8 @@ function renderAllPost( data,count ){
                 <span style="width:140px; overflow:hidden;"  class="dashboard-post-publish-date dashboard-post-element">${data.post_publish_date}</span>
                 
                 <!-- delete post ---->
-                <span id="dashboard-post-delete" class="dashboard-post-element"  onclick="alertPrompt(this.parentElement,'deletepost')">
-                    <svg viewBox="0 0 24 24" id="ic_delete_24px" width="50%" height="50%"><path   d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                <span class="dashboard-post-element dashboard-post-delete"  onclick="alertPrompt(this.parentElement,'deletepost')">
+                    <svg viewBox="0 0 24 24" id="ic_delete_24px" width="24px" height="24px"><path   d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
                 </span>
                 <!-- edit post ---->
                 <span id="dashboard-post-edit" class="dashboard-post-element" onclick="window.location='editpost.php?postid=${data.post_id}'">
@@ -51,30 +51,40 @@ function renderAllPost( data,count ){
 }
 
 function renderAllComments( data,count ) {
-    var comment = ``;
-    // N("#allcommentslist").innerHTML += comment;
+    var comment = `
+                    <div class="comment" data-comment-id="${data.comment_id}">                        
+                        <span class="dashboard-comment-element comment-count">${count}</span>
+                        <span class="dashboard-comment-element comment-commentor"><a href="user.php?username=${data.comment_commentor_username}">${data.comment_commentor_fullname}</a></span>
+                        <span class="dashboard-comment-element comment-content" style="font-size: 14px;overflow-y: auto;">${data.comment_content}</span>
+                        <span class="dashboard-comment-element comment-post"  style="font-size:13px;color:#343434; overflow-y: auto;"><a href=post.php?post=${data.post_id}>${data.post_title}</a></span>
+                        <span class="dashboard-comment-element comment-date">${data.comment_birthdate}</span>                        
+                        <span class="dashboard-comment-element comment-delete-checkbox">
+                            <input style="transform: scale(2);margin-top: 14px;" type="checkbox" data-user-name="${data.comment_id}">
+                        </span>
+                    </div>
+                `;
+    N("#all-comments-list").innerHTML += comment;
     console.log(data);
 }
 
 function renderAllUser(data,count) {
     var user = `
-                    <tr data-user-name="${data.user_username}">
-                        
-                            <td class="user-username"><a href="user.php?username=${data.user_username}">${data.user_fullname}</a></td>
-                            <td class="user-username">${data.user_username}</td>
-                            <td class="user-id" style="width:80px;">${data.user_id}</td>
-                            <td class="user-posts">${data.user_post_count}</td>
-                            <td class="user-joined" style='font-size:14px;color:#2a2a2a;'>${data.user_joined}</td>
-                            <td class="user-email" style="width:200px;">${data.user_email}</td>
-                            <td class="user-from">${data.user_from}</td>
-                            <td class="user-delete-checkbox" style="width:50px;">
-                                <input style="
-                                transform: scale(1.5);
-                            " type="checkbox" data-user-name="${data.user_username}">
-                            </td>
-                    </tr>`;
+                <tr data-user-name="${data.user_username}">                        
+                    <td class="user-username"><a href="user.php?username=${data.user_username}">${data.user_fullname}</a></td>
+                    <td class="user-username">${data.user_username}</td>
+                    <td class="user-id" style="width:80px;">${data.user_id}</td>
+                    <td class="user-posts">${data.user_post_count}</td>
+                    <td class="user-joined" style='font-size:14px;color:#2a2a2a;'>${data.user_joined}</td>
+                    <td class="user-email" style="width:200px;">${data.user_email}</td>
+                    <td class="user-from">${data.user_from}</td>
+                    <td class="user-delete-checkbox" style="width:50px;">
+                        <input style="
+                        transform: scale(1.5);
+                    " type="checkbox" data-user-name="${data.user_username}">
+                    </td>
+                </tr>
+                `;
     N("#user-table-body").innerHTML += user;
-    console.log(user);
 }
 
 //  fetches the posts from the database and retuens it
@@ -85,11 +95,13 @@ function getData(type){
         ajaxReqquest.open("POST","dashboard.php",false);
         ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajaxReqquest.send(`operation=getdashboardpostlist`);   
+
     } else if ( type == "getcomments" ) {
         var ajaxReqquest = new XMLHttpRequest();
         ajaxReqquest.open("POST","dashboard.php",false);
         ajaxReqquest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajaxReqquest.send(`operation=getdashboardcommentlist`);
+
     }  else if ( type == "getusers" ) {
         var ajaxReqquest = new XMLHttpRequest();
         ajaxReqquest.open("POST","dashboard.php",false);
@@ -239,7 +251,7 @@ function pubunpub(node) {
             text.style.left = "21px";
             setTimeout( ()=>{
                 text.innerText = "PUBLIC";
-            },130);
+            },135);
         }
     } else {
         alert(ajaxReqquest.responseText);
@@ -334,58 +346,40 @@ window.addEventListener("load",()=>{
 
 
 function showComments(node) {    
-    return "Dokan Bondho For Now";
-    // rendering all the Comments    
-    N("#allcommentslist").innerHTML = "";
-    JSON.parse( getData("getcomments") ).forEach(( data,count ) => {
-        renderAllComments( data,count + 1 );
-    });
+    
     highlightSelected(node);
-    N("#all-post-content").style.display="none";
-    N("#all-user-content") ? N("#all-user-content").style.display="none" : "";
-    N("#all-comment-content").style.display="inline-block";
+    table = [N("#all-post-content"),N("#all-user-content"),N("#comment-table")];
+    table.forEach(function(tab){
+        tab ? tab.style.display = "none" : "";
+    });
+    N("#comment-table").style.display="inline-block";
     // render comments 
 }
 
 function showPosts(node) {
+
     highlightSelected(node);
+    table = [N("#all-post-content"),N("#all-user-content"),N("#comment-table")];
+    table.forEach(function(tab){
+        tab ? tab.style.display = "none" : "";
+    });
     N("#all-post-content").style.display="inline-block";
-    N("#all-comment-content").style.display="none";
-    N("#all-user-content") ? N("#all-user-content").style.display="none" : "";
-    setTimeout(() => {
-        reveserFixNavSize();
-    }, 1);
+
+    
 }
 
 function showUser(node) {
-    highlightSelected(node);
+
+    highlightSelected(node);    
+    table = [N("#all-post-content"),N("#all-user-content"),N("#comment-table")];
+    table.forEach(function(tab){
+        tab.style.display = "none";
+    });
     N("#all-user-content") ? N("#all-user-content").style.display="block" : "";
-    N("#all-comment-content").style.display="none";
-    N("#all-post-content").style.display="none";
-    setTimeout(() => {
-        reveserFixNavSize();
-    }, 1);
+
 }
 
 
-
-function fixNavSize(){
-    console.log("fixNavSize");
-    var navbar = document.querySelector("#navbar");
-    var rightNav = document.querySelector("#rightNav");
-    navbar.style.width = document.body.scrollWidth + "px";
-    var tmpx = rightNav.offsetLeft;
-    window.addEventListener("scroll", ()=>{
-        rightNav.style.left = (tmpx + window.scrollX) + "px";
-    });
-};
-
-
-function reveserFixNavSize(){
-    console.log("reveserFixNavSize");
-    var navbar = document.querySelector("#navbar");
-    navbar.style.width = "100%";
-};
 
 function sort( node,by ) {
     let posts = Array.from(document.querySelectorAll(".post"));

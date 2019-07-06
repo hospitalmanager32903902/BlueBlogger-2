@@ -49,7 +49,7 @@ body {
     z-index: 1000;
     width: 100%;
     height: 45px;
-    background: #343a40;
+    background: dodgerblue;
     overflow: hidden;
     box-shadow: 0px 5px 11px 0px #aaa;
 }
@@ -61,7 +61,7 @@ body {
     display: block;
     float: left;
     line-height: 45px;
-    background: #242424;
+    background: #007bf3;
     color: white;
     text-decoration: none;
     /* line-height: 40px; */
@@ -221,8 +221,12 @@ span#profile:hover {
     border-radius: 3px;
     margin-top: 10px;
     cursor: pointer;
+    outline: none;
 }
 
+#searchBox button:hover{
+    box-shadow:3px 3px 8px #ccc;
+}
 #searchResultBox{
     width: 100%;
     min-height: 600px;
@@ -245,7 +249,7 @@ span#profile:hover {
     position: relative;
     z-index: 1;
     padding-bottom: 0px;
-    transition: all .5s ease-in;
+    transition: all .2s ease-in;
     margin-top:25px;
     box-shadow: inset 0px 0px 8px rgb(231, 231, 231);
 }
