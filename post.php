@@ -120,18 +120,21 @@
                     $commentor_avatar = $commentor_avatar["user_profile_picture_link"]; 
                     $comment_date = $comment["comment_birthdate"];
                     $commentid = $comment["comment_id"];
+                    $showMore = strlen($comment["comment_content"]) > 310 ? "yes" : "no";
                     // echo "SELECT * FROM `users` Where `user_username`='" .$comment["comment_commentor_username"]. "'";
                     echo 
-                    '<div class="comment" data-commentid="'.$commentid.'">
+                    '<div class="comment" data-commentid="'.$commentid.'" data-show-more="'.$showMore.'">
                         <div class="commentor">
                             <a href="user.php?username='.$commentor_username.'">
                                 <img src=img/profilepic/'.$commentor_avatar.' alt="" width="80px" height="80px" id="commentorAvatar">  <!-- Commentor Avatar -->
                                 <label for="commentorAvatar">'.$comment["comment_commentor_fullname"].'</label>
                             </a>
                         </div>                       
-                        <div class="commentcontent"> 
+                        <div class="commentcontent">
+                            <div style="height: 133%;width: 100%;overflow:hidden;line-height: 15px;" class="comment-text"> 
                             '.$comment["comment_content"].'
-                            <span id="commentDate">'.$comment_date.'</span>                   
+                            </div>
+                            <span id="commentDate">'.$comment_date.'</span>                  
                         </div>
                     </div>';
                 }

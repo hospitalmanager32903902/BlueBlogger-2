@@ -145,7 +145,7 @@
                                 <td>Joined</td>
                                 <td style="width:200px">Email</td>
                                 <td>From</td>
-                                <td style="width:50px;cursor: pointer;padding-bottom: 7px;">
+                                <td style="width:50px;cursor: pointer;padding-bottom: 7px;" onclick="deleteUser()">
                                     <svg viewBox="0 0 24 24" id="ic_delete_24px" width="24px" height="24px"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
                                 </td>
                             </tr>

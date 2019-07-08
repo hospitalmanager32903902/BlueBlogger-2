@@ -162,7 +162,7 @@ span#profile:hover {
 
 #container {
     box-sizing: border-box;
-    width: 970px;
+    width: 800px;
     min-height: 900px;
     overflow: hidden;
     /* height: auto; */

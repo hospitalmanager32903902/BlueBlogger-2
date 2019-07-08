@@ -63,9 +63,9 @@
     <div id="container">
         <div id="content" class="<?php if($doesnotmatch) echo "doesnotmatch" ?>">
             <form action="login.php" method="post">
-                <label for="username">Enter Your User Name </label>
+                <label for="username">User Name </label>
                 <input type="text" name="username" id="username" placeholder="Type User Name " >
-                <label for="password">Enter Your Password  </label>
+                <label for="password">Password  </label>
                 <input type="password" name="password" id="password" placeholder="Type Password " >
                 <input type="submit" value="Login">
             </form>

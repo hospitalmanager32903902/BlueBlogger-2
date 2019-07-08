@@ -487,3 +487,18 @@ function sort( node,by ) {
     });
 
 }
+
+
+function deleteUser(){
+    // prompt comfirmtion
+    let trs = [...document.querySelectorAll("#user-table-body tr")];
+    let usersToBeDeleted = trs.filter(function(tr){
+        var tmpCheckbox = tr.querySelector("input[type='checkbox']");
+        if( tmpCheckbox.checked ){
+            return true;
+        } else {
+            return false;
+        }
+    });
+    console.log(usersToBeDeleted);
+}

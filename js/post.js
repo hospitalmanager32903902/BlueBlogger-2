@@ -16,13 +16,15 @@ function shootcomment() {
     ajaxReq.send(`operation=registernewcomment&comment_content='${comment_content}'&commentor_post_author_username='${commentor_post_author_username}'&comment_post_id=${comment_post_id}&commentor_fullname='${commentor_fullname}'`);
 
     if ( ajaxReq.responseText.split(":") != "failed" ) {        
-        var newcomment = `<div class="comment newcommentanimation" >
+        var newcomment = `<div class="comment newcommentanimation" data-show-more="${ comment_content.length > 310 ? 'yes': 'no' }" >
                                 <div class="commentor">
                                     <img src=img/profilepic/${ajaxReq.responseText.split(":")[1]} alt="" width="80px" height="80px" class="commentorAvatar">  <!-- Commentor Avatar -->
                                     <label for="commentorAvatar">${ajaxReq.responseText.split(":")[0]}</label>
                                 </div>                       
                                 <div class="commentcontent"> 
+                                    <div style="height: 114%;width: 100%;overflow:hidden;line-height: 15px;" class="comment-text"> 
                                     ${comment_content}                    
+                                    </div>
                                 </div>
                             </div>`;
         N("#comments").innerHTML = newcomment + N("#comments").innerHTML;
@@ -33,6 +35,7 @@ function shootcomment() {
     } else {
         //alert(ajaxReq.responseText);
     }
+    addShowMore();
 }
 
 function N(identifier) {
@@ -89,5 +92,28 @@ function postpage_sidelogin(node) {
         setTimeout(()=>{            
             node.classList.remove("shake");
         },1000);
+    }
+}
+
+function addShowMore() {
+    let comments = document.querySelectorAll(".comment");
+    comments.forEach( (comment)=>{
+        var flag = comment.getAttributeNode("data-show-more").value;
+        console.log(flag);
+        var commentcontent = comment.querySelector(".commentcontent");
+        if ( flag == "yes" &&  !commentcontent.innerHTML.includes("show-more") ) {
+            comment.querySelector(".commentcontent").innerHTML += `<span class="show-more" onclick="showMore(this)">Show More ↓↓↓ </span>`;
+        }
+    });
+} addShowMore();
+
+
+function showMore(node) {
+    if( node.parentElement.style.height == "100px" || node.parentElement.style.height == "" ){
+        node.parentElement.style.height = "auto";
+        node.innerText = "Show More ↓↓↓ ";
+    } else {        
+        node.parentElement.style.height = "100px";
+        node.innerText = "Show Less ↑↑↑ ";
     }
 }
