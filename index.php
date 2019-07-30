@@ -159,6 +159,7 @@
             
             <!-- Recent Comments -->
             <?php
+                $user = $_SESSION["username"];
                 if( isset($_SESSION["username"]) ){
                     echo '
                         <div id="recentcomments">                
@@ -167,7 +168,7 @@
                             </div>
                             <div id="recentcommentslist">';
                             
-                                $sql = "SELECT comment_content,comment_post_id,comment_id FROM comments ORDER BY comment_date DESC LIMIT 5";                
+                                $sql = "SELECT comment_content,comment_post_id,comment_id FROM comments where comment_post_author_username='$user' ORDER BY comment_date DESC LIMIT 5";                
                                 $recentComments = $conn->query($sql);
                                 while( $recentcommentitem = $recentComments->fetch_assoc() ){
                                     $commenttitle= substr($recentcommentitem["comment_content"],0,20);

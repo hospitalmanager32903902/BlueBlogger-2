@@ -44,6 +44,9 @@
             foreach( $row as $key => $value ){
                 $comment[$key] = $value;
             }
+            if( $comment["comment_commentor_username"] == $username ){
+                $comment["comment_commentor_fullname"] = "<span style='background:dodgerblue;color:white;border-radius:3px;padding:3px 4px; font-style:italic'>@you</span>";
+            }
             array_push($all,$comment);
         }
         echo json_encode($all);
@@ -58,7 +61,7 @@
         // fetching all the post of the user and
         // putting them all in all() array 
         $username = $_SESSION["username"];
-        $sql = "SELECT * FROM `users`"; // SQL code for fetching data from the database
+        $sql = "SELECT * FROM `users` WHERE user_username !='$username'"; // SQL code for fetching data from the database
         $users = $conn->query( $sql ); // fetched the data
         $user = array();
         $all = array();
@@ -166,7 +169,7 @@
                         <span class="allcommentsheader-element comment-content" style="width:380px;" data-sorted-byviews="no" data-sorted="no" onclick="sortComments(this,'content')">Said ▶</span>
                         <span class="allcommentsheader-element comment-post" data-sorted-bycomments="no" onclick="sortComments(this,'post')" style="width:280px;">On The Post ▶</span>
                         <span class="allcommentsheader-element comment-date" style="width:120px;" data-sorted-bydate="no" onclick="sortComments(this,'date')">At ▶</span>
-                        <span class="allcommentsheader-element comment-delete-tool" style="padding-top: 5px;width:65px;">
+                        <span class="allcommentsheader-element comment-delete-tool" style="padding-top: 5px;width:65px;" onclick="deleteComment()">
                             <svg viewBox="0 0 24 24" id="ic_delete_24px" width="24px" height="24px"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
                         </span>
                     </div>

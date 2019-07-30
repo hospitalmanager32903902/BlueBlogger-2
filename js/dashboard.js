@@ -56,7 +56,7 @@ function renderAllComments( data,count ) {
                         <span class="dashboard-comment-element comment-count">${count}</span>
                         <span class="dashboard-comment-element comment-commentor"><a href="user.php?username=${data.comment_commentor_username}">${data.comment_commentor_fullname}</a></span>
                         <span class="dashboard-comment-element comment-content" style="font-size: 14px;overflow-y: auto;">${data.comment_content}</span>
-                        <span class="dashboard-comment-element comment-post"  style="font-size:13px;color:#343434; overflow-y: auto;"><a href=post.php?post=${data.post_id}>${data.post_title}</a></span>
+                        <span class="dashboard-comment-element comment-post"  style="font-size:13px;color:#343434; overflow-y: auto;"><a href=post.php?post=${data.post_id}&commentid=${data.comment_id}>${data.post_title}</a></span>
                         <span class="dashboard-comment-element comment-date">${data.comment_birthdate}</span>                        
                         <span class="dashboard-comment-element comment-delete-checkbox">
                             <input style="transform: scale(2);margin-top: 14px;" type="checkbox" data-user-name="${data.comment_id}">
@@ -64,7 +64,7 @@ function renderAllComments( data,count ) {
                     </div>
                 `;
     N("#all-comments-list").innerHTML += comment;
-    console.log(data);
+    
 }
 
 function renderAllUser(data,count) {
@@ -500,5 +500,46 @@ function deleteUser(){
             return false;
         }
     });
-    console.log(usersToBeDeleted);
+    usersName = usersToBeDeleted.map( (user) => {
+        return user.getAttributeNode("data-user-name").value;
+    });
+    let op = `operation=deleteUsers&users=${JSON.stringify(usersName)}`;
+    console.log(op);
+    const ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.open("POST","dashboardOperationBackEnd.php",false);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.send(op);
+    if( ajaxRequest.responseText ) {
+        usersToBeDeleted.forEach( userRow => {
+            userRow.remove();  
+        });
+    }
+}
+
+
+function deleteComment(){
+    // prompt comfirmtion
+    let allcomments = [...document.querySelectorAll(".comment")];
+    let commentsToBeDeleted = allcomments.filter(function(c){
+        var tmpCheckbox = c.querySelector("input[type='checkbox']");
+        if( tmpCheckbox.checked ){
+            return true;
+        } else {
+            return false;
+        }
+    });
+    commentIDs = commentsToBeDeleted.map( (comment) => {
+        return comment.getAttributeNode("data-comment-id").value;
+    });
+    let op = `operation=deleteCommetss&commentIDs=${JSON.stringify(commentIDs)}`;
+    console.log(op);
+    const ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.open("POST","dashboardOperationBackEnd.php",false);
+    ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajaxRequest.send(op);
+    if( ajaxRequest.responseText ) {
+        commentsToBeDeleted.forEach( commentRow => {
+            commentRow.remove();  
+        });
+    }
 }

@@ -83,18 +83,7 @@ body {
 }
 
 
-span#notification {
-    background: green;
-    box-sizing: border-box;
-    display: block;
-    /* float: left; */
-    position: relative;
-    /* margin-right: 10px; */
-    left: 0px;
-    top: 8px;
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #notificationpad{
@@ -232,7 +221,7 @@ span#profile:hover {
     top: 0px;
     font-size: 17px;
     text-overflow: ellipsis;
-    background:red;
+    /* background:red; */
     color: black;
 }
 .post_title:hover{
@@ -247,7 +236,7 @@ span#profile:hover {
     padding: 5px 5px 5px 5px;
     overflow: hidden;
     margin: 20px auto;
-    background: oldlace;
+    /* background: oldlace; */
     box-sizing: border-box;
     border-radius: 3px;
     border: 1px solid #79841047;
@@ -270,12 +259,12 @@ span#profile:hover {
     font-size: 15px;
     box-sizing: border-box;
     width: 500px;
-    height: 51px;
+    height: 49px;
     overflow: hidden;
     display: block;
     float: none;
-    /* color: white; */
-    background: rebeccapurple;
+    color: #6a5e5e;
+    /* background: rebeccapurple; */
     margin-left: 122px;
     position: relative;
 }
@@ -283,7 +272,7 @@ span#profile:hover {
     width: 500px;
     height: 24px;
     position: absolute;
-    background: #0fb8ad;
+    /* background: #0fb8ad; */
     font-size: 11px!important;
     /* top: -44px; */
     color: #081e72;
@@ -335,6 +324,7 @@ span#profile:hover {
 .excerpt > a {
     color: white;
     background: dodgerblue;
+    border: 1px solid dodgerblue;
     text-decoration: none;
     padding: 3px 4px 1px 6px;
     border-radius: 5px;
@@ -342,7 +332,7 @@ span#profile:hover {
     width: 109px;
     /* margin: 0px 5px; */
     /* float: right; */
-    bottom: 4px;
+    bottom: 0px;
     right: 4px;
     position: absolute;
 }
@@ -412,7 +402,7 @@ span#profile:hover {
         /* overflow: hidden; */
         margin: 10px 0px;
         display: block;
-        background: white;
+        background: #bbbbbb;
         border-bottom: 3px solid #bbb;
         position: relative;
         /* margin-bottom: 20px; */
@@ -430,7 +420,7 @@ span#profile:hover {
 
     #searchtext {
         width: 70%;
-        height: 33px;
+        height: 32px;
         outline: none;
         padding-left: 10px;
         position: relative;
@@ -443,7 +433,7 @@ span#profile:hover {
     #searchaction {
         border: none;
         width: 30%;
-        height: 33px;
+        height: 32px;
         position: relative;
         /* margin-left: -6px; */
         background: #ddd;
@@ -507,7 +497,7 @@ span#profile:hover {
     padding-top:10px;
     /* padding-bottom: 10px; */
     border: 1px solid #aaa;
-    border-bottom: 3px solid #bbb;
+    border-bottom: 4px solid #bbb;
     border-radius: 2px;
     transition:1s linear;
     position: relative;
@@ -522,30 +512,32 @@ span#profile:hover {
     top: 100%;
     left: -1px;
 }
-}
+
     
     #userpane-username {
         width: 90%;
         height: 35px;
-        border-radius: 5px;
-        border: 1.5px solid #000d;
+        /* border-radius: 5px; */
+        border: none;
+        outline: none;
         font-size: 20px;
         margin: 5px auto;
         display: block;
         padding-left: 10px;
-        outline: 0;
+        background: #ffffff;
     }
     
     #userpane-password {
         width: 90%;
-        height: 35px;
-        border-radius: 5px;
-        border: 1.5px solid #000d;
+        height:35px;
+        /* border-radius: 5px; */
+        border: none;
+        outline: none;
         font-size: 20px;
         margin: 5px auto;
         display: block;
         padding-left: 10px;
-        outline: 0;
+        background: #ffffff;
     }
     
     #userpane-loginbutton {
@@ -634,7 +626,7 @@ span#profile:hover {
     background: #fdfdfd;
     padding-top:0;
     border: 1px solid #aaa;
-    border-bottom: 3px solid #bbb;
+    border-bottom: 4px solid #bbb;
     border-radius: 2px;
     transition:1s linear;
     margin-top: 10px;
@@ -724,7 +716,7 @@ span#profile:hover {
     background: #fdfdfd;
     padding-top:0;
     border: 1px solid #aaa;
-    border-bottom: 3px solid #bbb;
+    border-bottom: 4px solid #bbb;
     border-radius: 2px;
     transition:1s linear;
     margin-top: 10px;
@@ -988,7 +980,7 @@ span#profile {
 #container {
     box-sizing: border-box;
     width: 740px;
-    min-height: 600px;
+    min-height: 647px;
     max-height: 1500px;
     overflow: hidden;
     /* height: auto; */
@@ -1275,7 +1267,7 @@ span#input_user_detail_save:hover {
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
     width: 100%;
-    height: 200px;
+    min-height: 90px;
     background: #ecf0f2;
     padding-top:10px;
     border: 1px solid #aaa;

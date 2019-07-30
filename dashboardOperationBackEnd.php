@@ -88,4 +88,39 @@
         }
     } 
 
+    // User Deletion code 
+    if( isset($_SESSION["username"]) && isset($_SESSION["user_roll"]) && $_SESSION["user_roll"] == "admin" && isset($_POST["operation"]) && $_POST["operation"] == "deleteUsers" ){
+        $usersName = json_decode($_POST["users"]);
+        foreach ($usersName as $index => $user) {
+            echo $user;
+            $sql = "delete from users where user_username='$user'";
+            if( $conn->query($sql) ){
+                echo "$user deleted \n";
+                $sql2 = "delete from posts where post_author_username='$user'";
+                $r = $conn->query($sql2);
+                if($r) {
+                    echo "all post deleted of $user \n";
+                }
+                $sql3 = "delete from comments where comment_post_author_username='$user'";
+                $r = $conn->query($sql3);
+                if($r) {
+                    echo "all comments deleted of $user\n";
+                }
+            }
+        }        
+        exit(0);
+    }
+
+    // Comments Deletion code 
+    if( isset($_SESSION["username"]) && isset($_SESSION["user_roll"]) && $_SESSION["user_roll"] == "admin" && isset($_POST["operation"]) && $_POST["operation"] == "deleteCommetss" ){
+        $commetsIDs = json_decode($_POST["commentIDs"]);
+        foreach ($commetsIDs as $index => $commetID) {
+            $sql = "delete from comments where comment_id=".(int)$commetID;
+            if( $conn->query($sql) ){
+                echo "$commetID number comment deleted \n";                
+            }
+        }        
+        exit(0);
+    }
+
 ?>

@@ -14,7 +14,8 @@ body{
     width: 100vw;
     background: #b1d1f269;
     margin:0px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    /* position: fixed; */
 }
 
 #header{
@@ -283,13 +284,14 @@ path {
 #postnumberhash{
     width: 50px;
     font-weight: bold;
-    
+    cursor: default;
 }
 #posttitle{
     width: 352px;
 }
 #posttumbpic{
     width: 104px;
+    cursor: default;
 }
 .tools{
     width:100px;
@@ -520,8 +522,8 @@ path {
     text-decoration:none;
 }
 .comment a:hover{
-    text-decoration:underline;
-    color:blue;
+    /* text-decoration:underline; */
+    /* color:blue; */
 }
 .comment:nth-child(even){
     background:#fff9ee;
@@ -818,6 +820,7 @@ path {
     position: absolute;
     /* top: 30px; */
     margin-top: 30px;
+    margin-bottom: 50px;
     margin-left: 235px;
     /* left: 220px; */
     min-width: 1268px;
@@ -840,6 +843,7 @@ path {
     color: white;
     border:1px solid white;
 }
+#user-table thead tr td:last-child {/*     border-right:2px solid white; */width: 51px!important;}
 #user-table path {
     fill:white;
 }
@@ -849,7 +853,6 @@ path {
 #user-table tbody tr {
     background: #f9f9f9;
     border: 1px solid white;
-    cursor: pointer;
 }
 #user-table tbody tr td {
     border-right: 1px solid transparent;
@@ -860,11 +863,16 @@ path {
     display: block;
     float: left;
     width: 120px;
-    padding: 10px 20px;
+    padding: 6px 20px;
     color: bl;
     /* border:1px solid white; */
     word-wrap: break-word;
 }
+
+input[type="checkbox"] {
+    cursor:pointer;
+}
+
 #user-table tbody tr td a{
     color:#0073aa;
     text-decoration:none;
@@ -887,7 +895,7 @@ div#comment-table {
     display: inline-block;
     /* left: 100px; */
     /* top: 100px; */
-    min-width: 1077px;
+    min-width: 1078px;
     width: auto;
     display: block;
     /* min-height: 600px; */
@@ -904,7 +912,8 @@ div#comment-table {
 }
 
 #all-comments{
-    width: 100%;
+    overflow-x: auto;
+    min-width: 100%;
     /* min-height: 300px; */
     /* height: auto; */
 }
@@ -934,8 +943,8 @@ div#comment-table {
     transition-duration:.2s;
 }
 
-.dashboard-comment-element:hover {
-    height:auto;
+.comment-content:hover {
+    height: auto;
 }
 
 .comment-count {
@@ -949,6 +958,10 @@ div#comment-table {
 }
 .comment-post {
     width:280px;
+}
+.comment-post a:hover {
+    text-decoration:underline;
+    color:blue;
 }
 .comment-date{
     width:120px;

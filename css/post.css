@@ -9,7 +9,9 @@
     /* color: black; */
     font-family: verdana;
     transition: .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+    scroll-behavior:smooth;
 }
+
 
 body {
     height: auto;
@@ -20,6 +22,7 @@ body {
     /* transition:1s cubic-bezier(0.86, -1.12, 0.04, 2.85); */
     /* transform: skew(45deg); */
     /* left: -105%; */
+    scroll-behavior: smooth;
 }
 
 #header {
@@ -132,16 +135,14 @@ path {
 #homelink {
     color: white;
     font-family: w3incons;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
     text-decoration: none;
     line-height: 45px;
     text-align: start!important;
+    margin-left:-10px;
 }
 
-#homelink:hover {
-    color: dodgerblue;
-}
 
 #homelink:after {
     content: '\e800';
@@ -161,6 +162,7 @@ path {
     margin-top: 30px;
     margin-bottom: 50px;
     border-radius: 5px;
+    scroll-behavior: smooth;
 }
 
 #postContainer {
@@ -444,11 +446,13 @@ label[for="commentorAvatar"] {
 
 .comment {
     width: 100%;
-    min-height: 100px;
+    min-height: 130px;
     height: auto;
-    /* background: lightgray; */
+    background: transparent;
     position: relative;
     margin-top: 19px;
+    /* padding-top: 15px; */
+    /* padding-bottom: 106px; */
 }
 
 .commentor {
@@ -456,6 +460,7 @@ label[for="commentorAvatar"] {
     width: 100px;
     height: 100px;
     display: block;
+    margin-top: 12px;
     float: left;
     /* background: red; */
     /* margin-top: 15px; */
@@ -492,6 +497,7 @@ label[for="commentorAvatar"] {
     box-shadow: 0px 0px 5px #acacac8c;
     position: relative;
     /* box-shadow: 0px 0px 10px #aaa; */
+    margin-top: 12px;
 }
 #commentDate{    
     position: absolute;
@@ -517,8 +523,20 @@ label[for="commentorAvatar"] {
     left: 91px;
     transform: rotate(90deg);
     display: block;
-}
 
+}
+.commenthighlightAnimation{
+    animation:chla 3s linear 1;
+    background:#ffa50017;
+}
+@keyframes chla{
+    from{
+        background:orange;
+    }
+    to {
+        background:#ffa50017;
+    }
+}
 /* ------------------------Sidebar User pane ------------------------------ */
 #userpane {
     min-width: 93%;
@@ -526,9 +544,20 @@ label[for="commentorAvatar"] {
     background: #ecf0f2;
     /* padding-top: 10px; */
     border: 1px solid #aaa;
-    border-bottom: 3px solid #bbb;
+    border-bottom: 4px solid #bbb;
     border-radius: 2px;
     transition: 1s linear;
+    position:relative;
+}
+#userpane::before {
+    content: '';
+    width: 0px;
+    height: 0px;
+    border: 4px solid transparent;
+    border-left: 5px solid white;
+    position: absolute;
+    top: 100%;
+    left: -1px;
 }
 
 #userpane-username {

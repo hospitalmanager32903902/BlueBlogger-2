@@ -10,6 +10,7 @@
     $username = $_SESSION["username"];
     $r = $conn->query("SELECT * FROM `users` WHERE `user_username`='$username' ");
     $row = $r->fetch_assoc();
+    
     $i = 1;
 ?>
 

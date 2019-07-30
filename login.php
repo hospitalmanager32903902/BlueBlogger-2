@@ -8,7 +8,8 @@
         $password = $_POST["password"];
         $sql = "SELECT `user_password` from `users` Where `user_username`='$username' LIMIT 1";
         $r = $conn->query($sql);
-        if( $password ==  $r->fetch_assoc()["user_password"] ){            
+        $fetched_pass = $r->fetch_assoc()["user_password"];
+        if( password_verify($password, $fetched_pass) ){            
             $_SESSION["username"] = $username; 
             $sql = "SELECT *  from `users` Where `user_username`='$username' LIMIT 1";
             $r = $conn->query($sql)->fetch_assoc();
@@ -47,7 +48,7 @@
         $r = $conn->query($sql)->fetch_assoc();
         $fetched_pass = $r["user_password"];
         $user_roll = $r["user_roll"];
-        if( $password == $fetched_pass ){
+        if( password_verify($password, $fetched_pass) ){
             header("Location:dashboard.php");
             $_SESSION["username"] = $username;
             $_SESSION["user_roll"] = $user_roll;

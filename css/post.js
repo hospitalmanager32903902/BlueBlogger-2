@@ -121,19 +121,11 @@ function showMore(node) {
 function highLightComment(){
     var givenCommentId = parseInt(window.location.search.split("commentid=")[1]);
     if( !givenCommentId ) return;
-    let comments = [...document.querySelectorAll(".comment")];
+    let comments = [...document.querySelectorAll(".comments")];
     comments.forEach( comment => {
-        var comment_id = comment.getAttributeNode("data-commentid") ? comment.getAttributeNode("data-commentid").value : "";            
+        var comment_id = comment.getAttributeNode("data-comment-id").value;
         if( givenCommentId == comment_id ){
-            var toScroll = parseInt(N("#container").offsetTop + N("#commentbox").offsetTop + comment.offsetTop ) - window.pageYOffset - 100;
-            console.log(toScroll);
-            window.scrollBy(0,toScroll);
             comment.classList.add("commenthighlightAnimation");
         }
     });
 }
-
-
-window.addEventListener("load",()=>{
-    setTimeout( ()=>{highLightComment()},300);
-});

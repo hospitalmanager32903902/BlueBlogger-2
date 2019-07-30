@@ -24,7 +24,7 @@
         $user_currentcity = ucfirst(htmlentities($_POST["currentcity"]));
         $user_fromcity = ucfirst(htmlentities($_POST["fromcity"]));
         $user_phone = ucfirst(htmlentities($_POST["phone"]));
-        $user_password = $_POST["password"];
+        $user_password = password_hash($_POST["password"],PASSWORD_DEFAULT);
         $user_profile_picture_link = $_FILES["avatarimage"]["name"];
         
         // sql for entering new user into the batadase
