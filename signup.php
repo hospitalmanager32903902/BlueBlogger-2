@@ -56,6 +56,7 @@
                     <input type="text" name="lastname" id="lastname" placeholder="Last Name" >
                     <label for="username">Choose Username</label>
                     <input type="text" name="username" id="username" placeholder="Username">
+                    <label for="username" id="uniqueuser" style="color: red;">username not avialable</label>
                     <label for="email">Enter Your Email Address</label>
                     <input type="email" name="email" id="email" placeholder="Valid Email Address">
                     <label for="age">Enter Your Age </label> <label for="gender">Enter Your Gender</label>
@@ -118,7 +119,7 @@
                         input[i].offsetTop = chooseThumbImageCap.offsetTop;             
                     }
                     window.scrollBy(0,input[i].offsetTop - window.pageYOffset-200 );
-                    console.log(input[i].offsetTop - window.pageYOffset);
+                    console.log(input[i].offsetTop - window.pageYOffset - 200);
                     setTimeout(() => {                        
                         input[i].classList.remove("fieldempty");
                     }, 1000);
@@ -130,7 +131,7 @@
                 }
             }
             var select = document.querySelector("select");
-            if (select.value && flag) {
+            if (select.value && flag) { // if everything is ok, click the submit button
                 document.querySelector("#register").click(); 
             } else if(!select.value && flag) {
                 select.style.border="1.5px solid #c20a0a";
@@ -153,7 +154,7 @@
                 node.nextElementSibling.innerText = "  Matched ";
                 setTimeout(() => {         
                     node.nextElementSibling.style.color="white";
-                    node.nextElementSibling.innerText = "";      
+                    node.nextElementSibling.innerText = "";
                 }, 1000);
             }
         }
@@ -170,7 +171,19 @@
                 chooseThumbImageCap.style.color = "#04d604";
             }
         }
-
+        // user Name Availability Check
+        document.querySelector("#username").addEventListener("change",function () {
+            const req = new XMLHttpRequest();            
+            req.open("POST","dashboardOperationBackEnd.php",false);    
+            req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            req.send("usernameCheck="+this.value);
+            if( req.responseText == "user available" ) {
+                document.querySelector("#uniqueuser").style.display = "block";
+                this.value = "";
+            } else {
+                document.querySelector("#uniqueuser").style.display = "none";
+            }
+        });
     </script>
     <script src="js/bblibrary.js"></script>
 </body>

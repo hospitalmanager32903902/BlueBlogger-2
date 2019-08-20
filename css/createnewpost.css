@@ -44,10 +44,9 @@ body {
     background-size: cover;
 }
 
-.sticky {
+.sticky2 {
     position: sticky!important;
-    top: 0px;
-    z-index: 10000;
+    top: 50px!important;
 }
 
 

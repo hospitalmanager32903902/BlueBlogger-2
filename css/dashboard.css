@@ -705,10 +705,10 @@ path {
     content: '\e804';
 }
 .dashboard-post-unpublish{
-    width: 105px;
+    width: 136px;
     padding: 0px;
     text-align: center;
-    line-height: 63px;
+    line-height: 60px;
     cursor: pointer;
 }
 
@@ -739,7 +739,7 @@ path {
     background: lightcoral;
     /* box-shadow: inset 0px 0px 5px white; */
     /* border-radius: 25%; */
-    top: 18px;
+    top: 14px;
     z-index: 9;
 }
 

@@ -2,8 +2,7 @@
     // Check if user logged in if yes
     // continue otherwise redirect to login page
     session_start();
-    if( !isset($_SESSION["username"]) ){
-        echo "User Not Logged in";
+    if( !isset($_SESSION["username"]) ) {
     }
     
 ?>
@@ -121,6 +120,18 @@
             }
         }        
         exit(0);
+    }
+
+    if( isset($_POST["usernameCheck"]) ) {
+        $userName = filter_var($_POST["usernameCheck"],FILTER_SANITIZE_STRING);
+        $r = $conn->query("SELECT count(*) AS usernameAvailable FROM users WHERE user_username='$userName'")->fetch_assoc()["usernameAvailable"];
+        if( $r == 0 ) {
+            echo "user not available";
+        }
+        else{
+            echo "user available";
+        }
+
     }
 
 ?>

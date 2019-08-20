@@ -279,6 +279,7 @@ input[type="submit"],input[type="button"]{
     color: white;
     background: lightcoral;
     height: 40px;
+    cursor: pointer;
 }
 #register{
     height: 0px;
@@ -294,6 +295,15 @@ input[type="submit"],input[type="button"]{
     color: red;
     margin-top: 0px;
     height: 10px;
+}
+#uniqueuser {
+    font-size: 13px;
+    font-weight: bold;
+    color: red;
+    margin-top: -5px;
+    height: 10px;
+    text-indent: 10px;
+    display: none;
 }
 input#image {
     height: 26px;

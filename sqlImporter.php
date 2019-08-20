@@ -13,17 +13,17 @@
     // }
 
     
-    function randBloodGroup(){
+    function randBloodGroup() {
         $bg = ["AB+","AB-","A+","A-","B+","B-","O+","O-"];
         return $bg[ rand(0,count($bg)-1) ];
     }
 
-    function randProfession(){
+    function randProfession() {
         $bg = ["Web Developer","Film Maker","Accountant","Banker","Businessman","Photographer","Pianter","Engineer"];
         return $bg[ rand(0,count($bg)-1) ];
     }
 
-    function randCity(){
+    function randCity() {
         $bg = ["London","Paris","New York","Dhaka","Mumbai","Delhi","Baquwar","Bangaluro"];
         return $bg[ rand(0,count($bg)-1) ];
     }

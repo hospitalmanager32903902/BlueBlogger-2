@@ -115,7 +115,7 @@ div#rightNav {
 span#notification {
     /* background: green; */
     box-sizing: border-box;
-    display: none;
+    /* display: none; */
     float: left;
     position: relative;
     /* margin-right: 10px; */

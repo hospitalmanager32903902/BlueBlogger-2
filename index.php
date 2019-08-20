@@ -29,12 +29,13 @@
 
 <?php 
 
-    $postPerPage = 5;
+    $postPerPage = 3;
   // finding out the number of posts that are public in the database 
     $sql = "SELECT COUNT(*) FROM `posts` WHERE post_status='public'";
     $postCount = (int)$conn->query( $sql )->fetch_assoc()["COUNT(*)"];
     // echo "<script> alert('$postCount') </script>";
 
+    
   // which page is it
     if ( !isset($_GET["page"]) ) {
         $page = 1;
@@ -45,7 +46,6 @@
   // fetching the  posts
     $sql = "SELECT * FROM `posts` Where `post_status`='public' ORDER BY post_publish_date ASC "; // SQL code for fetching data from the database
     $posts = $conn->query( $sql ); // fetched the data
-  
     
 ?>
 
@@ -98,7 +98,8 @@
                                         <span class="post-comments">Comments : '.$post_comment_count.'</span> |
                                         <span class="post-visits">Views : '.$post_visit_count.'</span>
                                     </div>                                
-                                </div>';
+                                </div>
+                            ';
                     }
                     $tmp_i++;
                 }
@@ -139,7 +140,7 @@
                                 <div id="userpane-userdetail-age">'.$user["user_age"].'</div>
                                 <div id="userpane-userdetail-gender">'.$user["user_gender"].'</div>
                                 <div id="userpane-userdetail-profession">'.$user["user_profession"].'</div>
-                            </div>';
+                             </div>';
                     }
                 ?>
             </div>
@@ -159,8 +160,8 @@
             
             <!-- Recent Comments -->
             <?php
-                $user = $_SESSION["username"];
                 if( isset($_SESSION["username"]) ){
+                    $user = $_SESSION["username"] ?? "";
                     echo '
                         <div id="recentcomments">                
                             <div id="recentcommentsheader">

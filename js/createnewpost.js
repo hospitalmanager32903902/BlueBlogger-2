@@ -3,9 +3,9 @@ var writingtool = document.querySelector("#writingtool");
 var writingtoolOffsetTop = writingtool.offsetTop;
 window.addEventListener("scroll",()=>{
     if(window.pageYOffset >= writingtoolOffsetTop){
-        writingtool.classList.add("sticky");
+        writingtool.classList.add("sticky2");
     } else {        
-        writingtool.classList.remove("sticky");
+        writingtool.classList.remove("sticky2");
     }
 });
 
